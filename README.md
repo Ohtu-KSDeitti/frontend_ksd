@@ -18,7 +18,7 @@
 * [Product backlog](https://docs.google.com/spreadsheets/d/17pHSsWrSfmB6ZCPkbFlNHP7rXrApZz649BNCZ2rUao4/edit?usp=sharing)
 * [Sprint backlog](https://docs.google.com/spreadsheets/d/1qfrm3tt-EGaUIGf8-LNKPHwXWFQBNaiZ_fus_j46mK4/edit?usp=sharing)
 * Diagrams, WIP
-* Definition of done, WIP
+* [Definition of done](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/definition_of_done.md)
 
 
 
