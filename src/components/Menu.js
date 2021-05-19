@@ -7,8 +7,8 @@ const Menu = () => {
 
   return(
     <div>
-      <a href='/' style={padding}>main page</a>
-      <a href='/login' style={padding}>login</a>
+      <a href='/' style={padding}>Pääsivu</a>
+      <a href='/login' style={padding}>Kirjaudu</a>
     </div>
   )
     

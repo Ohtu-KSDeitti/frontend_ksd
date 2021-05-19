@@ -14,22 +14,22 @@ const LoginForm = () => {
       <h2>Login</h2>
       <Form onSubmit={submit}>
         <Form.Group>
-          <Form.Label>username:</Form.Label>
+          <Form.Label>Käyttäjätunnus:</Form.Label>
           <Form.Control
             type='text'
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-          <Form.Label>password:</Form.Label>
+          <Form.Label>Salasana:</Form.Label>
           <Form.Control           
             type='password'
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          <Button type='submit'>login</Button>
+          <Button type='submit'>Kirjaudu</Button>
         </Form.Group>
       </Form>
-      <p>New user? Register <a href='/register'>here</a></p>
+      <p>Pääset luomaan uuden käyttäjän <a href='/register'>täällä</a></p>
     </div>
   )
 
