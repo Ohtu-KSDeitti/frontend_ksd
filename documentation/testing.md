@@ -1,3 +1,3 @@
 # Testing 
 
-Mockit vai testi database?
+Testitietokanta
