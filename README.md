@@ -19,6 +19,8 @@
 * [Sprint backlog](https://docs.google.com/spreadsheets/d/1qfrm3tt-EGaUIGf8-LNKPHwXWFQBNaiZ_fus_j46mK4/edit?usp=sharing)
 * Diagrams, WIP
 * [Definition of done](https://github.com/Ohtu-KSDeitti/frontend_ksd/tree/main/documentation/definition_of_done.md)
+* [Security](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/security.md)
+* [Testing](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/testing.md)
 
 
 
@@ -26,7 +28,7 @@
 
 ### Workflow
 
-* **Workflow practices, WIP**
+* [Workflow practices](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/workflow.md)
 
 ### Course info
 
