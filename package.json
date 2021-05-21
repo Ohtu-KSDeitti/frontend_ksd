@@ -20,7 +20,8 @@
     "build": "react-scripts build",
     "test": "jest --verbose --runInBand",
     "eject": "react-scripts eject",
-    "lint": "eslint src/."
+    "lint": "eslint src/.",
+    "lint:fix": "npm run lint -- --fix"
   },
   "eslintConfig": {
     "extends": [
