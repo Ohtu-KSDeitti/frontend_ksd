@@ -16,23 +16,25 @@ const LoginForm = () => {
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
           <Form.Control
-            type='text'
+            type="text"
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
           <Form.Label>Salasana:</Form.Label>
-          <Form.Control           
-            type='password'
+          <Form.Control
+            type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          <Button type='submit'>Kirjaudu</Button>
+          <Button type="submit">Kirjaudu</Button>
         </Form.Group>
       </Form>
-      <p>Pääset luomaan uuden käyttäjän <a href='/register'>täällä</a></p>
+      <p>
+        Pääset luomaan uuden käyttäjän
+        <a href="/register">täällä</a>
+      </p>
     </div>
   )
-
 }
 
 export default LoginForm

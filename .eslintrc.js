@@ -11,6 +11,7 @@ module.exports = {
     ecmaVersion: 12,
   },
   rules: {
+    'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     eqeqeq: 'error',
     'no-trailing-spaces': 'error',
     'object-curly-spacing': [
