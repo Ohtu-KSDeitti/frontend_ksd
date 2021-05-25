@@ -1,4 +1,4 @@
-# Kristittyjen sinkkujen deittiäppi, Front end https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/main.yml/badge.svg
+# Kristittyjen sinkkujen deittiäppi, Front end ![Main](https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/main.yml/badge.svg)
 
 ## Project links
 
