@@ -1,5 +1,5 @@
 # Kristittyjen sinkkujen deittiäppi, Front end ![Main](https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/workflows/main.yml/badge.svg)
-
+## Backend pipeline status : ![Backend](https://github.com/Ohtu-KSDeitti/backend_ksd/actions/workflows/main.yml/badge.svg)
 ## Project links
 
 ### Application links
