@@ -1,13 +1,22 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useMutation } from '@apollo/client'
+import { CREATE_USER } from '../queries'
 
 const RegistrationForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
+  const [createUser] = useMutation(CREATE_USER)
 
   const submit = async (event) => {
     event.preventDefault()
+
+    createUser({ variables: { username, password, passwordConf } })
+
+    setUsername('')
+    setPassword('')
+    setPasswordConf('')
   }
 
   return (

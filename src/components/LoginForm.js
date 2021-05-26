@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
+import { useMutation } from '@apollo/client'
+import { LOGIN } from '../queries'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [login] = useMutation(LOGIN)
 
   const submit = async (event) => {
     event.preventDefault()
+
+    login({ variables: { username, password } })
+
+    setUsername('')
+    setPassword('')
   }
 
   return (
