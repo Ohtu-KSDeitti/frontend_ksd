@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 8080
 
 #Start frontend
-CMD["npm", "start"]
+CMD ["npm", "start"]
