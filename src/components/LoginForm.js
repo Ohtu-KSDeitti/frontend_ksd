@@ -39,7 +39,7 @@ const LoginForm = () => {
       </Form>
       <p>
         Pääset luomaan uuden käyttäjän
-        <a href="/register">täällä</a>
+        <a href="/register"> täällä</a>
       </p>
     </div>
   )
