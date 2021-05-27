@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
 import { CREATE_USER } from '../queries'
 
 const RegistrationForm = () => {
@@ -11,21 +12,29 @@ const RegistrationForm = () => {
   const [email, setEmail] = useState('')
   const [gender, setGender] = useState('')
   const [age, setAge] = useState('')
+  const history = useHistory()
 
-  const [createUser] = useMutation(CREATE_USER)
+  const [createUser, userData] = useMutation(CREATE_USER)
+
+  useEffect(() => {
+    if (userData.data) {
+      setUsername('')
+      setPassword('')
+      setPasswordConf('')
+      setName('')
+      setEmail('')
+      setGender('')
+      setAge('')
+
+      history.push('/')
+    }
+  }, [userData.data])
 
   const submit = async (event) => {
     event.preventDefault()
     console.log(gender)
 
     createUser({ variables: { username, password, passwordConf } })
-
-    setUsername('')
-    setPassword('')
-    setPasswordConf('')
-    setName('')
-    setEmail('')
-    setAge('')
   }
 
   return (
@@ -59,14 +68,16 @@ const RegistrationForm = () => {
           />
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
-            type="text"
+            type="email"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
           <Form.Label>Ikä:</Form.Label>
           <Form.Control
-            type="text"
+            type="number"
             value={age}
+            min="18"
+            max="120"
             onChange={({ target }) => setAge(target.value)}
           />
           <Form.Label>Sukupuoli:</Form.Label>

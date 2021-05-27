@@ -1,12 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
 import { LOGIN } from '../queries'
 
 const LoginForm = () => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [login] = useMutation(LOGIN)
+  const history = useHistory()
+  const [login, loginResult] = useMutation(LOGIN)
+
+  useEffect(() => {
+    if (loginResult.data) {
+      history.push('/')
+    }
+  }, [loginResult.data])
 
   const submit = async (event) => {
     event.preventDefault()
