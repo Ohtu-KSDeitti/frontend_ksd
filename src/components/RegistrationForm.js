@@ -34,7 +34,11 @@ const RegistrationForm = () => {
     event.preventDefault()
     console.log(gender)
 
-    createUser({ variables: { username, password, passwordConf } })
+    createUser({
+      variables: {
+        username, password, passwordConf, name, email, gender, age,
+      },
+    })
   }
 
   return (
