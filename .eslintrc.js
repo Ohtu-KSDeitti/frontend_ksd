@@ -15,6 +15,7 @@ module.exports = {
     'react', 'jest', 'cypress',
   ],
   rules: {
+    'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     eqeqeq: 'error',
     'no-trailing-spaces': 'error',

@@ -15,5 +15,10 @@ describe('Forms ', () => {
     cy.contains('Luo uusi käyttäjä')
     cy.contains('Ikä')
     cy.contains('Sukupuoli')
+    it('Login renders correctly', () => {
+      cy.get('#loginform').click()
+      cy.contains('Käyttäjätunnus')
+      cy.contains('Salasana')
+    })
   })
 })
