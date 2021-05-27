@@ -43,7 +43,7 @@ const RegistrationForm = () => {
 
   return (
     <div>
-      <h2>Create a new account</h2>
+      <h2>Luo uusi käyttäjä</h2>
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>

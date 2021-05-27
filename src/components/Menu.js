@@ -9,7 +9,7 @@ const Menu = () => {
     <div>
       <a href="/" style={padding}>Pääsivu</a>
       <a href="/login" style={padding}>Kirjaudu</a>
-      <a href="/register" style={padding}>Rekisteröidy</a>
+      <a id="registerform" href="/register" style={padding}>Rekisteröidy</a>
     </div>
   )
 }
