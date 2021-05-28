@@ -1,14 +1,24 @@
 import React from 'react'
 
-const Menu = () => {
+const Menu = ({ loggedUser, logout }) => {
   const padding = {
     paddingRight: 5,
+  }
+
+  if (!loggedUser) {
+    return (
+      <div>
+        <a href="/" style={padding}>Pääsivu</a>
+        <a href="/login" style={padding}>Kirjaudu sisään</a>
+        <a id="registerform" href="/register" style={padding}>Rekisteröidy</a>
+      </div>
+    )
   }
 
   return (
     <div>
       <a href="/" style={padding}>Pääsivu</a>
-      <a href="/login" style={padding}>Kirjaudu</a>
+      <a href="/login" style={padding} onClick={logout}>Kirjaudu ulos</a>
       <a id="registerform" href="/register" style={padding}>Rekisteröidy</a>
     </div>
   )

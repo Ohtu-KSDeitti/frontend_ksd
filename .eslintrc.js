@@ -15,6 +15,7 @@ module.exports = {
     'react', 'jest', 'cypress',
   ],
   rules: {
+    'react/jsx-one-expression-per-line': 'off',
     'react/prop-types': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     eqeqeq: 'error',
