@@ -45,6 +45,11 @@ const RegistrationForm = () => {
 
     console.log(gender)
 
+    createUser({
+      variables: {
+        username, password, passwordConf, name, email, gender, age,
+      },
+    })
     const newUser = {
       username, password, name, email, gender, age,
     }
@@ -55,6 +60,7 @@ const RegistrationForm = () => {
 
   return (
     <div>
+      <h2>Luo uusi käyttäjä</h2>
       <h2>Create a new account</h2>
       <Notification message={notification} />
       <Form onSubmit={submit}>
