@@ -9,10 +9,12 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
-  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  /*
+  const [name, setName] = useState('')
   const [gender, setGender] = useState('Mies')
   const [age, setAge] = useState('')
+  */
   const [notification, setNotification] = useState('')
   const history = useHistory()
 
@@ -43,15 +45,13 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
       return
     }
 
-    console.log(gender)
-
     /* createUser({
       variables: {
         username, password, passwordConf, name, email, gender, age,
       },
     }) */
     const newUser = {
-      username, password, name, email, gender, age: Number(age), id: testUsers.length + 1,
+      username, password, email, id: testUsers.length + 1,
     }
     console.log('käyttäjä: ', newUser)
 
@@ -77,6 +77,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
+          {/*
           <Form.Label>Oma nimi:</Form.Label>
           <Form.Control
             id="name"
@@ -86,6 +87,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             value={name}
             onChange={({ target }) => setName(target.value)}
           />
+          */}
           <Form.Label>Salasana:</Form.Label>
           <Form.Control
             id="password"
@@ -115,6 +117,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
+          {/*
           <Form.Label>Ikä:</Form.Label>
           <Form.Control
             id="age"
@@ -131,6 +134,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             <option value="Nainen">Nainen</option>
             <option value="Muu">Muu</option>
           </Form.Control>
+          */}
           <Form.Check
             id="accept"
             required
