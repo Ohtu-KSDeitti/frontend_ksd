@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useMutation } from '@apollo/client'
+/* import { useMutation } from '@apollo/client'
+import { CREATE_USER } from '../queries' */
 import { useHistory } from 'react-router-dom'
-import { CREATE_USER } from '../queries'
 import Notification from './Notification'
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ testUsers, setUsers }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [passwordConf, setPasswordConf] = useState('')
@@ -16,9 +16,9 @@ const RegistrationForm = () => {
   const [notification, setNotification] = useState('')
   const history = useHistory()
 
-  const [createUser, userData] = useMutation(CREATE_USER)
+  // const [createUser, userData] = useMutation(CREATE_USER)
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (userData.data) {
       setUsername('')
       setPassword('')
@@ -30,7 +30,7 @@ const RegistrationForm = () => {
 
       history.push('/')
     }
-  }, [userData.data])
+  }, [userData.data]) */
 
   const submit = async (event) => {
     event.preventDefault()
@@ -45,23 +45,25 @@ const RegistrationForm = () => {
 
     console.log(gender)
 
-    createUser({
+    /* createUser({
       variables: {
         username, password, passwordConf, name, email, gender, age,
       },
-    })
+    }) */
     const newUser = {
-      username, password, name, email, gender, age,
+      username, password, name, email, gender, age: Number(age), id: testUsers.length + 1,
     }
     console.log('käyttäjä: ', newUser)
 
-    createUser({ variables: { username, password, passwordConf } })
+    setUsers(testUsers.concat(newUser))
+
+    console.log('ja lista ', testUsers)
+    history.push('/login')
   }
 
   return (
     <div>
       <h2>Luo uusi käyttäjä</h2>
-      <h2>Create a new account</h2>
       <Notification message={notification} />
       <Form onSubmit={submit}>
         <Form.Group>

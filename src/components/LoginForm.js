@@ -1,33 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useMutation } from '@apollo/client'
+/* eslint-disable eol-last */
+// import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import { LOGIN } from '../queries'
-
-const LoginForm = () => {
+import Notification from './Notification'
+// import { LOGIN } from '../queries'
+const LoginForm = ({ testUsers, login }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [notification, setNotification] = useState('')
   const history = useHistory()
-  const [login, loginResult] = useMutation(LOGIN)
-
-  useEffect(() => {
-    if (loginResult.data) {
-      history.push('/')
-    }
-  }, [loginResult.data])
+  console.log(testUsers)
+  // const [login, loginResult] = useMutation(LOGIN)
+  /* useEffect(() => {
+  if (loginResult.data) {
+  history.push('/')
+  }
+  }, [loginResult.data]) */
 
   const submit = async (event) => {
     event.preventDefault()
-
-    login({ variables: { username, password } })
-
+    // login({ variables: { username, password } })
+    const user = testUsers.find((u) => u.username === username)
+    console.log(user)
+    if (!user || user.password !== password) {
+      setNotification('Virheellinen käyttäjätunnus tai salasana')
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+      return
+    }
+    login(username)
     setUsername('')
     setPassword('')
+
+    history.push('/')
   }
 
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Kirjaudu sisään</h2>
+      <Notification message={notification} />
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
