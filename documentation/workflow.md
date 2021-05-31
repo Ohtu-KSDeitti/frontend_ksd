@@ -12,8 +12,6 @@ git pull
 
 git checkout <new_branch_name>
 
-git merge master
-
 git push -u origin <new_branch_name>
 
 Go to github: create pull request
