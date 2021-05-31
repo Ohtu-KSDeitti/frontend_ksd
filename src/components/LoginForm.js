@@ -19,22 +19,27 @@ const LoginForm = ({ testUsers, login }) => {
   }, [loginResult.data]) */
 
   const submit = async (event) => {
-    event.preventDefault()
-    // login({ variables: { username, password } })
-    const user = testUsers.find((u) => u.username === username)
-    console.log(user)
-    if (!user || user.password !== password) {
-      setNotification('Virheellinen käyttäjätunnus tai salasana')
-      setTimeout(() => {
-        setNotification('')
-      }, 10000)
-      return
-    }
-    login(username)
-    setUsername('')
-    setPassword('')
+    try {
+      event.preventDefault()
+      // login({ variables: { username, password } })
+      const user = testUsers.find((u) => u.username === username)
+      if (!user || user.password !== password) {
+        setNotification('Virheellinen käyttäjätunnus tai salasana')
+        setTimeout(() => {
+          setNotification('')
+        }, 10000)
+        return
+      }
+      login(username)
+      setUsername('')
+      setPassword('')
 
-    history.push('/')
+      history.push('/')
+    } catch (e) {
+      <Notification message="Virhe!" />
+    } finally {
+      <Notification message="Tervetuloa" />
+    }
   }
 
   return (
