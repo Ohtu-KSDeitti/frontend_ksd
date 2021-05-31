@@ -69,6 +69,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
           <Form.Control
+            id="username"
             required
             type="text"
             minLength="3"
@@ -78,6 +79,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           <Form.Label>Oma nimi:</Form.Label>
           <Form.Control
+            id="name"
             required
             type="text"
             maxLength="56"
@@ -86,6 +88,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           <Form.Label>Salasana:</Form.Label>
           <Form.Control
+            id="password"
             required
             type="password"
             minLength="8"
@@ -95,6 +98,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           <Form.Label>Salasanan varmennus:</Form.Label>
           <Form.Control
+            id="passwordConf"
             required
             type="password"
             minLength="8"
@@ -104,6 +108,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
+            id="email"
             required
             type="email"
             maxLength="56"
@@ -112,6 +117,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           <Form.Label>Ikä:</Form.Label>
           <Form.Control
+            id="age"
             required
             type="number"
             value={age}
@@ -120,16 +126,17 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             onChange={({ target }) => setAge(target.value)}
           />
           <Form.Label>Sukupuoli:</Form.Label>
-          <Form.Control as="select" onChange={({ target }) => setGender(target.value)}>
+          <Form.Control id="gender" as="select" onChange={({ target }) => setGender(target.value)}>
             <option value="Mies">Mies</option>
             <option value="Nainen">Nainen</option>
             <option value="Muu">Muu</option>
           </Form.Control>
           <Form.Check
+            id="accept"
             required
             label="Hyväksyn käyttöehdot"
           />
-          <Button type="submit">Rekisteröidy</Button>
+          <Button id="register-button" type="submit">Rekisteröidy</Button>
         </Form.Group>
       </Form>
     </div>
