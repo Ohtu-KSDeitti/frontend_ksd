@@ -45,6 +45,7 @@ const LoginForm = ({ testUsers, login }) => {
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
           <Form.Control
+            id="username"
             required
             type="text"
             value={username}
@@ -52,12 +53,13 @@ const LoginForm = ({ testUsers, login }) => {
           />
           <Form.Label>Salasana:</Form.Label>
           <Form.Control
+            id="password"
             required
             type="password"
             value={password}
             onChange={({ target }) => setPassword(target.value)}
           />
-          <Button type="submit">Kirjaudu</Button>
+          <Button id="login-button" type="submit">Kirjaudu</Button>
         </Form.Group>
       </Form>
       <p>
