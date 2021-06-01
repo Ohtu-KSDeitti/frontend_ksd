@@ -18,7 +18,7 @@ jobs:
         run: npm run test
       - name: Run ESLint
         run: npm run lint
-      - name: test frontend jest tests
+      - name: Test frontend jest tests
         run: npm run test -- --coverage --watchAll=false --collectCoverageFrom=src/components/jest_tests
         working-directory: frontend_ksd
       - name: Data to codecov
