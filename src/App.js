@@ -8,6 +8,7 @@ import LoginForm from './components/templates/LoginForm'
 import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
 import MainPage from './components/templates/MainPage'
+import UserPage from './components/templates/UserPage'
 import Footer from './components/utils/Footer'
 
 const App = ({ testUsers }) => {
@@ -38,6 +39,9 @@ const App = ({ testUsers }) => {
           <MainPage loggedUser={loggedUser} />
         </Route>
       </Switch>
+      <Route path="/userpage">
+        <UserPage loggedUser={loggedUser} />
+      </Route>
       <Footer />
     </div>
   )
