@@ -1,8 +1,6 @@
 # Kristittyjen sinkkujen deittiäppi, Front end ![Main](https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/workflows/main.yml/badge.svg)
 ### Backend pipeline status : ![Backend](https://github.com/Ohtu-KSDeitti/backend_ksd/actions/workflows/main.yml/badge.svg)
-### Gateway pipeline status: ![Gateway](https://github.com/Ohtu-KSDeitti/gateway/actions/workflows/main.yml/badge.svg)
-
-[![codecov](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd/branch/main/graph/badge.svg?token=HB9SH3KJB1)](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd)
+### Gateway pipeline status: ![Gateway](https://github.com/Ohtu-KSDeitti/gateway/actions/workflows/main.yml/badge.svg)[![codecov](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd/branch/main/graph/badge.svg?token=HB9SH3KJB1)](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd)
 
 ## Project links
 
