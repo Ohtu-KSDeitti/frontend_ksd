@@ -10,10 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
     
     steps:
       - uses: actions/checkout@v2
@@ -25,6 +21,6 @@ jobs:
         run: npm run lint
       - name: Test frontend jest tests
         run: npm test -- --coverage
-        working-directory: frontend_ksd
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        working-directory: src
+      - name: Data to codecov
+        run: bash <(curl -s https://codecov.io/bash)
