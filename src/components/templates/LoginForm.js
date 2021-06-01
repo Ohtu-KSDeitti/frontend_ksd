@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 /* eslint-disable eol-last */
 // import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import Notification from './Notification'
+import Notification from '../utils/Notification'
 // import { LOGIN } from '../queries'
 const LoginForm = ({ testUsers, login }) => {
   const [username, setUsername] = useState('')
@@ -19,22 +19,25 @@ const LoginForm = ({ testUsers, login }) => {
   }, [loginResult.data]) */
 
   const submit = async (event) => {
-    event.preventDefault()
-    // login({ variables: { username, password } })
-    const user = testUsers.find((u) => u.username === username)
-    console.log(user)
-    if (!user || user.password !== password) {
-      setNotification('Virheellinen käyttäjätunnus tai salasana')
-      setTimeout(() => {
-        setNotification('')
-      }, 10000)
-      return
-    }
-    login(username)
-    setUsername('')
-    setPassword('')
+    try {
+      event.preventDefault()
+      // login({ variables: { username, password } })
+      const user = testUsers.find((u) => u.username === username)
+      if (!user || user.password !== password) {
+        setNotification('Virheellinen käyttäjätunnus tai salasana')
+        setTimeout(() => {
+          setNotification('')
+        }, 10000)
+        return
+      }
+      login(username)
+      setUsername('')
+      setPassword('')
 
-    history.push('/')
+      history.push('/')
+    } catch (e) {
+      <Notification message="Virhe!" />
+    }
   }
 
   return (

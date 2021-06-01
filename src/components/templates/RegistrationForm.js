@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 /* import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../queries' */
 import { useHistory } from 'react-router-dom'
-import Notification from './Notification'
+import Notification from '../utils/Notification'
 
 const RegistrationForm = ({ testUsers, setUsers }) => {
   const [username, setUsername] = useState('')
