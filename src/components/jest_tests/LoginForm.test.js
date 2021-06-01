@@ -6,7 +6,6 @@ import testUsers from './testusers'
 
 test('renders content', () => {
   const login = jest.fn()
-
   const component = render(
     <LoginForm testUsers={testUsers} login={login} />,
   )
@@ -32,11 +31,11 @@ test('LoginForm posts correct data.', () => {
     target: { username: 'laila76' },
   })
   fireEvent.change(inputPassword, {
-    target: { username: 'kala1234' },
+    target: { password: 'kala1234' },
   })
 
   fireEvent.submit(loginbutton)
 
   expect(inputUsername.username).toBe('laila76')
-  expect(inputPassword.username).toBe('kala1234')
+  expect(inputPassword.password).toBe('kala1234')
 })
