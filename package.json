@@ -20,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "jest --verbose --runInBand",
+    "coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src/.",
     "lint:fix": "npm run lint -- --fix",
