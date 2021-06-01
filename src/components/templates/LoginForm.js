@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 /* eslint-disable eol-last */
 // import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
-import Notification from './Notification'
+import Notification from '../utils/Notification'
 // import { LOGIN } from '../queries'
 const LoginForm = ({ testUsers, login }) => {
   const [username, setUsername] = useState('')

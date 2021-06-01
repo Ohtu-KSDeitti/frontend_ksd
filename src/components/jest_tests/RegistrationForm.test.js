@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from '@testing-library/react'
-import RegistrationForm from '../RegistrationForm'
+import RegistrationForm from '../templates/RegistrationForm'
 import '@testing-library/jest-dom/extend-expect'
 import testUsers from './testusers'
 
