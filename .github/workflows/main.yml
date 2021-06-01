@@ -10,6 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -19,7 +24,7 @@ jobs:
       - name: Run ESLint
         run: npm run lint
       - name: Test frontend jest tests
-        run: npm test -- --coverage --watchAll=false --collectCoverageFrom=src/components/jest_tests/*
+        run: npm test -- --coverage
         working-directory: frontend_ksd
-      - name: Data to codecov
-        run: bash <(curl -s https://codecov.io/bash)
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
