@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Menu = ({ loggedUser, logout }) => {
+const Menu = ({ logout }) => {
   const padding = {
     paddingRight: 5,
   }
 
-  if (!loggedUser) {
+  if (!localStorage.getItem('user-token')) {
     return (
       <div>
         <a href="/" style={padding}>Pääsivu</a>

@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import {
   ApolloClient, ApolloProvider, HttpLink, InMemoryCache,
 } from '@apollo/client'
+import { setContext } from 'apollo-link-context'
 import App from './App'
 import './index.css'
 
@@ -31,11 +32,23 @@ const testUsers = [
 const ENV = process.REACT_APP_ENV || 'development'
 const URI = (ENV !== 'development') ? process.REACT_APP_BACKEND : 'http://localhost:4000'
 
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('user-token')
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `bearer ${token}` : null,
+    },
+  }
+})
+
+const httpLink = new HttpLink({
+  uri: URI,
+})
+
 const client = new ApolloClient({
   cache: new InMemoryCache(),
-  link: new HttpLink({
-    uri: URI,
-  }),
+  link: authLink.concat(httpLink),
 })
 
 ReactDOM.render(
