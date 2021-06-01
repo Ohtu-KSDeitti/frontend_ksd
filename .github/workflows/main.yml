@@ -10,6 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
@@ -18,3 +19,8 @@ jobs:
         run: npm run test
       - name: Run ESLint
         run: npm run lint
+      - name: Test frontend jest tests
+        run: npm test -- --coverage
+        working-directory: src
+      - name: Data to codecov
+        run: bash <(curl -s https://codecov.io/bash)
