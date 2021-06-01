@@ -30,6 +30,8 @@ const LoginForm = ({ testUsers, login }) => {
         }, 10000)
         return
       }
+
+      localStorage.setItem('user-token', username)
       login(username)
       setUsername('')
       setPassword('')
