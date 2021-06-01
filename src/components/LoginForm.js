@@ -37,8 +37,6 @@ const LoginForm = ({ testUsers, login }) => {
       history.push('/')
     } catch (e) {
       <Notification message="Virhe!" />
-    } finally {
-      <Notification message="Tervetuloa" />
     }
   }
 

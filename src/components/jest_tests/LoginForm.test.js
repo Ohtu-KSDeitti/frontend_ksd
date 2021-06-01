@@ -2,27 +2,7 @@ import React from 'react'
 import { render, fireEvent } from '@testing-library/react'
 import LoginForm from '../LoginForm'
 import '@testing-library/jest-dom/extend-expect'
-
-const testUsers = [
-  {
-    id: 1,
-    username: 'koticasanova95',
-    password: 'kissakala123',
-    name: 'Mare P',
-    email: 'mare.ysiviis@gmail.com',
-    gender: 'Mies',
-    age: 26,
-  },
-  {
-    id: 2,
-    username: 'lail76',
-    password: 'kala1234',
-    name: 'Laila K',
-    email: 'laila.koo@hotmail.com',
-    gender: 'Nainen',
-    age: 45,
-  },
-]
+import testUsers from './testusers'
 
 test('renders content', () => {
   const login = jest.fn()
