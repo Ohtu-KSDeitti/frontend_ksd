@@ -35,30 +35,31 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
   }, [userData.data]) */
 
   const submit = async (event) => {
-    event.preventDefault()
+    try {
+      event.preventDefault()
 
-    if (password !== passwordConf) {
-      setNotification('Salasana ei vastaa varmennusta')
-      setTimeout(() => {
-        setNotification('')
-      }, 10000)
-      return
-    }
+      if (password !== passwordConf) {
+        setNotification('Salasana ei vastaa varmennusta')
+        setTimeout(() => {
+          setNotification('')
+        }, 10000)
+        return
+      }
 
-    /* createUser({
+      /* createUser({
       variables: {
         username, password, passwordConf, name, email, gender, age,
       },
     }) */
-    const newUser = {
-      username, password, email, id: testUsers.length + 1,
+      const newUser = {
+        username, password, email, id: testUsers.length + 1,
+      }
+
+      setUsers(testUsers.concat(newUser))
+      history.push('/login')
+    } catch (e) {
+      setNotification('Virhe!')
     }
-    console.log('käyttäjä: ', newUser)
-
-    setUsers(testUsers.concat(newUser))
-
-    console.log('ja lista ', testUsers)
-    history.push('/login')
   }
 
   return (
