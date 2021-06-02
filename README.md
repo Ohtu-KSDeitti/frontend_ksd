@@ -1,6 +1,10 @@
-# Kristittyjen sinkkujen deittiäppi, Front end ![Main](https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/workflows/main.yml/badge.svg)[![codecov](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd/branch/main/graph/badge.svg?token=HB9SH3KJB1)](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd)
-### Backend pipeline status : ![Backend](https://github.com/Ohtu-KSDeitti/backend_ksd/actions/workflows/main.yml/badge.svg)
-### Gateway pipeline status: ![Gateway](https://github.com/Ohtu-KSDeitti/gateway/actions/workflows/main.yml/badge.svg)
+# Kristittyjen sinkkujen deittiäppi
+
+### Frontend status: ![Main](https://github.com/Ohtu-KSDeitti/frontend_ksd/actions/workflows/main.yml/badge.svg) [![codecov](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd/branch/main/graph/badge.svg?token=HB9SH3KJB1)](https://codecov.io/gh/Ohtu-KSDeitti/frontend_ksd)
+
+### User-api status : ![Backend](https://github.com/Ohtu-KSDeitti/backend_ksd/actions/workflows/main.yml/badge.svg) [![codecov](https://codecov.io/gh/Ohtu-KSDeitti/user-api/branch/main/graph/badge.svg?token=MMBUCZ3VUB)](https://codecov.io/gh/Ohtu-KSDeitti/user-api)
+
+### Gateway status: ![Gateway](https://github.com/Ohtu-KSDeitti/gateway/actions/workflows/main.yml/badge.svg)
 
 ## Project links
 
@@ -11,9 +15,10 @@
     * [Code on GitHub](https://github.com/Ohtu-KSDeitti/frontend_ksd)
 
 * Backend: 
-  * Production
-    * Heroku link, WIP
-    * [Code on GitHub](https://github.com/Ohtu-KSDeitti/backend_ksd)
+  * User-api:
+    * [Code on GitHub](https://github.com/Ohtu-KSDeitti/user-api)
+  * Gateway: 
+    * [Code on GitHub](https://github.com/Ohtu-KSDeitti/gateway)
 
 
 ### Documentation
