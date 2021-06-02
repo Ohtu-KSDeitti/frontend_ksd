@@ -9,7 +9,7 @@
 
 Tämä repositorio sisältää _Kristittyjen sinkkujen deitti_ -sovelluksen selaimella tapahtuvan (Front end) lähdekoodin osan. Sovellus tulee rakentumaan pienistä mikropalveluista, sitä mukaa kun niitä valmistuu. Näille tulee omat repositorionsa, jotka löytyvät alta linkeistä. Kristittyjen sinkkujen deittisovelluksen tarkoituksena on saattaa saman arvomaailman omaavia ihmisiä yhteen ja löytää rakkaus   :cupid:
 
-  :heart: :revolving_hearts:  :sparkles:  :revolving_hearts:  :sparkles:  :revolving_hearts:  :sparkles:  :revolving_hearts:  :sparkles:  :heart:
+  :heart:  :sparkles:  :revolving_hearts:  :sparkles:  :revolving_hearts:  :sparkles:  :revolving_hearts:  :sparkles:  :heart:
 
 This repository contains front end source code for the _Kristittyjen sinkkujen deitti_ app. Back end side will be built with small micro services. These will have their own repositories, which can be found from the links below. The purpose of the app is to unite people within the Christian community and find love  :cupid:
 
