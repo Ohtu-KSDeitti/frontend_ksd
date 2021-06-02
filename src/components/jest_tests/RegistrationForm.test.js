@@ -11,6 +11,7 @@ let loginComponent
 beforeEach(() => {
   const setUsers = jest.fn()
   const login = jest.fn()
+
   regComponent = render(
     <RegistrationForm testUsers={testUsers} setUsers={setUsers} />,
   )
@@ -18,8 +19,6 @@ beforeEach(() => {
   loginComponent = render(
     <LoginForm testUsers={testUsers} login={login} />,
   )
-
-  regComponent.debug()
 })
 test('renders content', () => {
   expect(regComponent.container).toHaveTextContent(
@@ -164,7 +163,7 @@ describe('Validation tests', () => {
     )
   })
 
-  test('Email without @ doesn create a new user.', () => {
+  test('Email without @ doesnt create a new user', () => {
     const inputUsername = regComponent.container.querySelector('#username')
     const inputPassword = regComponent.container.querySelector('#password')
     const registerButton = regComponent.container.querySelector('#register-button')
@@ -178,7 +177,7 @@ describe('Validation tests', () => {
       target: { password: 'kala1234' },
     })
     fireEvent.change(passwordConf, {
-      target: { password: 'kala1234' },
+      target: { password: 'kala12345' },
     })
     fireEvent.change(email, {
       target: { email: 'laila.com' },

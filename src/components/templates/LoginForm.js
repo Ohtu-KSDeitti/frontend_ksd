@@ -10,7 +10,7 @@ const LoginForm = ({ testUsers, login }) => {
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
-  console.log(testUsers)
+  // console.log(testUsers)
   // const [login, loginResult] = useMutation(LOGIN)
   /* useEffect(() => {
   if (loginResult.data) {
