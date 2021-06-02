@@ -32,7 +32,7 @@ test('renders content', () => {
   )
 })
 
-test('Form posts data ', () => {
+test('Form input fields work properly ', () => {
   const inputUsername = regComponent.container.querySelector('#username')
   const inputPassword = regComponent.container.querySelector('#password')
   const registerButton = regComponent.container.querySelector('#register-button')
@@ -54,14 +54,11 @@ test('Form posts data ', () => {
 
   fireEvent.submit(registerButton)
 
+  expect(regComponent.setUsers.mock.calls).toHaveLength(1)
   expect(inputUsername.username).toBe('laila76')
   expect(inputPassword.password).toBe('kala1234')
   expect(passwordConf.password).toBe('kala1234')
   expect(email.email).toBe('laila.koo@hotmail.com')
-
-  expect(loginComponent.container).toHaveTextContent(
-    'Kirjaudu sisään',
-  )
 })
 describe('Validation tests', () => {
   test('Less than 3 length username dont create a user.', () => {

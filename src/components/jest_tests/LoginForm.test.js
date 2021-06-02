@@ -25,7 +25,7 @@ test('LoginForm posts correct data.', () => {
 
   const inputUsername = component.container.querySelector('#username')
   const inputPassword = component.container.querySelector('#password')
-  const loginbutton = component.container.querySelector('#login-button')
+  const loginForm = component.container.querySelector('form')
 
   fireEvent.change(inputUsername, {
     target: { username: 'laila76' },
@@ -34,8 +34,9 @@ test('LoginForm posts correct data.', () => {
     target: { password: 'kala1234' },
   })
 
-  fireEvent.submit(loginbutton)
+  fireEvent.submit(loginForm)
 
+  expect(login.mock.calls).toHaveLength(1)
   expect(inputUsername.username).toBe('laila76')
   expect(inputPassword.password).toBe('kala1234')
 })
