@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 /* import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../queries' */
 import { useHistory } from 'react-router-dom'
+import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
 import Notification from '../utils/Notification'
 
 const RegistrationForm = ({ testUsers, setUsers }) => {
@@ -63,12 +64,18 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
   }
 
   return (
-    <div>
+    <>
       <h2>Luo uusi käyttäjä</h2>
       <Notification message={notification} />
+      <ReactIsCapsLockActive>
+        {(active) => <p style={{ color: 'red' }}>{active ? 'Caps lock on päällä' : ''}</p>}
+      </ReactIsCapsLockActive>
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
+          <Form.Text id="username" muted>
+            Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
+          </Form.Text>
           <Form.Control
             id="username"
             required
@@ -90,6 +97,9 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           />
           */}
           <Form.Label>Salasana:</Form.Label>
+          <Form.Text id="username" muted>
+            Salasanan pituus tulee olla 8–32 merkkiä.
+          </Form.Text>
           <Form.Control
             id="password"
             required
@@ -100,6 +110,9 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             onChange={({ target }) => setPassword(target.value)}
           />
           <Form.Label>Salasanan varmennus:</Form.Label>
+          <Form.Text id="username" muted>
+            Syötä salasana uudelleen.
+          </Form.Text>
           <Form.Control
             id="passwordConf"
             required
@@ -109,6 +122,9 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             value={passwordConf}
             onChange={({ target }) => setPasswordConf(target.value)}
           />
+          <Form.Text id="username" muted>
+            Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
+          </Form.Text>
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
             id="email"
@@ -144,7 +160,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
           <Button id="register-button" type="submit">Rekisteröidy</Button>
         </Form.Group>
       </Form>
-    </div>
+    </>
   )
 }
 
