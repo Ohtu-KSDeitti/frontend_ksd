@@ -7,7 +7,6 @@ let notificationComponent
 
 const errorCase1 = 'Virheellinen salasana'
 const errorCase2 = 'Salasana ei vastaa varmennusta'
-const errorCase3 = 'Hilipatihippaa'
 
 test('Notification gives correct message case 1', () => {
   notificationComponent = render(
