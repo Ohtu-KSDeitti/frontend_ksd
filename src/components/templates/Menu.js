@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Menu = ({ logout }) => {
+const Menu = ({ loggedUser, logout }) => {
   const padding = {
     paddingRight: 5,
   }
@@ -18,7 +18,7 @@ const Menu = ({ logout }) => {
   return (
     <div>
       <a href="/" style={padding}>Pääsivu</a>
-      <a id="userpage" href="/userpage" style={padding}>Oma sivu</a>
+      <a id="userpage" href={loggedUser} style={padding}>Oma sivu</a>
       <a id="loginform" href="/login" style={padding} onClick={logout}>Kirjaudu ulos</a>
     </div>
 

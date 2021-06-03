@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 /* import { useMutation } from '@apollo/client'
 import { CREATE_USER } from '../queries' */
 import { useHistory } from 'react-router-dom'
-import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
+// import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
 import Notification from '../utils/Notification'
 
 const RegistrationForm = ({ testUsers, setUsers }) => {
@@ -67,9 +67,9 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
     <>
       <h2>Luo uusi käyttäjä</h2>
       <Notification message={notification} />
-      <ReactIsCapsLockActive>
+      { /* <ReactIsCapsLockActive>
         {(active) => <p style={{ color: 'red' }}>{active ? 'Caps lock on päällä' : ''}</p>}
-      </ReactIsCapsLockActive>
+      </ReactIsCapsLockActive> */ }
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
