@@ -1,21 +1,11 @@
 import React from 'react'
+import { SocialIcon } from 'react-social-icons'
 
 const Footer = () => (
-  <footer className="bg-light text-center text-white" style={{ paddingTop: '30em' }}>
-    <div className="container p-4 pb-0">
-      <section className="mb-4">
-        <a
-          className="btn btn-primary btn-floating m-1"
-          style={{ 'background-color': '#3b5998;' }}
-          href="https://www.facebook.com/groups/575539649714586/discussion/preview"
-          role="button"
-        ><i className="fab fa-facebook" />
-        </a>
-      </section>
-    </div>
-    <div className="text-center p-3" style={{ 'background-color': 'rgba(0, 0, 0, 0.2);' }}>
-      © 2020 Copyright:
-      <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  <footer className="content text-center text-white" style={{ paddingTop: '20em' }}>
+    <div>
+      <SocialIcon url="https://www.facebook.com/groups/575539649714586/discussion/preview" />
+      <SocialIcon url="https://github.com/Ohtu-KSDeitti/frontend_ksd" />
     </div>
   </footer>
 )
