@@ -35,13 +35,13 @@ const App = ({ testUsers }) => {
         <Route path="/register">
           <RegistrationForm testUsers={users} setUsers={setUsers} />
         </Route>
+        <Route path="/:loggedUser">
+          <UserPage testUsers={users} loggedUser={loggedUser} />
+        </Route>
         <Route path="/">
           <MainPage loggedUser={loggedUser} />
         </Route>
       </Switch>
-      <Route path="/userpage">
-        <UserPage loggedUser={loggedUser} />
-      </Route>
       <Footer />
     </div>
   )

@@ -8,6 +8,6 @@ test('renders content', () => {
     <UserPage />,
   )
   expect(component.container).toHaveTextContent(
-    'Tämä on oma sivusi!',
+    'Oma Sivu',
   )
 })
