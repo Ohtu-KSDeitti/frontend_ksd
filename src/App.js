@@ -3,7 +3,6 @@ import {
   Switch, Route,
 } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client'
-// import { useQuery } from '@apollo/client'
 import LoginForm from './components/templates/LoginForm'
 import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
@@ -30,13 +29,13 @@ const App = ({ testUsers }) => {
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
         <Route path="/login">
-          <LoginForm testUsers={users} login={setLoggedUser} />
+          <LoginForm setLoggedUser={setLoggedUser} />
         </Route>
         <Route path="/register">
-          <RegistrationForm testUsers={users} setUsers={setUsers} />
+          <RegistrationForm setUsers={setUsers} />
         </Route>
         <Route path="/:loggedUser">
-          <UserPage testUsers={users} loggedUser={loggedUser} />
+          <UserPage loggedUser={loggedUser} />
         </Route>
         <Route path="/">
           <MainPage loggedUser={loggedUser} />
