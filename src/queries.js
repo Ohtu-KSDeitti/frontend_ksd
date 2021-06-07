@@ -10,22 +10,20 @@ export const ALL_USERS = gql`
   }
 `
 
-export const CREATE_USER = gql`
-  mutation createUser($username: String!, $password: String!, $passwordConf: String!, $name: String!, $email: String!, $gender: String!, $age: Int!) {
-    addUser(
+export const ADD_NEW_USER = gql`
+  mutation addNewUser($username: String!, $password: String!, $passwordconf: String!, $firstname: String!, $lastname: String!, $email: String!) {
+    addNewUser(
       username: $username,
       password: $password,
-      passwordConf: $passwordConf,
-      name: $name,
+      passwordconf: $passwordconf,
+      firstname: $firstname,
+      lastname: $lastname,
       email: $email,
-      gender: $gender,
-      age: $age
     ) {
       username
-      name
+      firstname
+      lastname
       email
-      gender
-      age
     }
   }
 `
@@ -33,9 +31,20 @@ export const CREATE_USER = gql`
 export const LOGIN = gql`
   mutation login($username: String!, $password: String!) {
     login(
-      username: $username
+      username: $username,
+      password: $password,
     ) {
       value
+    }
+  }
+`
+
+export const CURRENT_USER = gql`
+  query {
+    currentUser {
+      username,
+      firstname,
+      lastname,
     }
   }
 `
