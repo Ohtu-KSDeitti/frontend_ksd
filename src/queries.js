@@ -45,6 +45,7 @@ export const CURRENT_USER = gql`
       username,
       firstname,
       lastname,
+      email,
     }
   }
 `
