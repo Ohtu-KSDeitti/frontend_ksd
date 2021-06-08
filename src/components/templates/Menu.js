@@ -10,7 +10,6 @@ const Menu = ({ loggedUser, logout }) => {
       <div>
         <a href="/" style={padding}>Pääsivu</a>
         <a id="loginform" href="/login" style={padding}>Kirjaudu sisään</a>
-        <a id="registerform" href="/register" style={padding}>Rekisteröidy</a>
       </div>
     )
   }
