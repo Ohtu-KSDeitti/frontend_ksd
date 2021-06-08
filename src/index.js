@@ -8,7 +8,8 @@ import { setContext } from 'apollo-link-context'
 import App from './App'
 import './index.css'
 
-const URI = process.env.REACT_APP_GATEWAY
+const URI = process.env.REACT_APP_GATEWAY_URI
+console.log('URI:', URI)
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('user-token')

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import emailjs from 'emailjs-com'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
@@ -30,8 +31,7 @@ const RegistrationForm = () => {
       setFirstName('')
       setLastName('')
       setEmail('')
-
-      history.push('/')
+      history.push('/login')
     }
   }, [userData.data])
 
@@ -52,7 +52,8 @@ const RegistrationForm = () => {
           username, password, passwordconf, firstname, lastname, email,
         },
       })
-      history.push('/login')
+      await emailjs.sendForm('service_h2vqoi2', 'template_sc7t6m7', event.target, 'user_lxssQhxgZ0oaSJ7Lo4DpA')
+      console.log('Postia lähetetään')
     } catch (e) {
       setNotification('Virhe!')
     }
@@ -89,6 +90,7 @@ const RegistrationForm = () => {
             maxLength="50"
             value={firstname}
             onChange={({ target }) => setFirstName(target.value)}
+            name="name"
           />
           <Form.Label>Sukunimi:</Form.Label>
           <Form.Control
@@ -137,6 +139,7 @@ const RegistrationForm = () => {
             maxLength="56"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
+            name="email"
           />
           {/*
           <Form.Label>Ikä:</Form.Label>

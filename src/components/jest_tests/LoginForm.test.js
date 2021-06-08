@@ -1,13 +1,27 @@
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, wait, fireEvent } from '@testing-library/react'
 import LoginForm from '../templates/LoginForm'
+import { MockedProvider } from '@apollo/client/testing';
 import '@testing-library/jest-dom/extend-expect'
 import testUsers from './testusers'
+import { LOGIN } from '../../queries';
 
 test('renders content', () => {
-  const login = jest.fn()
+  const mocks = [
+    {
+      request: {
+        query: LOGIN,
+        variables: {
+          username: 'Buck', password: 'kissa123',
+        },
+      },
+    },
+  ]
+
   const component = render(
-    <LoginForm testUsers={testUsers} login={login} />,
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <LoginForm testUsers={testUsers} />
+    </MockedProvider>,
   )
   expect(component.container).toHaveTextContent(
     'Kirjaudu sisään',
@@ -17,10 +31,29 @@ test('renders content', () => {
   )
 })
 
-test('LoginForm posts correct data.', () => {
-  const login = jest.fn()
+test('LoginForm posts correct data.', async () => {
+  const mocks = [
+    {
+      request: {
+        query: LOGIN,
+        variables: {
+          username: 'Buck', password: 'kissa123',
+        },
+      },
+      newData: jest.fn(() => ({
+        data: {
+          loggedUser: {
+            value: 'xxxx'
+          },
+        },
+      })),
+    },
+  ]
+
   const component = render(
-    <LoginForm testUsers={testUsers} login={login} />,
+    <MockedProvider mocks={mocks} addTypename={false}>
+      <LoginForm testUsers={testUsers} />
+    </MockedProvider>,
   )
 
   const inputUsername = component.container.querySelector('#username')
@@ -36,6 +69,6 @@ test('LoginForm posts correct data.', () => {
 
   fireEvent.submit(loginbutton)
 
-  expect(inputUsername.username).toBe('laila76')
-  expect(inputPassword.password).toBe('kala1234')
+  const loginMock = mocks[0].newData;
+  await wait(() => expect(loginMock).toHaveBeenCalled())
 })
