@@ -9,6 +9,7 @@ import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
 import MainPage from './components/templates/MainPage'
 import UserPage from './components/templates/UserPage'
+import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
 
 const App = ({ testUsers }) => {
@@ -34,6 +35,9 @@ const App = ({ testUsers }) => {
         </Route>
         <Route path="/register">
           <RegistrationForm testUsers={users} setUsers={setUsers} />
+        </Route>
+        <Route path="/s/:loggedUser">
+          <Settings testUsers={users} loggedUser={loggedUser} />
         </Route>
         <Route path="/:loggedUser">
           <UserPage testUsers={users} loggedUser={loggedUser} />

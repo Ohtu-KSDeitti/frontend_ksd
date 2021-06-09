@@ -16,11 +16,11 @@ const UserPage = ({ loggedUser, testUsers }) => {
       <p>Tämä on oma sivusi, {thisuser.username}</p>
       <h2>Tallentamasi tiedot</h2>
       <ul>
-        <li>Nimi: {thisuser.name} <button type="submit">Muokkaa</button></li>
-        <li>Nimimerkki: {thisuser.username} <button type="submit">Muokkaa</button></li>
-        <li>Sähköposti: {thisuser.email} <button type="submit">Muokkaa</button></li>
+        <li>Nimi: {thisuser.firstname} {thisuser.lastname}</li>
+        <li>Nimimerkki: {thisuser.username}</li>
+        <li>Sähköposti: {thisuser.email}</li>
       </ul>
-      <p>Täydennä tietojasi ja luo deittiprofiili <a href="url">täällä</a></p>
+      <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>
   )
 }
