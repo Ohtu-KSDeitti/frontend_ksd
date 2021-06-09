@@ -23,10 +23,10 @@ const UserPage = ({ loggedUser }) => {
       <p>Tämä on käyttäjän {user.username} oma sivu</p>
       <h2>Tallentamasi tiedot</h2>
       <ul>
-        <li>Etunimi: {user.firstname} <button type="submit">Muokkaa</button></li>
-        <li>Sukunimi: {user.lastname} <button type="submit">Muokkaa</button></li>
-        <li>Nimimerkki: {user.username} <button type="submit">Muokkaa</button></li>
-        <li>Sähköposti: {user.email} <button type="submit">Muokkaa</button></li>
+        <li>Etunimi: {user.firstname} </li>
+        <li>Sukunimi: {user.lastname} </li>
+        <li>Nimimerkki: {user.username} </li>
+        <li>Sähköposti: {user.email} </li>
       </ul>
       <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>

@@ -42,6 +42,7 @@ export const LOGIN = gql`
 export const CURRENT_USER = gql`
   query {
     currentUser {
+      id,
       username,
       firstname,
       lastname,
@@ -54,6 +55,43 @@ export const CURRENT_USER = gql`
         bio,
         tags,
       }
+    }
+  }
+`
+export const UPDATE_USER_ACCOUNT = gql`
+  mutation updateUserAccount($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
+    updateUserAccount(
+      id: $id,
+      username: $username, 
+      firstname: $firstname, 
+      lastname: $lastname, 
+      email: $email,
+      ) {
+        username
+        firstname
+        lastname
+        email
+      }
+  }
+`
+
+export const UPDATE_USER_INFO = gql`
+  mutation updateUserInfo($id: ID!, $location: String, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
+    updateUserInfo(
+      id: $id,
+      location: $location,
+      gender: $gender,
+      dateOfBirth: $dateOfBirth,
+      status: $status,
+      bio: $bio,
+      tags: $tags,
+    ) {
+      location
+      gender
+      dateOfBirth
+      status
+      bio
+      tags
     }
   }
 `

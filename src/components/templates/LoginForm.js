@@ -10,7 +10,14 @@ const LoginForm = ({ setLoggedUser }) => {
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
-  const [login, loginResult] = useMutation(LOGIN)
+  const [login, loginResult] = useMutation(LOGIN, {
+    onError: (error) => {
+      setNotification('Väärää käyttäjänimi tai salasana!', error.graphQLErrors[0].message)
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+    },
+  })
   useEffect(() => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
@@ -21,16 +28,16 @@ const LoginForm = ({ setLoggedUser }) => {
   }, [loginResult.data])
 
   const submit = async (event) => {
-    try {
-      event.preventDefault()
-      login({ variables: { username, password } })
-
+    setNotification('SHAAAAA')
+    setTimeout(() => {
       setNotification('')
-      setUsername('')
-      setPassword('')
-    } catch (e) {
-      <Notification message="Virhe!" />
-    }
+    }, 10000)
+    event.preventDefault()
+    login({ variables: { username, password } })
+
+    setNotification('')
+    setUsername('')
+    setPassword('')
   }
 
   return (
