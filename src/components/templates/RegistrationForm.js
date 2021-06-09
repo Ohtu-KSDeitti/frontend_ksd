@@ -14,6 +14,10 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('')
   const [passwordconf, setPasswordConf] = useState('')
   const [email, setEmail] = useState('')
+  const SERVICE_ID = process.env.REACT_APP_SERVICE_ID
+  const REGISTRATION_TEMPLATE = process.env.REACT_APP_REGISTRATION_TEMPLATE
+  const USER_KEY = process.env.REACT_APP_USER_KEY
+
   /*
   const [gender, setGender] = useState('Mies')
   const [age, setAge] = useState('')
@@ -52,7 +56,7 @@ const RegistrationForm = () => {
           username, password, passwordconf, firstname, lastname, email,
         },
       })
-      await emailjs.sendForm('service_h2vqoi2', 'template_sc7t6m7', event.target, 'user_lxssQhxgZ0oaSJ7Lo4DpA')
+      await emailjs.sendForm(SERVICE_ID, REGISTRATION_TEMPLATE, event.target, USER_KEY)
       console.log('Postia lähetetään')
     } catch (e) {
       setNotification('Virhe!')
