@@ -41,8 +41,10 @@ jobs:
       - name: Deployment status
         id: status
         run: |
-          aws deploy list-deployments \
-            --application-name user-api-deployer \
-            --deployment-group-name frontend-deployer-group \
-            --query "deployments" \
-            --max-items 1
+          aws deploy get-deployment
+            --deployment-id "$(aws deploy list-deployments \
+              --application-name user-api-deployer \
+              --deployment-group-name frontend-deployer-group \
+              --query "deployments" \
+              --max-items 1)" \
+            --query "deploymentInfo.[status]
