@@ -1,25 +1,14 @@
 import React from 'react'
 import { render, wait, fireEvent } from '@testing-library/react'
+import { MockedProvider } from '@apollo/client/testing'
 import LoginForm from '../templates/LoginForm'
-import { MockedProvider } from '@apollo/client/testing';
 import '@testing-library/jest-dom/extend-expect'
 import testUsers from './testusers'
-import { LOGIN } from '../../queries';
+import { LOGIN } from '../../queries'
 
 test('renders content', () => {
-  const mocks = [
-    {
-      request: {
-        query: LOGIN,
-        variables: {
-          username: 'Buck', password: 'kissa123',
-        },
-      },
-    },
-  ]
-
   const component = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
+    <MockedProvider addTypename={false}>
       <LoginForm testUsers={testUsers} />
     </MockedProvider>,
   )
@@ -43,7 +32,7 @@ test('LoginForm posts correct data.', async () => {
       newData: jest.fn(() => ({
         data: {
           loggedUser: {
-            value: 'xxxx'
+            value: 'xxxx',
           },
         },
       })),
@@ -69,6 +58,6 @@ test('LoginForm posts correct data.', async () => {
 
   fireEvent.submit(loginbutton)
 
-  const loginMock = mocks[0].newData;
+  const loginMock = mocks[0].newData
   await wait(() => expect(loginMock).toHaveBeenCalled())
 })

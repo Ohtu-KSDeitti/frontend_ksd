@@ -3,7 +3,7 @@ import React from 'react'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER } from '../../queries'
 
-const UserPage = () => {
+const UserPage = ({ loggedUser }) => {
   const userData = useQuery(CURRENT_USER)
 
   if (userData.loading) {
@@ -28,7 +28,7 @@ const UserPage = () => {
         <li>Nimimerkki: {user.username} <button type="submit">Muokkaa</button></li>
         <li>Sähköposti: {user.email} <button type="submit">Muokkaa</button></li>
       </ul>
-      <p>Täydennä tietojasi ja luo deittiprofiili <a href="url">täällä</a></p>
+      <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>
   )
 }
