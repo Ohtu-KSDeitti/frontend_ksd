@@ -44,5 +44,5 @@ jobs:
           aws deploy list-deployments \
             --application-name user-api-deployer \
             --deployment-group-name frontend-deployer-group \
-            --query "deployments"
+            --query "deployments" \
             --max-items 1
