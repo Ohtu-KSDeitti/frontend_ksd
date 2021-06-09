@@ -12,7 +12,7 @@ const MainPage = ({ loggedUser }) => {
 
   return (
     <div>
-      <p>Tervetuloa, {loggedUser}!</p>
+      <p>Tervetuloa!</p>
     </div>
   )
 }

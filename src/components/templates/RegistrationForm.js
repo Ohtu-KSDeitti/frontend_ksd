@@ -1,45 +1,49 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import emailjs from 'emailjs-com'
 import { Form, Button } from 'react-bootstrap'
-/* import { useMutation } from '@apollo/client'
-import { CREATE_USER } from '../queries' */
+import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
+import { ADD_NEW_USER } from '../../queries'
 import Notification from '../utils/Notification'
 
-const RegistrationForm = ({ testUsers, setUsers }) => {
+const RegistrationForm = () => {
   const [username, setUsername] = useState('')
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConf, setPasswordConf] = useState('')
+  const [passwordconf, setPasswordConf] = useState('')
   const [email, setEmail] = useState('')
+  const SERVICE_ID = process.env.REACT_APP_SERVICE_ID
+  const REGISTRATION_TEMPLATE = process.env.REACT_APP_REGISTRATION_TEMPLATE
+  const USER_KEY = process.env.REACT_APP_USER_KEY
+
   /*
-  const [name, setName] = useState('')
   const [gender, setGender] = useState('Mies')
   const [age, setAge] = useState('')
   */
   const [notification, setNotification] = useState('')
   const history = useHistory()
 
-  // const [createUser, userData] = useMutation(CREATE_USER)
+  const [addNewUser, userData] = useMutation(ADD_NEW_USER)
 
-  /* useEffect(() => {
+  useEffect(() => {
     if (userData.data) {
       setUsername('')
       setPassword('')
       setPasswordConf('')
-      setName('')
+      setFirstName('')
+      setLastName('')
       setEmail('')
-      setGender('')
-      setAge('')
-
-      history.push('/')
+      history.push('/login')
     }
-  }, [userData.data]) */
+  }, [userData.data])
 
   const submit = async (event) => {
     try {
       event.preventDefault()
 
-      if (password !== passwordConf) {
+      if (password !== passwordconf) {
         setNotification('Salasana ei vastaa varmennusta')
         setTimeout(() => {
           setNotification('')
@@ -47,17 +51,13 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
         return
       }
 
-      /* createUser({
-      variables: {
-        username, password, passwordConf, name, email, gender, age,
-      },
-    }) */
-      const newUser = {
-        username, password, email, id: testUsers.length + 1,
-      }
-
-      setUsers(testUsers.concat(newUser))
-      history.push('/login')
+      addNewUser({
+        variables: {
+          username, password, passwordconf, firstname, lastname, email,
+        },
+      })
+      await emailjs.sendForm(SERVICE_ID, REGISTRATION_TEMPLATE, event.target, USER_KEY)
+      console.log('Postia lähetetään')
     } catch (e) {
       setNotification('Virhe!')
     }
@@ -85,17 +85,27 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             value={username}
             onChange={({ target }) => setUsername(target.value)}
           />
-          {/*
-          <Form.Label>Oma nimi:</Form.Label>
+          <Form.Label>Etunimi:</Form.Label>
           <Form.Control
-            id="name"
+            id="firstname"
             required
             type="text"
-            maxLength="56"
-            value={name}
-            onChange={({ target }) => setName(target.value)}
+            minLength="1"
+            maxLength="50"
+            value={firstname}
+            onChange={({ target }) => setFirstName(target.value)}
+            name="name"
           />
-          */}
+          <Form.Label>Sukunimi:</Form.Label>
+          <Form.Control
+            id="lastname"
+            required
+            type="text"
+            minLength="1"
+            maxLength="50"
+            value={lastname}
+            onChange={({ target }) => setLastName(target.value)}
+          />
           <Form.Label>Salasana:</Form.Label>
           <Form.Text id="username" muted>
             Salasanan pituus tulee olla 8–32 merkkiä.
@@ -119,7 +129,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             type="password"
             minLength="8"
             maxLength="32"
-            value={passwordConf}
+            value={passwordconf}
             onChange={({ target }) => setPasswordConf(target.value)}
           />
           <Form.Text id="username" muted>
@@ -133,6 +143,7 @@ const RegistrationForm = ({ testUsers, setUsers }) => {
             maxLength="56"
             value={email}
             onChange={({ target }) => setEmail(target.value)}
+            name="email"
           />
           {/*
           <Form.Label>Ikä:</Form.Label>

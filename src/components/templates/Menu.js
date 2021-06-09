@@ -9,12 +9,11 @@ const Menu = ({ loggedUser, logout }) => {
     return (
       <div>
         <a href="/" style={padding}>Pääsivu</a>
-        <a id="loginform" href="/login" style={padding}>Kirjaudu sisään</a>
         <a id="registerform" href="/register" style={padding}>Rekisteröidy</a>
+        <a id="loginform" href="/login" style={padding}>Kirjaudu sisään</a>
       </div>
     )
   }
-
   return (
     <div>
       <a href="/" style={padding}>Pääsivu</a>

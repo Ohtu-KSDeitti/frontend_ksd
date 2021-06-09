@@ -8,26 +8,10 @@ import { setContext } from 'apollo-link-context'
 import App from './App'
 import './index.css'
 
-const testUsers = [
-  {
-    id: 1,
-    username: 'koticasanova95',
-    password: 'kissakala123',
-    firstname: 'Mare',
-    lastname: 'P',
-    email: 'mare.ysiviis@gmail.com',
-  },
-  {
-    id: 2,
-    username: 'laila76',
-    password: 'kala1234',
-    firstname: 'Laila',
-    lastname: 'K',
-    email: 'laila.koo@hotmail.com',
-  },
-]
+require('dotenv').config()
 
-const URI = process.REACT_APP_GATEWAY
+const URI = process.env.REACT_APP_GATEWAY_URI
+console.log('URI:', URI)
 
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('user-token')
@@ -51,7 +35,7 @@ const client = new ApolloClient({
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Router>
-      <App testUsers={testUsers} />
+      <App />
     </Router>
   </ApolloProvider>,
   document.getElementById('root'),

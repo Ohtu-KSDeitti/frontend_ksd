@@ -1,89 +1,111 @@
-// import React, { useState, useEffect } from 'react'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
-// import { useMutation } from '@apollo/client'
-// import { useHistory } from 'react-router-dom'
+import { useMutation, useQuery } from '@apollo/client'
+import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-// import { UPDATE_USER } from '../../queries' // TARKISTA QUERYN MUOTO
-// import Notification from '../utils/Notification'
+import { CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_INFO } from '../../queries'
+import Notification from '../utils/Notification'
 
-const Settings = ({ loggedUser, testUsers }) => {
-  if (!loggedUser) {
-    return (
-      <div>
-        <p>Et ole kirjautunut</p>
-      </div>
-    )
-  }
+const Settings = () => {
+  const [username, setUsername] = useState('')
+  const [firstname, setFirstName] = useState('')
+  const [lastname, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [notification, setNotification] = useState('')
+  const history = useHistory()
 
-  const thisuser = testUsers.find((u) => u.username === loggedUser)
-  console.log(thisuser)
+  const [gender, setGender] = useState('FEMALE')
+  const [dateOfBirth, setDateOfBirth] = useState('')
+  const [status, setStatus] = useState('SINGLE')
+  const [location, setLocation] = useState('')
+  const [bio, setBio] = useState('')
 
-  const [username, setUsername] = useState(thisuser.username)
-  const [firstname, setFirstName] = useState(thisuser.firstname)
-  const [lastname, setLastName] = useState(thisuser.lastname)
-  const [password, setPassword] = useState(thisuser.password)
-  const [passwordconf, setPasswordConf] = useState(thisuser.password)
-  const [email, setEmail] = useState(thisuser.email)
-  // const [notification, setNotification] = useState('')
-  // const history = useHistory()
-  // const [updateUser, userData] = useMutation(UPDATE_USER)
+  const userData = useQuery(CURRENT_USER)
+  const [updateUserAccount, updatedUserData] = useMutation(UPDATE_USER_ACCOUNT)
+  const [updateUserInfo, userInfo] = useMutation(UPDATE_USER_INFO)
 
-  // const [gender, setGender] = useState('')
-  // const [location, setLocation] = useState('')
-
-  /* useEffect(() => {
+  useEffect(() => {
     if (userData.data) {
+      const user = userData.data.currentUser
+      setUsername(user.username)
+      setFirstName(user.firstname)
+      setLastName(user.lastname)
+      setEmail(user.email)
+    }
+  }, [userData.data])
+
+  useEffect(() => {
+    if (updatedUserData.data) {
       setUsername('')
-      setPassword('')
-      setPasswordConf('')
       setFirstName('')
       setLastName('')
       setEmail('')
 
       history.push('/')
     }
-  }, [userData.data])
+  }, [updatedUserData.data])
 
+  useEffect(() => {
+    if (userInfo.data) {
+      setGender('')
+      setDateOfBirth('')
+      setStatus('')
+      setLocation('')
+      setBio('')
+
+      history.push('/')
+    }
+  }, [userInfo.data])
+
+  if (userData.loading) {
+    return <div>loading...</div>
+  }
+
+  if (!userData.data) {
+    return (
+      <div>Et ole kirjautunut!</div>
+    )
+  }
+  const tags = []
   const submitBasic = async (event) => {
+    const user = userData.data.currentUser
+    const id = user.id
     try {
       event.preventDefault()
 
-      if (password !== passwordconf) {
-        setNotification('Salasana ei vastaa varmennusta')
-        setTimeout(() => {
-          setNotification('')
-        }, 10000)
-        return
-      }
-
-      updateUser({
+      updateUserAccount({
         variables: {
-          username, password, passwordconf, firstname, lastname, email,
+          id, username, firstname, lastname, email,
         },
       })
-      history.push('/login')
+      history.push('/')
     } catch (e) {
       setNotification('Virhe!')
     }
-  } */
+  }
 
-  // NÄMÄ VOI POISTAA KUN YLEMMÄT FUNKTIOT PALAUTETTU JA PUUTTUVAT TOTEUTETTU:
-  const submitBasic = async () => {}
-  const submitDateProfile = async () => {}
-  const setGender = async () => {}
-  const location = ''
-  const setLocation = async () => {}
-  const description = ''
-  const setDescription = async () => {}
-  const setStatus = async () => {}
-  const birthday = ''
-  const setBirthday = async () => {}
+  const submitDateProfile = async (event) => {
+    const user = userData.data.currentUser
+    console.log(user)
+    const id = user.id
+    console.log(id)
+    try {
+      event.preventDefault()
+      updateUserInfo({
+        variables: {
+          id, gender, dateOfBirth, status, location, bio, tags,
+        },
+      })
+      history.push('/')
+    } catch (e) {
+      setNotification('Virhe!')
+    }
+  }
 
   return (
     <>
       <h1>Muokkaa perusasetuksia</h1>
-      { /* <Notification message={notification} /> */ }
+      <Notification message={notification} />
       <ReactIsCapsLockActive>
         {(active) => <p style={{ color: 'red' }}>{active ? 'Caps lock on päällä' : ''}</p>}
       </ReactIsCapsLockActive>
@@ -122,32 +144,6 @@ const Settings = ({ loggedUser, testUsers }) => {
             value={lastname}
             onChange={({ target }) => setLastName(target.value)}
           /><br />
-          <Form.Label>Salasana:</Form.Label>
-          <Form.Text id="username" muted>
-            Salasanan pituus tulee olla 8–32 merkkiä.
-          </Form.Text>
-          <Form.Control
-            id="password"
-            required
-            type="password"
-            minLength="8"
-            maxLength="32"
-            value={password}
-            onChange={({ target }) => setPassword(target.value)}
-          /><br />
-          <Form.Label>Salasanan varmennus:</Form.Label>
-          <Form.Text id="username" muted>
-            Syötä salasana uudelleen.
-          </Form.Text>
-          <Form.Control
-            id="passwordConf"
-            required
-            type="password"
-            minLength="8"
-            maxLength="32"
-            value={passwordconf}
-            onChange={({ target }) => setPasswordConf(target.value)}
-          /><br />
           <Form.Text id="username" muted>
             Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
           </Form.Text>
@@ -168,25 +164,26 @@ const Settings = ({ loggedUser, testUsers }) => {
         <Form.Group>
           <Form.Label>Sukupuoli:</Form.Label>
           <Form.Control id="gender" as="select" onChange={({ target }) => setGender(target.value)}>
-            <option value="Nainen">Nainen</option>
-            <option value="Mies">Mies</option>
+            <option value="FEMALE">Nainen</option>
+            <option value="MALE">Mies</option>
           </Form.Control><br />
           <Form.Label>Syntymäaika</Form.Label>
           <Form.Control
-            id="birthday"
+            id="dateOfBirth"
             required
             type="date"
-            value={birthday}
-            onChange={({ target }) => setBirthday(target.value)}
+            value={dateOfBirth}
+            onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
           <Form.Label>Siviilisääty:</Form.Label>
           <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
-            <option value="single">Sinkku</option>
-            <option value="divorced">Eronnut</option>
-            <option value="widow">Leski</option>
-            <option value="taken">Parisuhteessa</option>
-            <option value="married">Naimisissa</option>
-          </Form.Control><br />
+            <option value="SINGLE">Sinkku</option>
+            <option value="DIVORCED">Eronnut</option>
+            <option value="WIDOWED">Leski</option>
+            <option value="TAKEN">Parisuhteessa</option>
+            <option value="MARRIED">Naimisissa</option>
+          </Form.Control>
+          <br />
           <Form.Label>Paikkakunta:</Form.Label>
           <Form.Control
             id="location"
@@ -197,17 +194,17 @@ const Settings = ({ loggedUser, testUsers }) => {
             onChange={({ target }) => setLocation(target.value)}
           /><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="username" muted>
+          <Form.Text id="bio" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
           </Form.Text>
           <Form.Control
             as="textarea"
             rows="3"
-            id="description"
+            id="bio"
             type="text"
             maxLength="500"
-            value={description}
-            onChange={({ target }) => setDescription(target.value)}
+            value={bio}
+            onChange={({ target }) => setBio(target.value)}
           /><br />
           <Form.Check
             id="christianAndSingle"

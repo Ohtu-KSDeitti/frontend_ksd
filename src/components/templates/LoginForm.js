@@ -1,45 +1,43 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
-/* eslint-disable eol-last */
-// import { useMutation } from '@apollo/client'
+import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
-// import { LOGIN } from '../queries'
-const LoginForm = ({ testUsers, login }) => {
+import { LOGIN } from '../../queries'
+
+const LoginForm = ({ setLoggedUser }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
-  // console.log(testUsers)
-  // const [login, loginResult] = useMutation(LOGIN)
-  /* useEffect(() => {
-  if (loginResult.data) {
-  history.push('/')
-  }
-  }, [loginResult.data]) */
+  const [login, loginResult] = useMutation(LOGIN, {
+    onError: (error) => {
+      setNotification('Väärää käyttäjänimi tai salasana!', error.graphQLErrors[0].message)
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+    },
+  })
+  useEffect(() => {
+    if (loginResult.data) {
+      const token = loginResult.data.login.value
+      localStorage.setItem('user-token', token)
+      setLoggedUser(localStorage.getItem('user-token'))
+      history.push('/')
+    }
+  }, [loginResult.data])
 
   const submit = async (event) => {
-    try {
-      event.preventDefault()
-      // login({ variables: { username, password } })
-      const user = testUsers.find((u) => u.username === username)
-      if (!user || user.password !== password) {
-        setNotification('Virheellinen käyttäjätunnus tai salasana')
-        setTimeout(() => {
-          setNotification('')
-        }, 10000)
-        return
-      }
+    setNotification('SHAAAAA')
+    setTimeout(() => {
+      setNotification('')
+    }, 10000)
+    event.preventDefault()
+    login({ variables: { username, password } })
 
-      localStorage.setItem('user-token', username)
-      login(username)
-      setUsername('')
-      setPassword('')
-
-      history.push('/')
-    } catch (e) {
-      <Notification message="Virhe!" />
-    }
+    setNotification('')
+    setUsername('')
+    setPassword('')
   }
 
   return (
