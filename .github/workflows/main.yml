@@ -46,5 +46,6 @@ jobs:
               --application-name user-api-deployer \
               --deployment-group-name frontend-deployer-group \
               --query "deployments" \
-              --max-items 1)" \
+              --max-items 1) \
+              | sed 's/^"\(.*\)".*/\1/' a" \
             --query "deploymentInfo.[status]"
