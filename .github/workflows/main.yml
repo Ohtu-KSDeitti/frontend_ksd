@@ -47,5 +47,5 @@ jobs:
               --deployment-group-name frontend-deployer-group \
               --query "deployments" \
               --max-items 1) \
-              | sed 's/^"\(.*\)".*/\1/' a" \
+              | sed 's/^"\(.*\)".*/\1/' /dev/stdin" \
             --query "deploymentInfo.[status]"
