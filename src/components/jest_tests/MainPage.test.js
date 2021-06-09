@@ -1,13 +1,19 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render } from '@testing-library/react'
-import MainPage from '../templates/MainPage'
+import { MockedProvider } from '@apollo/client/testing'
+import MainPage from '../templates/LoginForm'
 
 test('renders content', () => {
   const component = render(
-    <MainPage />,
+    <MockedProvider addTypename={false}>
+      <MainPage />
+    </MockedProvider>,
   )
   expect(component.container).toHaveTextContent(
-    'Et ole kirjautunut',
+    'Kirjaudu sisään',
+  )
+  expect(component.container).toHaveTextContent(
+    'Salasana',
   )
 })

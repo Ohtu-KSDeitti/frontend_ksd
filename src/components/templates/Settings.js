@@ -1,10 +1,10 @@
 // import React, { useState, useEffect } from 'react'
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-// import { useMutation } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 // import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-// import { UPDATE_USER } from '../../queries' // TARKISTA QUERYN MUOTO
+import { CURRENT_USER } from '../../queries' // TARKISTA QUERYN MUOTO
 // import Notification from '../utils/Notification'
 
 const Settings = () => {
@@ -16,7 +16,7 @@ const Settings = () => {
 
   if (!userData.data) {
     return (
-      <div>Kirjaudu sisään</div>
+      <div>a</div>
     )
   }
   const user = userData.data.currentUser

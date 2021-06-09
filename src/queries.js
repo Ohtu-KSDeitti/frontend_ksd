@@ -46,6 +46,14 @@ export const CURRENT_USER = gql`
       firstname,
       lastname,
       email,
+      userInfo {
+        location,
+        gender,
+        dateOfBirth,
+        profileLikes,
+        bio,
+        tags,
+      }
     }
   }
 `

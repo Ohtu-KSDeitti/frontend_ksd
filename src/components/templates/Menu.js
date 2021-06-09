@@ -18,7 +18,6 @@ const Menu = ({ loggedUser, logout }) => {
     <div>
       <a href="/" style={padding}>Pääsivu</a>
       <a id="userpage" href={loggedUser} style={padding}>Oma sivu</a>
-      <a id="logout" href="/" style={padding} onClick={logout}>Kirjaudu ulos</a>
       <a id="userpage" href={`/${loggedUser}`} style={padding}>Oma sivu</a>
       <a id="settings" href={`/s/${loggedUser}`} style={padding}>Asetukset</a>
       <a id="loginform" href="/login" style={padding} onClick={logout}>Kirjaudu ulos</a>
