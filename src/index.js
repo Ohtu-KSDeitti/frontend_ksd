@@ -8,6 +8,8 @@ import { setContext } from 'apollo-link-context'
 import App from './App'
 import './index.css'
 
+require('dotenv').config()
+
 const URI = process.env.REACT_APP_GATEWAY_URI
 console.log('URI:', URI)
 
