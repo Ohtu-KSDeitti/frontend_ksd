@@ -47,4 +47,4 @@ jobs:
               --deployment-group-name frontend-deployer-group \
               --query "deployments" \
               --max-items 1)" \
-            --query "deploymentInfo.[status]
+            --query "deploymentInfo.[status]"
