@@ -17,15 +17,17 @@ const RegistrationForm = () => {
   const SERVICE_ID = process.env.REACT_APP_SERVICE_ID
   const REGISTRATION_TEMPLATE = process.env.REACT_APP_REGISTRATION_TEMPLATE
   const USER_KEY = process.env.REACT_APP_USER_KEY
-
-  /*
-  const [gender, setGender] = useState('Mies')
-  const [age, setAge] = useState('')
-  */
   const [notification, setNotification] = useState('')
   const history = useHistory()
 
-  const [addNewUser, userData] = useMutation(ADD_NEW_USER)
+  const [addNewUser, userData] = useMutation(ADD_NEW_USER, {
+    onError: () => {
+      setNotification('Rekisteröityminen ei onnistunut')
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+    },
+  })
 
   useEffect(() => {
     if (userData.data) {
@@ -145,24 +147,6 @@ const RegistrationForm = () => {
             onChange={({ target }) => setEmail(target.value)}
             name="email"
           />
-          {/*
-          <Form.Label>Ikä:</Form.Label>
-          <Form.Control
-            id="age"
-            required
-            type="number"
-            value={age}
-            min="18"
-            max="120"
-            onChange={({ target }) => setAge(target.value)}
-          />
-          <Form.Label>Sukupuoli:</Form.Label>
-          <Form.Control id="gender" as="select" onChange={({ target }) => setGender(target.value)}>
-            <option value="Mies">Mies</option>
-            <option value="Nainen">Nainen</option>
-            <option value="Muu">Muu</option>
-          </Form.Control>
-          */}
           <Form.Check
             id="accept"
             required
