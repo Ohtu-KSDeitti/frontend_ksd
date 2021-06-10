@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
 import { LOGIN } from '../../queries'
 
-const LoginForm = ({ setLoggedUser }) => {
+const LoginForm = ({ setLoggedUser, submit = null }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
@@ -27,13 +27,15 @@ const LoginForm = ({ setLoggedUser }) => {
     }
   }, [loginResult.data])
 
-  const submit = async (event) => {
-    event.preventDefault()
-    login({ variables: { username, password } })
+  if (!submit) {
+    const submit = async (event) => {
+      event.preventDefault()
+      login({ variables: { username, password } })
 
-    setNotification('')
-    setUsername('')
-    setPassword('')
+      setNotification('')
+      setUsername('')
+      setPassword('')
+    }
   }
 
   return (

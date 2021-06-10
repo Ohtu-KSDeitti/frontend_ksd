@@ -1,10 +1,41 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
 import LoginForm from '../templates/LoginForm'
 import '@testing-library/jest-dom/extend-expect'
 import testUsers from './testusers'
-// import { LOGIN } from '../../queries'
+//  import { LOGIN } from '../../queries'
+
+/* export const LOGIN = gql`
+mutation login($username: String!, $password: String!) {
+login(
+  username: $username,
+  password: $password,
+) {
+  value
+}
+}
+`
+test('<NoteForm /> updates parent state and calls onSubmit', () => {
+const createNote = jest.fn()
+
+const component = render(
+<NoteForm createNote={createNote} />,
+)
+
+const input = component.container.querySelector('input')
+const form = component.container.querySelector('form')
+
+fireEvent.change(input, {
+target: { value: 'testing of forms could be easier' },
+})
+fireEvent.submit(form)
+
+expect(createNote.mock.calls).toHaveLength(1)
+expect(createNote.mock.calls[0][0].content).toBe('testing of forms could be easier')
+})
+`
+*/
 
 test('renders content', () => {
   const component = render(
@@ -19,45 +50,43 @@ test('renders content', () => {
     'Salasana',
   )
 })
-/*
+
 test('LoginForm posts correct data.', async () => {
-  const mocks = [
-    {
-      request: {
-        query: LOGIN,
-        variables: {
-          username: 'Buck', password: 'kissa123',
-        },
-      },
-      newData: jest.fn(() => ({
-        data: {
-          loggedUser: {
-            value: 'xxxx',
-          },
-        },
-      })),
-    },
-  ]
+  const testSubmit = jest.fn()
 
   const component = render(
-    <MockedProvider mocks={mocks} addTypename={false}>
-      <LoginForm testUsers={testUsers} />
+    <MockedProvider addTypename={false}>
+      <LoginForm submit={testSubmit} />
     </MockedProvider>,
   )
 
   const inputUsername = component.container.querySelector('#username')
   const inputPassword = component.container.querySelector('#password')
-  const loginbutton = component.container.querySelector('#login-button')
+  const loginForm = component.container.querySelector('form')
 
   fireEvent.change(inputUsername, {
-    target: { username: 'laila76' },
+    target: { value: 'Buck' },
   })
   fireEvent.change(inputPassword, {
-    target: { password: 'kala1234' },
+    target: { value: 'kissa123' },
   })
+  fireEvent.submit(loginForm)
 
-  fireEvent.submit(loginbutton)
+  expect(testSubmit.mock.calls).toHaveLength(1)
+})
 
-  const loginMock = mocks[0].newData
-  await wait(() => expect(loginMock).toHaveBeenCalled())
-}) */
+test('LoginForm with empty values.', async () => {
+  const testSubmit = jest.fn(() => 'kutsuttu')
+
+  const component = render(
+    <MockedProvider addTypename={false}>
+      <LoginForm submit={testSubmit} />
+    </MockedProvider>,
+  )
+
+  const loginForm = component.container.querySelector('form')
+  fireEvent.submit(loginForm)
+
+  console.log(testSubmit.mock)
+  expect(component.container.toHaveTextContent('Väärä käyttäjänimi tai salasana'))
+})
