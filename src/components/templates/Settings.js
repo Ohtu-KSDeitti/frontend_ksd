@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import { useMutation, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-import { CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_INFO } from '../../queries'
+import { CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE } from '../../queries'
 import Notification from '../utils/Notification'
 
 const Settings = () => {
@@ -22,7 +22,7 @@ const Settings = () => {
 
   const userData = useQuery(CURRENT_USER)
   const [updateUserAccount, updatedUserData] = useMutation(UPDATE_USER_ACCOUNT)
-  const [updateUserInfo, userInfo] = useMutation(UPDATE_USER_INFO)
+  const [updateUserDate, userDate] = useMutation(UPDATE_USER_DATE)
 
   useEffect(() => {
     if (userData.data) {
@@ -31,6 +31,11 @@ const Settings = () => {
       setFirstName(user.firstname)
       setLastName(user.lastname)
       setEmail(user.email)
+      setGender(user.userInfo.gender)
+      setDateOfBirth(user.userInfo.dateOfBirth)
+      setStatus(user.userInfo.status)
+      setLocation(user.userInfo.location)
+      setBio(user.userInfo.bio)
     }
   }, [userData.data])
 
@@ -46,7 +51,7 @@ const Settings = () => {
   }, [updatedUserData.data])
 
   useEffect(() => {
-    if (userInfo.data) {
+    if (userDate.data) {
       setGender('')
       setDateOfBirth('')
       setStatus('')
@@ -55,7 +60,7 @@ const Settings = () => {
 
       history.push('/')
     }
-  }, [userInfo.data])
+  }, [userDate.data])
 
   if (userData.loading) {
     return <div>loading...</div>
@@ -68,8 +73,8 @@ const Settings = () => {
   }
   const tags = []
   const submitBasic = async (event) => {
-    const user = userData.data.currentUser
-    const id = user.id
+    const basicData = userData.data.currentUser
+    const id = basicData.id
     try {
       event.preventDefault()
 
@@ -85,13 +90,12 @@ const Settings = () => {
   }
 
   const submitDateProfile = async (event) => {
-    const user = userData.data.currentUser
-    console.log(user)
-    const id = user.id
-    console.log(id)
+    const dateData = userData.data.currentUser
+    const id = dateData.id
+
     try {
       event.preventDefault()
-      updateUserInfo({
+      updateUserDate({
         variables: {
           id, gender, dateOfBirth, status, location, bio, tags,
         },
@@ -102,6 +106,122 @@ const Settings = () => {
     }
   }
 
+  const createDate = () => (
+    <>
+      <h1>Luo deittiprofiili</h1>
+      <Form onSubmit={submitDateProfile}>
+        <Form.Group>
+          <Form.Label>Sukupuoli:</Form.Label>
+          <Form.Control id="gender" as="select" value={gender} onChange={({ target }) => setGender(target.value)}>
+            <option value="FEMALE">Nainen</option>
+            <option value="MALE">Mies</option>
+          </Form.Control><br />
+          <Form.Label>Syntymäaika</Form.Label>
+          <Form.Control
+            id="dateOfBirth"
+            required
+            type="date"
+            value={dateOfBirth}
+            onChange={({ target }) => setDateOfBirth(target.value)}
+          /><br />
+          <Form.Label>Siviilisääty:</Form.Label>
+          <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
+            <option value="SINGLE">Sinkku</option>
+            <option value="DIVORCED">Eronnut</option>
+            <option value="WIDOWED">Leski</option>
+            <option value="TAKEN">Parisuhteessa</option>
+            <option value="MARRIED">Naimisissa</option>
+          </Form.Control>
+          <br />
+          <Form.Label>Paikkakunta:</Form.Label>
+          <Form.Control
+            id="location"
+            required
+            type="text"
+            maxLength="100"
+            value={location}
+            onChange={({ target }) => setLocation(target.value)}
+          /><br />
+          <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
+          <Form.Text id="bio" muted>
+            Kuvauksen maksimipituus on 500 merkkiä.
+          </Form.Text>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            id="bio"
+            type="text"
+            maxLength="500"
+            value={bio}
+            onChange={({ target }) => setBio(target.value)}
+          /><br />
+          <Form.Check
+            id="christianAndSingle"
+            required
+            label="Olen täysi-ikäinen ja kristitty sinkku"
+          /><br />
+          <Button id="dateprofile-button" type="submit">Luo deittiprofiili</Button>
+        </Form.Group>
+      </Form>
+    </>
+  )
+
+  const editDate = () => (
+    <>
+      <h1> Muokkaa deittiprofiiliasi </h1>
+      <Form onSubmit={submitDateProfile}>
+        <Form.Group>
+          <Form.Label>Sukupuoli:</Form.Label>
+          <Form.Control id="gender" as="select" value={gender} onChange={({ target }) => setGender(target.value)}>
+            <option value="FEMALE">Nainen</option>
+            <option value="MALE">Mies</option>
+          </Form.Control><br />
+          <Form.Label>Syntymäaika</Form.Label>
+          <Form.Control
+            id="dateOfBirth"
+            required
+            type="date"
+            value={dateOfBirth}
+            onChange={({ target }) => setDateOfBirth(target.value)}
+          /><br />
+          <Form.Label>Siviilisääty:</Form.Label>
+          <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
+            <option value="SINGLE">Sinkku</option>
+            <option value="DIVORCED">Eronnut</option>
+            <option value="WIDOWED">Leski</option>
+            <option value="TAKEN">Parisuhteessa</option>
+            <option value="MARRIED">Naimisissa</option>
+          </Form.Control>
+          <br />
+          <Form.Label>Paikkakunta:</Form.Label>
+          <Form.Control
+            id="location"
+            required
+            type="text"
+            maxLength="100"
+            value={location}
+            onChange={({ target }) => setLocation(target.value)}
+          /><br />
+          <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
+          <Form.Text id="bio" muted>
+            Kuvauksen maksimipituus on 500 merkkiä.
+          </Form.Text>
+          <Form.Control
+            as="textarea"
+            rows="3"
+            id="bio"
+            type="text"
+            maxLength="500"
+            value={bio}
+            onChange={({ target }) => setBio(target.value)}
+          /><br />
+          <Button id="dateprofile-button" type="submit">Muokkaa</Button>
+        </Form.Group>
+      </Form>
+    </>
+  )
+
+  const user = userData.data.currentUser
   return (
     <>
       <h1>Muokkaa perusasetuksia</h1>
@@ -159,61 +279,7 @@ const Settings = () => {
           <Button id="update-button" type="submit">Tallenna muutokset</Button>
         </Form.Group>
       </Form>
-      <h1>Luo deittiprofiili</h1>
-      <Form onSubmit={submitDateProfile}>
-        <Form.Group>
-          <Form.Label>Sukupuoli:</Form.Label>
-          <Form.Control id="gender" as="select" onChange={({ target }) => setGender(target.value)}>
-            <option value="FEMALE">Nainen</option>
-            <option value="MALE">Mies</option>
-          </Form.Control><br />
-          <Form.Label>Syntymäaika</Form.Label>
-          <Form.Control
-            id="dateOfBirth"
-            required
-            type="date"
-            value={dateOfBirth}
-            onChange={({ target }) => setDateOfBirth(target.value)}
-          /><br />
-          <Form.Label>Siviilisääty:</Form.Label>
-          <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
-            <option value="SINGLE">Sinkku</option>
-            <option value="DIVORCED">Eronnut</option>
-            <option value="WIDOWED">Leski</option>
-            <option value="TAKEN">Parisuhteessa</option>
-            <option value="MARRIED">Naimisissa</option>
-          </Form.Control>
-          <br />
-          <Form.Label>Paikkakunta:</Form.Label>
-          <Form.Control
-            id="location"
-            required
-            type="text"
-            maxLength="100"
-            value={location}
-            onChange={({ target }) => setLocation(target.value)}
-          /><br />
-          <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio" muted>
-            Kuvauksen maksimipituus on 500 merkkiä.
-          </Form.Text>
-          <Form.Control
-            as="textarea"
-            rows="3"
-            id="bio"
-            type="text"
-            maxLength="500"
-            value={bio}
-            onChange={({ target }) => setBio(target.value)}
-          /><br />
-          <Form.Check
-            id="christianAndSingle"
-            required
-            label="Olen täysi-ikäinen ja kristitty sinkku"
-          /><br />
-          <Button id="dateprofile-button" type="submit">Luo deittiprofiili</Button>
-        </Form.Group>
-      </Form>
+      {user.userInfo.dateOfBirth === '' ? createDate() : editDate()}
     </>
   )
 }

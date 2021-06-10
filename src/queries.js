@@ -75,7 +75,7 @@ export const UPDATE_USER_ACCOUNT = gql`
   }
 `
 
-export const UPDATE_USER_INFO = gql`
+export const UPDATE_USER_DATE = gql`
   mutation updateUserInfo($id: ID!, $location: String, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
     updateUserInfo(
       id: $id,
