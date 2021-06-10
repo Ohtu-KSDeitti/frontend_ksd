@@ -11,8 +11,8 @@ const LoginForm = ({ setLoggedUser }) => {
   const [notification, setNotification] = useState('')
   const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
-    onError: (error) => {
-      setNotification('Väärää käyttäjänimi tai salasana!', error.graphQLErrors[0].message)
+    onError: () => {
+      setNotification('Väärä käyttäjänimi tai salasana')
       setTimeout(() => {
         setNotification('')
       }, 10000)
@@ -28,10 +28,6 @@ const LoginForm = ({ setLoggedUser }) => {
   }, [loginResult.data])
 
   const submit = async (event) => {
-    setNotification('SHAAAAA')
-    setTimeout(() => {
-      setNotification('')
-    }, 10000)
     event.preventDefault()
     login({ variables: { username, password } })
 

@@ -5,10 +5,7 @@ const Notification = ({ message }) => {
   if (!message) {
     return null
   }
-  if (message.match('^Salasana ') || message.match('^Virheellinen ')) {
-    return <div className="alert">{message}</div>
-  }
-  return <div>{message}</div>
+  return <div className="alert">{message}</div>
 }
 
 export default Notification
