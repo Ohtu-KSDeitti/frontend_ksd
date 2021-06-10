@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
 import { LOGIN } from '../../queries'
 
-const LoginForm = ({ setLoggedUser }) => {
+const LoginForm = ({ setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
@@ -22,7 +22,7 @@ const LoginForm = ({ setLoggedUser }) => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
-      setLoggedUser(localStorage.getItem('user-token'))
+      setToken(localStorage.getItem('user-token'))
       history.push('/')
     }
   }, [loginResult.data])

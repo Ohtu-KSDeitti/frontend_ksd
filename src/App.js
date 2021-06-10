@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Switch, Route,
 } from 'react-router-dom'
-import { useApolloClient } from '@apollo/client'
+import { useApolloClient, useQuery } from '@apollo/client'
 import LoginForm from './components/templates/LoginForm'
 import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
@@ -10,39 +10,66 @@ import MainPage from './components/templates/MainPage'
 import UserPage from './components/templates/UserPage'
 import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
+import { CURRENT_USER } from './queries'
 
-const App = ({ testUsers }) => {
-  const [users, setUsers] = useState(testUsers)
-  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token'))
+const App = () => {
+  const result = useQuery(CURRENT_USER)
+  const [token, setToken] = useState(localStorage.getItem('user-token'))
   const client = useApolloClient()
-  console.log('user list: ', users)
-  console.log(loggedUser, ' logged in')
+  console.log(token)
+
+  if (result.loading) {
+    return <div>loading...</div>
+  }
 
   const logout = () => {
-    setLoggedUser(null)
+    setToken(null)
     localStorage.clear()
     client.resetStore()
   }
 
+  if (!result.data) {
+    return (
+      <div className="container">
+        <h1>Kristittyjen sinkkujen deitti</h1>
+        <Menu logout={logout} />
+        <Switch>
+          <Route path="/login">
+            <LoginForm setToken={setToken} />
+          </Route>
+          <Route path="/register">
+            <RegistrationForm />
+          </Route>
+          <Route path="/">
+            <MainPage />
+          </Route>
+        </Switch>
+        <Footer />
+      </div>
+    )
+  }
+
+  const username = result.data.currentUser.username
+
   return (
     <div className="container">
       <h1>Kristittyjen sinkkujen deitti</h1>
-      <Menu loggedUser={loggedUser} logout={logout} />
+      <Menu loggedUser={username} logout={logout} />
       <Switch>
         <Route path="/login">
-          <LoginForm setLoggedUser={setLoggedUser} />
+          <LoginForm setToken={setToken} />
         </Route>
         <Route path="/register">
-          <RegistrationForm setUsers={setUsers} />
+          <RegistrationForm />
         </Route>
-        <Route path="/s/:loggedUser">
+        <Route path="/s/:username">
           <Settings />
         </Route>
-        <Route path="/:loggedUser">
-          <UserPage loggedUser={loggedUser} />
+        <Route path="/:username">
+          <UserPage loggedUser={username} />
         </Route>
         <Route path="/">
-          <MainPage loggedUser={loggedUser} />
+          <MainPage loggedUser={username} />
         </Route>
       </Switch>
       <Footer />
