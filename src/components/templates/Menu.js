@@ -5,7 +5,7 @@ const Menu = ({ loggedUser, logout }) => {
     paddingRight: 5,
   }
 
-  if (loggedUser === undefined) {
+  if (!loggedUser) {
     return (
       <div>
         <a href="/" style={padding}>Pääsivu</a>

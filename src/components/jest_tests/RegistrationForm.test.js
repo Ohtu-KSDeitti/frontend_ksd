@@ -1,20 +1,73 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import { MockedProvider } from '@apollo/client/testing'
+import TestRenderer from 'react-test-renderer'
 import RegistrationForm from '../templates/RegistrationForm'
 import '@testing-library/jest-dom/extend-expect'
+import { ADD_NEW_USER } from '../../queries'
 
-let component
+const { act } = TestRenderer
 
-beforeEach(() => {
-  component = render(
+const values = {
+  username: 'kalle',
+  password: 'kallekalle',
+  passwordconf: 'kallekalle',
+  firstname: 'kalle',
+  lastname: 'kalle',
+  email: 'kalle@kal.fi',
+}
+
+test('Create user', async () => {
+  // const mockCallBack = jest.fn()
+  const mockReg = [
+    {
+      request: {
+        query: ADD_NEW_USER,
+        variables: {
+          values,
+        },
+      },
+      result: {
+        data: {
+          addNewUser: {
+            username: 'kalle',
+            firstname: 'kalle',
+            lastname: 'kalle',
+            email: 'kalle@kal.fi',
+          },
+        },
+      },
+    },
+  ]
+  // onClick={mockClick}
+  const wrapper = TestRenderer.create(
+    <MockedProvider mocks={mockReg} addTypename={false}>
+      <RegistrationForm />
+    </MockedProvider>,
+  )
+
+  const button = wrapper.root.findByType('form')
+  act(() => {
+    button.props.onSubmit()
+  })
+
+  await new Promise((resolve) => setTimeout(resolve, 0))
+
+  const tree = wrapper.toJSON()
+  // expect(mockReg).toBeCalledWith(expect.anything())
+  // expect(tree).toEqual(expect.arrayContaining('Virhe!'))
+
+  console.log(tree[1].children)
+  expect(tree[1].children).toContain('Virhe!')
+  // expect(wrapper).toBeTruthy()
+})
+
+test('renders content', () => {
+  const component = render(
     <MockedProvider addTypename={false}>
       <RegistrationForm />
     </MockedProvider>,
   )
-})
-
-test('renders content', () => {
   expect(component.container).toHaveTextContent(
     'Luo uusi käyttäjä',
   )
@@ -25,6 +78,7 @@ test('renders content', () => {
     'Salasanan varmennus',
   )
 })
+
 /*
 test('Form posts data ', () => {
   const inputUsername = regComponent.container.querySelector('#username')

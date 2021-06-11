@@ -5,13 +5,15 @@ import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
 import { LOGIN } from '../../queries'
 
-const LoginForm = ({ setToken }) => {
+const LoginForm = ({ setLoggedUser, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
+      setUsername('')
+      setPassword('')
       setNotification('Väärä käyttäjänimi tai salasana')
       setTimeout(() => {
         setNotification('')
@@ -22,7 +24,11 @@ const LoginForm = ({ setToken }) => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
+      localStorage.setItem('username', username)
+      setLoggedUser(localStorage.getItem('username'))
       setToken(localStorage.getItem('user-token'))
+      setUsername('')
+      setPassword('')
       history.push('/')
     }
   }, [loginResult.data])
@@ -30,10 +36,7 @@ const LoginForm = ({ setToken }) => {
   const submit = async (event) => {
     event.preventDefault()
     login({ variables: { username, password } })
-
     setNotification('')
-    setUsername('')
-    setPassword('')
   }
 
   return (
