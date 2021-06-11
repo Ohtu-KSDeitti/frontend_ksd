@@ -5,7 +5,7 @@ const Menu = ({ loggedUser, logout }) => {
     paddingRight: 5,
   }
 
-  if (!localStorage.getItem('user-token')) {
+  if (loggedUser === undefined) {
     return (
       <div>
         <a href="/" style={padding}>Pääsivu</a>
