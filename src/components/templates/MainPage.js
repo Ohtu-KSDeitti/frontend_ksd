@@ -1,8 +1,8 @@
 import React from 'react'
 /* eslint-disable eol-last */
 
-const MainPage = ({ loggedUser }) => {
-  if (!loggedUser) {
+const MainPage = ({ token, loggedUser }) => {
+  if (!token && !loggedUser) {
     return (
       <div>
         <p>Et ole kirjautunut</p>

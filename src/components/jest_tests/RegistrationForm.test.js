@@ -9,11 +9,11 @@ import { ADD_NEW_USER } from '../../queries'
 const { act } = TestRenderer
 
 const values = {
-  username: 'kal',
+  username: 'kalle',
   password: 'kallekalle',
   passwordconf: 'kallekalle',
-  firstname: 'kal',
-  lastname: 'kal',
+  firstname: 'kalle',
+  lastname: 'kalle',
   email: 'kalle@kal.fi',
 }
 
@@ -30,9 +30,9 @@ test('Create user', async () => {
       result: {
         data: {
           addNewUser: {
-            username: 'kal',
-            firstname: 'kal',
-            lastname: 'kal',
+            username: 'kalle',
+            firstname: 'kalle',
+            lastname: 'kalle',
             email: 'kalle@kal.fi',
           },
         },
