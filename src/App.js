@@ -11,15 +11,14 @@ import UserPage from './components/templates/UserPage'
 import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
 
-const App = ({ testUsers }) => {
-  const [users, setUsers] = useState(testUsers)
-  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user-token'))
+const App = () => {
+  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('username'))
+  const [token, setToken] = useState(localStorage.getItem('user-token'))
   const client = useApolloClient()
-  console.log('user list: ', users)
-  console.log(loggedUser, ' logged in')
 
   const logout = () => {
     setLoggedUser(null)
+    setToken(null)
     localStorage.clear()
     client.resetStore()
   }
@@ -30,19 +29,19 @@ const App = ({ testUsers }) => {
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
         <Route path="/login">
-          <LoginForm setLoggedUser={setLoggedUser} />
+          <LoginForm setLoggedUser={setLoggedUser} setToken={setToken} />
         </Route>
         <Route path="/register">
-          <RegistrationForm setUsers={setUsers} />
+          <RegistrationForm />
         </Route>
-        <Route path="/s/:loggedUser">
+        <Route path="/s/:username">
           <Settings />
         </Route>
-        <Route path="/:loggedUser">
+        <Route path="/:username">
           <UserPage loggedUser={loggedUser} />
         </Route>
         <Route path="/">
-          <MainPage loggedUser={loggedUser} />
+          <MainPage loggedUser={loggedUser} token={token} />
         </Route>
       </Switch>
       <Footer />

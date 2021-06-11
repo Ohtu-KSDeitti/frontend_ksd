@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import emailjs from 'emailjs-com'
+// import emailjs from 'emailjs-com'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
@@ -14,9 +14,9 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('')
   const [passwordconf, setPasswordConf] = useState('')
   const [email, setEmail] = useState('')
-  const SERVICE_ID = process.env.REACT_APP_SERVICE_ID
-  const REGISTRATION_TEMPLATE = process.env.REACT_APP_REGISTRATION_TEMPLATE
-  const USER_KEY = process.env.REACT_APP_USER_KEY
+  // const SERVICE_ID = process.env.REACT_APP_SERVICE_ID
+  // const REGISTRATION_TEMPLATE = process.env.REACT_APP_REGISTRATION_TEMPLATE
+  // const USER_KEY = process.env.REACT_APP_USER_KEY
   const [notification, setNotification] = useState('')
   const history = useHistory()
 
@@ -58,7 +58,7 @@ const RegistrationForm = () => {
           username, password, passwordconf, firstname, lastname, email,
         },
       })
-      await emailjs.sendForm(SERVICE_ID, REGISTRATION_TEMPLATE, event.target, USER_KEY)
+      // await emailjs.sendForm(SERVICE_ID, REGISTRATION_TEMPLATE, event.target, USER_KEY)
       console.log('Postia lähetetään')
     } catch (e) {
       setNotification('Virhe!')

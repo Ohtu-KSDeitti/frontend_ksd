@@ -5,13 +5,15 @@ import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
 import { LOGIN } from '../../queries'
 
-const LoginForm = ({ setLoggedUser, submit = null }) => {
+const LoginForm = ({ setLoggedUser, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
+      setUsername('')
+      setPassword('')
       setNotification('Väärä käyttäjänimi tai salasana')
       setTimeout(() => {
         setNotification('')
@@ -22,20 +24,19 @@ const LoginForm = ({ setLoggedUser, submit = null }) => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
-      setLoggedUser(localStorage.getItem('user-token'))
+      localStorage.setItem('username', username)
+      setLoggedUser(localStorage.getItem('username'))
+      setToken(localStorage.getItem('user-token'))
+      setUsername('')
+      setPassword('')
       history.push('/')
     }
   }, [loginResult.data])
 
-  if (!submit) {
-    const submit = async (event) => {
-      event.preventDefault()
-      login({ variables: { username, password } })
-
-      setNotification('')
-      setUsername('')
-      setPassword('')
-    }
+  const submit = async (event) => {
+    event.preventDefault()
+    login({ variables: { username, password } })
+    setNotification('')
   }
 
   return (
