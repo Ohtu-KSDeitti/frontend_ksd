@@ -4,20 +4,18 @@ FROM node:16-alpine
 #Create directory for app
 WORKDIR /usr/src/app
 
-#Copy package.json and package-lock.json to workdir
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
-#Install packages specified in package.json
-RUN npm ci
+RUN yarn
 
-#Dump source code to docker image
-COPY . .
+COPY . ./
 
-#Set PORT to 8080
+RUN yarn build
+
+#Set env port to 8080
 ENV PORT=8080
 
 #Open port 8080
 EXPOSE 8080
 
-#Start frontend
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
