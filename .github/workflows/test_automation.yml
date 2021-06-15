@@ -18,3 +18,11 @@ jobs:
         run: npm run test
       - name: Run ESLint
         run: npm run lint
+      - name: Cypress-run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start, npm run dev --prefix ../user-api/
+          wait-on: 'http://localhost:8082/, http://localhost:3000'
+          browser: chrome
+          wait-on-timeout: 20
+          record: true

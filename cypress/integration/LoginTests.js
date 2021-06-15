@@ -1,5 +1,5 @@
 // import { aliasMutation } from '../utils/graphql-test-utils'
-
+/*
 describe('Post-tests', () => {
   beforeEach(() => {
     /*
@@ -7,7 +7,6 @@ describe('Post-tests', () => {
       // Mutations
       aliasMutation(req, 'login')
     })
-    */
   })
   it('Loggin in with good credentials give the correct view', () => {
     cy.visit('http://localhost:3000/')
@@ -31,3 +30,4 @@ describe('Post-tests', () => {
     cy.contains('Väärä salasana')
   })
 })
+*/
