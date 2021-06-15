@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 #Install packages specified in package.json
-RUN npm install
+RUN npm ci
 
 #Dump source code to docker image
 COPY . .
