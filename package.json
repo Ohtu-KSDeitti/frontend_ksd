@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.13.13",
-    "cypress": "^7.4.0",
+    "cypress": "^6.0.0",
     "eslint": ">=7.11.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-plugin-cypress": "^2.11.3",
