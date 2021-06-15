@@ -17,15 +17,6 @@ jobs:
       - name:  Run jest tests and create coverage report
         run: npm run coverage
         working-directory: src
-      - name: Cypress-run
-        uses: cypress-io/github-action@v2
-        with:
-          start: npm start, npm run dev --prefix ../../user-api/
-          working-directory: src
-          wait-on: 'http://localhost:8082/, http://localhost:3000'
-          browser: chrome
-          wait-on-timeout: 20
-          record: true
       - name: Data to codecov
         run: bash <(curl -s https://codecov.io/bash)
 
@@ -47,4 +38,21 @@ jobs:
             --deployment-group-name frontend-deployer-group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
+      - name: Deployment status
+        id: status
+        run: |
+          sleep 210
+          status=`aws deploy get-deployment \
+            --deployment-id "$( aws deploy list-deployments \
+              --application-name user-api-deployer \
+              --deployment-group-name frontend-deployer-group \
+              --query 'deployments' \
+              --max-items 1 \
+            | grep -oP '"\K[^"\047]+(?=["\047])')" \
+            --query "deploymentInfo.[status]" | grep -oP '"\K[^"\047]+(?=["\047])'`
+          sleep 2
+          if [ "$status" != "Succeeded" ]; then
+            echo "::error::Deployment unsuccesful, status $status"
+            exit 1
+          fi
 

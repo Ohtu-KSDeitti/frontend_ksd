@@ -142,7 +142,7 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           /><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio" muted>
+          <Form.Text id="bioInfo" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
           </Form.Text>
           <Form.Control
@@ -203,9 +203,6 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           /><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio">
-            Kuvauksen maksimipituus on 500 merkkiä.
-          </Form.Text>
           <Form.Control
             as="textarea"
             rows="3"
@@ -232,11 +229,8 @@ const Settings = () => {
       <Form onSubmit={submitBasic}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
-          <Form.Text id="username" muted>
-            Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
-          </Form.Text>
           <Form.Control
-            id="username"
+            id="name"
             required
             type="text"
             minLength="3"
@@ -246,7 +240,7 @@ const Settings = () => {
           /><br />
           <Form.Label>Etunimi:</Form.Label>
           <Form.Control
-            id="firstname"
+            id="first"
             required
             type="text"
             minLength="1"
@@ -256,7 +250,7 @@ const Settings = () => {
           /><br />
           <Form.Label>Sukunimi:</Form.Label>
           <Form.Control
-            id="lastname"
+            id="last"
             required
             type="text"
             minLength="1"

@@ -1,8 +1,7 @@
-// import { aliasMutation } from '../utils/graphql-test-utils'
-/*
+import { aliasMutation } from '../utils/graphql-test-utils'
+
 describe('Post-tests', () => {
   beforeEach(() => {
-    /*
     cy.intercept('POST', 'http://localhost:8082/graphql', (req) => {
       // Mutations
       aliasMutation(req, 'login')
@@ -24,10 +23,7 @@ describe('Post-tests', () => {
     cy.get('#loginform').click()
     cy.get('#username').type('test')
     cy.get('#password').type('test{enter}')
-    cy.wait('@post').then(() => {
-      throw new Error('')
-    })
-    cy.contains('Väärä salasana')
+    cy.wait('@post')
+    cy.contains('Väärä käyttäjänimi tai salasana')
   })
 })
-*/
