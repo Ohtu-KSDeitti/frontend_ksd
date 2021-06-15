@@ -1,7 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', 'Helvetica Neue'
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -9,7 +10,7 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    monospace, 'Dancing Script', cursive;
 }
 
 .alert {
@@ -18,4 +19,8 @@ code {
 
 .caps {
   color:red
+}
+.header h1 {
+  font-family: 'Dancing Script';
+  font-size: 55px;
 }
