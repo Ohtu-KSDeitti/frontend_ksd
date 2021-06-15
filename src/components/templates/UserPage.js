@@ -15,9 +15,17 @@ const UserPage = ({ loggedUser }) => {
   }
 
   if (!currUserData.data || currUserData.data.currentUser.id !== userData.data.findUserById.id) {
+    const user = userData.data.findUserById
     return (
       <div>
-        <h1>Tämä on käyttäjän {userData.data.findUserById.username} oma sivu</h1>
+        <h1>{user.username}n deittiprofiili</h1>
+        <h2>Perustiedot</h2>
+        <ul>
+          <li>Sukupuoli: {user.userInfo.gender}</li>
+          <li>Sijanti: {user.userInfo.location}</li>
+          <li>Siviilisääty: {user.status}</li>
+          <li>Kuvaus: {user.userInfo.bio}</li>
+        </ul>
       </div>
     )
   }
@@ -25,15 +33,22 @@ const UserPage = ({ loggedUser }) => {
 
   return (
     <div>
-      <h1>Tämä on oma sivusi</h1>
-      <h2>Tallentamasi tiedot</h2>
+      <h1>{user.username}</h1>
+      <h2>Omat tiedot</h2>
       <ul>
         <li>Etunimi: {user.firstname} </li>
         <li>Sukunimi: {user.lastname} </li>
         <li>Nimimerkki: {user.username} </li>
         <li>Sähköposti: {user.email} </li>
       </ul>
-      <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
+      <h2>Deittiprofiilin tiedot</h2>
+      <ul>
+        <li>Sukupuoli: {user.userInfo.gender}</li>
+        <li>Sijanti: {user.userInfo.location}</li>
+        <li>Siviilisääty: {user.status}</li>
+        <li>Kuvaus: {user.userInfo.bio}</li>
+      </ul>
+      <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>
   )
 }
