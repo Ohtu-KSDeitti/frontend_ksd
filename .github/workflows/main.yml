@@ -17,6 +17,15 @@ jobs:
       - name:  Run jest tests and create coverage report
         run: npm run coverage
         working-directory: src
+      - name: Cypress-run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start, npm run dev --prefix ../../user-api/
+          working-directory: src
+          wait-on: 'http://localhost:8082/, http://localhost:3000'
+          browser: chrome
+          wait-on-timeout: 20
+          record: true
       - name: Data to codecov
         run: bash <(curl -s https://codecov.io/bash)
 
