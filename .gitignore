@@ -11,7 +11,7 @@ test-coverage/
 .DS_Store?
 
 #Yarn related stuff
-.yarn/*
+.yarn
 !.yarn/cache
 !.yarn/patches
 !.yarn/plugins
