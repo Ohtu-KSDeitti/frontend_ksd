@@ -17,7 +17,7 @@ const UserPage = ({ loggedUser }) => {
   if (!currUserData.data || currUserData.data.currentUser.id !== userData.data.findUserById.id) {
     return (
       <div>
-        <p>Tämä on käyttäjän {userData.data.findUserById.username} oma sivu</p>
+        <h1>Tämä on käyttäjän {userData.data.findUserById.username} oma sivu</h1>
       </div>
     )
   }
@@ -25,8 +25,7 @@ const UserPage = ({ loggedUser }) => {
 
   return (
     <div>
-      <h1>Oma Sivu</h1>
-      <p>Tämä on käyttäjän {user.username} oma sivu</p>
+      <h1>Tämä on oma sivusi</h1>
       <h2>Tallentamasi tiedot</h2>
       <ul>
         <li>Etunimi: {user.firstname} </li>
