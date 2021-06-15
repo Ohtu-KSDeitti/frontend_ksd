@@ -21,8 +21,8 @@ jobs:
       - name: Cypress-run
         uses: cypress-io/github-action@v2
         with:
-          start: npm start, npm run dev --prefix Ohtu-KSDeitti/user-api
-          wait-on: 'http://localhost:8082/, http://localhost:3000'
+          start: npm start
+          wait-on: 'http://localhost:3000'
           browser: chrome
           wait-on-timeout: 20
           record: true
