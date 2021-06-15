@@ -22,30 +22,3 @@ describe('Forms ', () => {
     cy.contains('Salasana')
   })
 })
-
-describe('Logging in ', () => {
-  it('Logged user is identified', () => {
-    cy.get('#loginform').click()
-    cy.get('#username').type('laila76')
-    cy.get('#password').type('kala1234')
-    cy.get('#login-button').click()
-    cy.contains('Tervetuloa!')
-  })
-})
-
-describe('Registration ', () => {
-  it('User can log in after registration', () => {
-    cy.get('#registerform').click()
-    cy.get('#username').type('testailija')
-    cy.get('#password').type('koira123')
-    cy.get('#passwordConf').type('koira123')
-    cy.get('#email').type('test@gmail.com')
-    cy.get('#accept').check()
-    cy.get('#register-button').click()
-
-    cy.get('#username').type('testailija')
-    cy.get('#password').type('koira123')
-    cy.get('#login-button').click()
-    cy.contains('Tervetuloa!')
-  })
-})

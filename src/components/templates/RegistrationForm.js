@@ -75,7 +75,7 @@ const RegistrationForm = () => {
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
-          <Form.Text id="username" muted>
+          <Form.Text id="info" muted>
             Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
           </Form.Text>
           <Form.Control
@@ -109,7 +109,7 @@ const RegistrationForm = () => {
             onChange={({ target }) => setLastName(target.value)}
           />
           <Form.Label>Salasana:</Form.Label>
-          <Form.Text id="username" muted>
+          <Form.Text id="passinfo" muted>
             Salasanan pituus tulee olla 8–32 merkkiä.
           </Form.Text>
           <Form.Control
@@ -122,7 +122,7 @@ const RegistrationForm = () => {
             onChange={({ target }) => setPassword(target.value)}
           />
           <Form.Label>Salasanan varmennus:</Form.Label>
-          <Form.Text id="username" muted>
+          <Form.Text id="passconfinfo" muted>
             Syötä salasana uudelleen.
           </Form.Text>
           <Form.Control
@@ -134,7 +134,7 @@ const RegistrationForm = () => {
             value={passwordconf}
             onChange={({ target }) => setPasswordConf(target.value)}
           />
-          <Form.Text id="username" muted>
+          <Form.Text id="emailinfo" muted>
             Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
           </Form.Text>
           <Form.Label>Sähköposti:</Form.Label>
