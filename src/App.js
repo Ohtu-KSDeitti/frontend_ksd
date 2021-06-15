@@ -10,6 +10,7 @@ import MainPage from './components/templates/MainPage'
 import UserPage from './components/templates/UserPage'
 import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
+import KDLOGO from './logos/KDLOGO.png'
 
 const App = () => {
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('username'))
@@ -25,7 +26,9 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Kristittyjen sinkkujen deitti</h1>
+      <div className="header">
+        <h1><img src={KDLOGO} alt="Logo" width="150" height="150" /> Kristittyjen sinkkujen deitti</h1>
+      </div>
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
         <Route path="/login">
