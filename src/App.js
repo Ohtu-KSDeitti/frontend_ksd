@@ -27,7 +27,7 @@ const App = () => {
   return (
     <div className="container">
       <div className="header">
-        <h1><img src={KDLOGO} alt="Logo" width="150" height="150" /> Kristittyjen sinkkujen deitti</h1>
+        <h1><img className="circular--square" img src={KDLOGO} alt="Logo" width="90" height="90" /> Kristittyjen sinkkujen deitti</h1>
       </div>
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
