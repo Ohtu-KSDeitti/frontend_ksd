@@ -1,26 +1,31 @@
 /* eslint-disable no-tabs */
 import React from 'react'
+import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { CURRENT_USER } from '../../queries'
+import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 
 const UserPage = ({ loggedUser }) => {
-  const userData = useQuery(CURRENT_USER)
+  const idParam = useParams().id
+  const currUserData = useQuery(CURRENT_USER)
+  const userData = useQuery(FIND_USER_BY_ID,
+    { variables: { id: idParam } })
 
-  if (userData.loading) {
+  if (currUserData.loading || userData.loading) {
     return <div>loading...</div>
   }
 
-  if (!userData.data) {
+  if (!currUserData.data || currUserData.data.currentUser.id !== userData.data.findUserById.id) {
     return (
-      <div>Kirjaudu sisään</div>
+      <div>
+        <h1>Tämä on käyttäjän {userData.data.findUserById.username} oma sivu</h1>
+      </div>
     )
   }
-  const user = userData.data.currentUser
+  const user = currUserData.data.currentUser
 
   return (
     <div>
-      <h1>Oma Sivu</h1>
-      <p>Tämä on käyttäjän {user.username} oma sivu</p>
+      <h1>Tämä on oma sivusi</h1>
       <h2>Tallentamasi tiedot</h2>
       <ul>
         <li>Etunimi: {user.firstname} </li>

@@ -58,6 +58,23 @@ export const CURRENT_USER = gql`
     }
   }
 `
+export const FIND_USER_BY_ID = gql`
+  query ($id: ID!){
+    findUserById(id: $id) {
+      id,
+      username,
+      userInfo {
+        location,
+        gender,
+        dateOfBirth,
+        profileLikes,
+        bio,
+        tags,
+      }
+    }
+  }
+`
+
 export const UPDATE_USER_ACCOUNT = gql`
   mutation updateUserAccount($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
     updateUserAccount(
