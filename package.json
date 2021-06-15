@@ -22,14 +22,14 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env REACT_APP_ENV=test react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --verbose --runInBand",
+    "test": "cross-env REACT_APP_ENV=test jest --verbose --runInBand",
     "coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src/.",
     "lint:fix": "npm run lint -- --fix",
-    "cypress:open": "cypress open"
+    "cypress:open": "cross-env REACT_APP_ENV=test cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@babel/preset-react": "^7.13.13",
+    "cross-env": "^7.0.3",
     "cypress": "^7.4.0",
     "eslint": ">=7.11.0",
     "eslint-config-airbnb": "^18.2.1",
