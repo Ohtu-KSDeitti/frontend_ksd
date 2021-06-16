@@ -47,6 +47,7 @@ export const CURRENT_USER = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,
@@ -63,6 +64,7 @@ export const FIND_USER_BY_ID = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,
