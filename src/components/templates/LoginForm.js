@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useMutation } from '@apollo/client'
+import { useMutation, useLazyQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
-import { LOGIN } from '../../queries'
+import { LOGIN, CURRENT_USER } from '../../queries'
 
 const LoginForm = ({ setLoggedUser, setToken }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
+  const [getLoggedUser, result] = useLazyQuery(CURRENT_USER)
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
       setUsername('')
@@ -25,13 +26,20 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
       localStorage.setItem('username', username)
-      setLoggedUser(localStorage.getItem('username'))
       setToken(localStorage.getItem('user-token'))
       setUsername('')
       setPassword('')
-      history.push('/')
+      getLoggedUser()
     }
   }, [loginResult.data])
+
+  useEffect(() => {
+    if (result.data) {
+      localStorage.setItem('user', result.data.currentUser.id)
+      setLoggedUser(localStorage.getItem('user'))
+      history.push('/')
+    }
+  })
 
   const submit = async (event) => {
     event.preventDefault()
