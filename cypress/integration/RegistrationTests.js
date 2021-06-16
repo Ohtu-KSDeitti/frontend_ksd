@@ -1,8 +1,6 @@
 describe('Registration ', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')
-    cy.intercept('POST', 'http://localhost:8082').as('register')
-    cy.intercept('POST', 'http://localhost:8082').as('login')
   })
   it('User can log in after registration', () => {
     cy.get('#registerform').click()
@@ -18,7 +16,6 @@ describe('Registration ', () => {
     cy.get('#loginform').click()
     cy.get('#username').type('testailija')
     cy.get('#password').type('123456789{enter}')
-    cy.wait('@login')
     cy.contains('Tervetuloa!')
   })
 
@@ -45,7 +42,6 @@ describe('Registration ', () => {
     cy.get('#email').type('test@gmail.com')
     cy.get('#accept').check()
     cy.get('#register-button').click()
-    cy.wait('@register')
     cy.contains('Rekisteröityminen ei onnistunut')
   })
 })
