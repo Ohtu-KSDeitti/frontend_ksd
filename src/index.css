@@ -7,7 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./logos/pinkkijasini.png');
+  background-image: url('./logos/pinkkiJaSini.png');
 }
 
 code {
@@ -28,8 +28,7 @@ code {
   color: goldenrod;
 }
 .container {
-  background-color: #F8E0F5;
-  background-image: url('./logos/Purple\ and\ Peach\ Photo\ Freelance\ Writer\ Portfolio\ Website.png');
+  background-image: url('./logos/Uusin.png');
   background-size: center;
   background-repeat: no-repeat;
 }
