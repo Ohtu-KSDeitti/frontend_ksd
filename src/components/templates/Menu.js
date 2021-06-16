@@ -1,10 +1,56 @@
 import React from 'react'
+import { Nav, Navbar } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import '../../index.css'
 
-const Menu = ({ loggedUser, logout }) => {
+const Menu = ({ loggedUser }) => {
   const padding = {
     paddingRight: 5,
   }
+  if (!loggedUser) {
+    return (
+      <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="palkki">
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/">Pääsivu</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/register">Rekisteröidy</Link>
+            </Nav.Link>
+            <Nav.Link href="#" as="span">
+              <Link style={padding} to="/login">Kirjaudu sisään</Link>
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    )
+  }
+  return (
+    <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
+        <Nav className="palkki">
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/">Pääsivu</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to={`/${loggedUser}`}>Oma sivu</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/login">Asetukset</Link>
+          </Nav.Link>
+          <Nav.Link href="#" as="span">
+            <Link style={padding} to="/login">Kirjaudu ulos</Link>
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  )
+}
 
+/*
   if (!loggedUser) {
     return (
       <div>
@@ -24,5 +70,6 @@ const Menu = ({ loggedUser, logout }) => {
 
   )
 }
+*/
 
 export default Menu
