@@ -3,17 +3,17 @@ import { Form, Button } from 'react-bootstrap'
 import { useMutation, useLazyQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
-import { LOGIN, CURRENT_USER } from '../../queries'
+import { CURRENT_USER, LOGIN } from '../../queries'
 
 const LoginForm = ({ setLoggedUser, setToken }) => {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
-  const history = useHistory()
   const [getLoggedUser, result] = useLazyQuery(CURRENT_USER)
+  const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
-      setUsername('')
+      setEmail('')
       setPassword('')
       setNotification('Väärä käyttäjänimi tai salasana')
       setTimeout(() => {
@@ -25,9 +25,10 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
     if (loginResult.data) {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
-      localStorage.setItem('username', username)
+      localStorage.setItem('username', email)
+      setLoggedUser(localStorage.getItem('username'))
       setToken(localStorage.getItem('user-token'))
-      setUsername('')
+      setEmail('')
       setPassword('')
       getLoggedUser()
     }
@@ -43,7 +44,7 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
 
   const submit = async (event) => {
     event.preventDefault()
-    login({ variables: { username, password } })
+    login({ variables: { email, password } })
     setNotification('')
   }
 
@@ -53,13 +54,13 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       <Notification message={notification} />
       <Form onSubmit={submit}>
         <Form.Group>
-          <Form.Label>Käyttäjätunnus:</Form.Label>
+          <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
-            id="username"
+            id="email"
             required
             type="text"
-            value={username}
-            onChange={({ target }) => setUsername(target.value)}
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
           />
           <Form.Label>Salasana:</Form.Label>
           <Form.Control
