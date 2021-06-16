@@ -6,15 +6,13 @@ describe('Registration ', () => {
   })
   it('User can log in after registration', () => {
     cy.get('#registerform').click()
-    cy.get('#username').type('testailija')
+    cy.get('#email').type('testailija')
     cy.get('#firstname').type('testailija')
     cy.get('#lastname').type('koira')
-    cy.get('#password').type('123456789')
-    cy.get('#passwordConf').type('123456789')
-    cy.get('#email').type('test@gmail.com')
+    cy.get('#password').type('bigsikret')
+    cy.get('#passwordConf').type('bigsikret')
     cy.get('#accept').check()
     cy.get('#register-button').click()
-    cy.wait('@register')
     cy.contains('Kirjaudu sisään')
 
     cy.get('#loginform').click()

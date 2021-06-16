@@ -12,7 +12,6 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
   const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
-      console.log('OnError', loginResult)
       setEmail('')
       setPassword('')
       setNotification('Väärä käyttäjänimi tai salasana')
@@ -22,7 +21,6 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
     },
   })
   useEffect(() => {
-    console.log('useEffect', loginResult)
     if (loginResult.data) {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
@@ -31,7 +29,7 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       setToken(localStorage.getItem('user-token'))
       setEmail('')
       setPassword('')
-      console.log(loginResult)
+      console.log('hasResult', loginResult)
       history.push('/')
     }
   }, [loginResult.data])
