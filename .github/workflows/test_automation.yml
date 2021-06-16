@@ -25,4 +25,4 @@ jobs:
           wait-on: 'http://localhost:3000'
           browser: chrome
           wait-on-timeout: 20
-          record: true
+          record: false
