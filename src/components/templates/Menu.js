@@ -9,7 +9,7 @@ const Menu = ({ loggedUser }) => {
   }
   if (!loggedUser) {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="palkki">
@@ -28,7 +28,7 @@ const Menu = ({ loggedUser }) => {
     )
   }
   return (
-    <Navbar collapseOnSelect expand="lg" bg="warning" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="light" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="palkki">
