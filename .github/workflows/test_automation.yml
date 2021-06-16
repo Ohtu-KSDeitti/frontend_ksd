@@ -2,9 +2,9 @@ name: Test Automation
 
 on:
   push:
-    branches-ignore: [ main ]
+    branches-ignore: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -18,3 +18,14 @@ jobs:
         run: npm run test
       - name: Run ESLint
         run: npm run lint
+      - name: Cypress-run
+        uses: cypress-io/github-action@v2
+        with:
+          start: npm start, npm run dev --prefix ../../user-api/
+          working-directory: src
+          wait-on: 'http://localhost:8082/, http://localhost:3000'
+          browser: chrome
+          wait-on-timeout: 20
+          record: true
+      - name: Data to codecov
+        run: bash <(curl -s https://codecov.io/bash)

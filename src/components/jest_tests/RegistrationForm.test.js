@@ -52,8 +52,13 @@ test('Create user', async () => {
   const tree = wrapper.toJSON()
   // expect(mockReg).toBeCalledWith(expect.anything())
   // expect(tree).toEqual(expect.arrayContaining('Virhe!'))
+<<<<<<< HEAD
   console.log(tree)
   console.log(tree[1].children)
+=======
+
+  // console.log(tree[1].children)
+>>>>>>> test
   expect(tree[1].children).toContain('Virhe!')
   // expect(wrapper).toBeTruthy()
 })
@@ -73,6 +78,18 @@ test('renders content', () => {
   expect(component.container).toHaveTextContent(
     'Salasanan varmennus',
   )
+})
+/*
+test('Registeration form username cannot exceed 16 char', () => {
+  const component = render(
+    <MockedProvider addTypename={false}>
+      <RegistrationForm />
+    </MockedProvider>,
+  )
+
+  const inputUsername = component.container.querySelector('#username')
+  console.log('INPUT LENGTH ', inputUsername.maxLength)
+  expect(inputUsername.required).toBe(true)
 })
 
 /*
