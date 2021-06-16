@@ -13,7 +13,7 @@ import Footer from './components/utils/Footer'
 import KDLOGO from './logos/KDLOGO.png'
 
 const App = () => {
-  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('username'))
+  const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user'))
   const [token, setToken] = useState(localStorage.getItem('user-token'))
   const client = useApolloClient()
 
@@ -23,6 +23,8 @@ const App = () => {
     localStorage.clear()
     client.resetStore()
   }
+
+  console.log('Je, ', loggedUser)
 
   return (
     <div className="container">
@@ -37,10 +39,10 @@ const App = () => {
         <Route path="/register">
           <RegistrationForm />
         </Route>
-        <Route path="/s/:username">
+        <Route path="/s/:id">
           <Settings />
         </Route>
-        <Route path="/:username">
+        <Route path="/:id">
           <UserPage loggedUser={loggedUser} />
         </Route>
         <Route path="/">
