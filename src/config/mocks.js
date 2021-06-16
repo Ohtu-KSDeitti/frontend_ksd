@@ -1,4 +1,4 @@
-import { CURRENT_USER, LOGIN } from '../queries'
+import { CURRENT_USER, LOGIN, ADD_NEW_USER } from '../queries'
 
 const mocks = [
   {
@@ -23,6 +23,45 @@ const mocks = [
             tags: [],
           },
           friendList: [],
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: ADD_NEW_USER,
+      variables: {
+        username: 'testailija',
+        password: 'testailijakoira',
+        passwordconf: 'testailijakora',
+        firstname: 'testailija',
+        lastname: 'koira',
+        email: 'testailija@koira.fi',
+      },
+    },
+    result: {
+      data: {
+        addNewUser: {
+          username: 'testailija',
+          firstname: 'testailija',
+          lastname: 'koira',
+          email: 'testailija@koira.fi',
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: LOGIN,
+      variables: {
+        email: 'testailija@koira.fi',
+        password: 'testailijakoira',
+      },
+    },
+    result: {
+      data: {
+        login: {
+          value: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1NjFjNWE2LTc1NjYtNDA5Ny04NDUzLWM5MjU0NDE0ZTM5NyIsImVtYWlsIjoiaGVoZUBoZWhlLmZpIiwiaWF0IjoxNjIzNzY1NjkwLCJleHAiOjE2MjM3NjkyOTB9.WMQnhKrWbjqPxiieWsVMY4x5GA6pi91DM9zo5eo0GFY',
         },
       },
     },

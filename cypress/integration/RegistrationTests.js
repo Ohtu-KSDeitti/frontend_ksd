@@ -1,26 +1,18 @@
 describe('Registration ', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:3000/')
-  })
-  /*
   it('User can log in after registration', () => {
+    cy.visit('http://localhost:3000/')
     cy.get('#registerform').click()
-    cy.get('#email').type('testailija')
+    cy.get('#username').type('testailija')
     cy.get('#firstname').type('testailija')
     cy.get('#lastname').type('koira')
-    cy.get('#password').type('bigsikret')
-    cy.get('#passwordConf').type('bigsikret')
+    cy.get('#password').type('testailijakoira')
+    cy.get('#passwordConf').type('testailijakoira')
+    cy.get('#email').type('testailija@koira.fi')
     cy.get('#accept').check()
     cy.get('#register-button').click()
-    cy.contains('Kirjaudu sisään')
-
-    cy.get('#loginform').click()
-    cy.get('#username').type('testailija')
-    cy.get('#password').type('123456789{enter}')
-    cy.wait('@login')
-    cy.contains('Tervetuloa!')
-  }) */
-
+    cy.contains('Uuden käyttäjän pääset')
+  })
+  /*
   it('User can not register a user with empty field', () => {
     cy.get('#registerform').click()
     cy.get('#username').type(' ')
@@ -33,7 +25,6 @@ describe('Registration ', () => {
     cy.get('#register-button').click()
     cy.contains('Luo uusi käyttäjä')
   })
-  /*
   it('User can not register a user with too short password', () => {
     cy.get('#registerform').click()
     cy.get('#username').type('testailija')
