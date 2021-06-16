@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { useMutation } from '@apollo/client'
+import { useMutation, useLazyQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import Notification from '../utils/Notification'
-import { LOGIN } from '../../queries'
+import { CURRENT_USER, LOGIN } from '../../queries'
 
 const LoginForm = ({ setLoggedUser, setToken }) => {
   const [email, setEmail] = useState('')
