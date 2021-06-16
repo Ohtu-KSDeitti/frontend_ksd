@@ -59,7 +59,6 @@ const RegistrationForm = () => {
         },
       })
       // await emailjs.sendForm(SERVICE_ID, REGISTRATION_TEMPLATE, event.target, USER_KEY)
-      console.log('Postia lähetetään')
     } catch (e) {
       setNotification('Virhe!', e)
     }
