@@ -1,23 +1,24 @@
 #Set node16 with alpine linux as the base image for this docker file
-FROM node:16-alpine
+FROM node:16-alpine as dep
 
 #Create directory for app
 WORKDIR /usr/src/app
 
-#Copy package.json and package-lock.json to workdir
-COPY package*.json ./
+COPY package.json yarn.lock ./
 
-#Install packages specified in package.json
-RUN npm ci
+RUN yarn
 
-#Dump source code to docker image
-COPY . .
-
-#Set PORT to 8080
+COPY . ./
+#Set env port to 8080
 ENV PORT=8080
+
+RUN yarn build
+
+
+FROM nginx:1.20-alpine
+COPY --from=dep /usr/src/app/build /usr/share/nginx/html
 
 #Open port 8080
 EXPOSE 8080
 
-#Start frontend
-CMD ["npm", "start"]
+CMD ["nginx", "-g", "daemon off;"]

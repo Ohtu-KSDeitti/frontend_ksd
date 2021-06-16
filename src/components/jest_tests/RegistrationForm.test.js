@@ -52,8 +52,6 @@ test('Create user', async () => {
   const tree = wrapper.toJSON()
   // expect(mockReg).toBeCalledWith(expect.anything())
   // expect(tree).toEqual(expect.arrayContaining('Virhe!'))
-
-  // console.log(tree[1].children)
   expect(tree[1].children).toContain('Virhe!')
   // expect(wrapper).toBeTruthy()
 })

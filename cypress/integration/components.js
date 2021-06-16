@@ -18,7 +18,7 @@ describe('Forms ', () => {
   })
   it('Login form is shown', () => {
     cy.get('#loginform').click()
-    cy.contains('Käyttäjätunnus')
+    cy.contains('Sähköposti')
     cy.contains('Salasana')
   })
 })
