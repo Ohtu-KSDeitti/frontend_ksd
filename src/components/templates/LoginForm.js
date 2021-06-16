@@ -9,6 +9,7 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [notification, setNotification] = useState('')
+  const [getLoggedUser, result] = useLazyQuery(CURRENT_USER)
   const history = useHistory()
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
@@ -29,10 +30,17 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       setToken(localStorage.getItem('user-token'))
       setEmail('')
       setPassword('')
-      console.log('hasResult', loginResult)
-      history.push('/')
+      getLoggedUser()
     }
   }, [loginResult.data])
+
+  useEffect(() => {
+    if (result.data) {
+      localStorage.setItem('user', result.data.currentUser.id)
+      setLoggedUser(localStorage.getItem('user'))
+      history.push('/')
+    }
+  })
 
   const submit = async (event) => {
     event.preventDefault()
