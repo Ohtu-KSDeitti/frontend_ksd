@@ -11,7 +11,6 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
   const [notification, setNotification] = useState('')
   const [getLoggedUser, result] = useLazyQuery(CURRENT_USER)
   const history = useHistory()
-  const [getLoggedUser, result] = useLazyQuery(CURRENT_USER)
   const [login, loginResult] = useMutation(LOGIN, {
     onError: () => {
       setEmail('')
