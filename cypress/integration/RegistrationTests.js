@@ -1,9 +1,8 @@
 describe('Registration ', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000/')
-    cy.intercept('POST', 'http://localhost:8082').as('register')
-    cy.intercept('POST', 'http://localhost:8082').as('login')
   })
+  /*
   it('User can log in after registration', () => {
     cy.get('#registerform').click()
     cy.get('#email').type('testailija')
@@ -20,7 +19,7 @@ describe('Registration ', () => {
     cy.get('#password').type('123456789{enter}')
     cy.wait('@login')
     cy.contains('Tervetuloa!')
-  })
+  }) */
 
   it('User can not register a user with empty field', () => {
     cy.get('#registerform').click()
@@ -34,7 +33,7 @@ describe('Registration ', () => {
     cy.get('#register-button').click()
     cy.contains('Luo uusi käyttäjä')
   })
-
+  /*
   it('User can not register a user with too short password', () => {
     cy.get('#registerform').click()
     cy.get('#username').type('testailija')
@@ -47,5 +46,5 @@ describe('Registration ', () => {
     cy.get('#register-button').click()
     cy.wait('@register')
     cy.contains('Rekisteröityminen ei onnistunut')
-  })
+  }) */
 })
