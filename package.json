@@ -9,6 +9,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "apollo-link-context": "^1.0.20",
+    "cross-env": "^7.0.3",
     "dotenv": "^8.2.0",
     "emailjs-com": "^2.6.4",
     "graphql": "^15.5.0",
@@ -22,9 +23,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "cross-env REACT_APP_ENV=production react-scripts start",
+    "start:test": "cross-env REACT_APP_ENV=test react-scripts start",
     "build": "react-scripts build",
-    "test": "jest --verbose --runInBand",
+    "test": "cross-env REACT_APP_ENV=test jest --verbose --runInBand",
     "coverage": "npm test -- --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src/.",

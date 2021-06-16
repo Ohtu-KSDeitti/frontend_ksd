@@ -52,9 +52,7 @@ const Settings = () => {
 
   useEffect(() => {
     if (userDate.data) {
-      setGender('')
       setDateOfBirth('')
-      setStatus('')
       setLocation('')
       setBio('')
 
@@ -93,6 +91,7 @@ const Settings = () => {
     const dateData = userData.data.currentUser
     const id = dateData.id
 
+    console.log(dateData)
     try {
       event.preventDefault()
       updateUserDate({
@@ -112,7 +111,7 @@ const Settings = () => {
       <Form onSubmit={submitDateProfile}>
         <Form.Group>
           <Form.Label>Sukupuoli:</Form.Label>
-          <Form.Control id="gender" as="select" value={gender} onChange={({ target }) => setGender(target.value)}>
+          <Form.Control id="gender" as="select" defaultValue="FEMALE" onChange={({ target }) => setGender(target.value)}>
             <option value="FEMALE">Nainen</option>
             <option value="MALE">Mies</option>
           </Form.Control><br />
@@ -148,6 +147,7 @@ const Settings = () => {
           </Form.Text>
           <Form.Control
             as="textarea"
+            required
             rows="3"
             id="bio"
             type="text"
@@ -203,7 +203,7 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           /><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio" muted>
+          <Form.Text id="bio">
             Kuvauksen maksimipituus on 500 merkkiä.
           </Form.Text>
           <Form.Control
