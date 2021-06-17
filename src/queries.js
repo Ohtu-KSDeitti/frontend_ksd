@@ -11,7 +11,7 @@ export const ALL_USERS = gql`
 `
 
 export const ADD_NEW_USER = gql`
-  mutation addNewUser($username: String!, $password: String!, $passwordconf: String!, $firstname: String!, $lastname: String!, $email: String!) {
+  mutation($username: String!, $password: String!, $passwordconf: String!, $firstname: String!, $lastname: String!, $email: String!) {
     addNewUser(
       username: $username,
       password: $password,
@@ -47,6 +47,7 @@ export const CURRENT_USER = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,
@@ -63,6 +64,7 @@ export const FIND_USER_BY_ID = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,
@@ -73,7 +75,7 @@ export const FIND_USER_BY_ID = gql`
 `
 
 export const UPDATE_USER_ACCOUNT = gql`
-  mutation updateUserAccount($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
+  mutation ($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
     updateUserAccount(
       id: $id,
       username: $username, 
@@ -90,7 +92,7 @@ export const UPDATE_USER_ACCOUNT = gql`
 `
 
 export const UPDATE_USER_DATE = gql`
-  mutation updateUserInfo($id: ID!, $location: String, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
+  mutation ($id: ID!, $location: String, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
     updateUserInfo(
       id: $id,
       location: $location,

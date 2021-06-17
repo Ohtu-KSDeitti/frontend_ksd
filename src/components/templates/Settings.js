@@ -54,6 +54,7 @@ const Settings = () => {
     if (userDate.data) {
       setDateOfBirth('')
       setLocation('')
+      setStatus('')
       setBio('')
 
       history.push('/')
@@ -124,7 +125,7 @@ const Settings = () => {
             onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
           <Form.Label>Siviilisääty:</Form.Label>
-          <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
+          <Form.Control id="status" as="select" defaultValue="SINGLE" onChange={({ target }) => setStatus(target.value)}>
             <option value="SINGLE">Sinkku</option>
             <option value="DIVORCED">Eronnut</option>
             <option value="WIDOWED">Leski</option>
@@ -142,7 +143,7 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           /><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio" muted>
+          <Form.Text id="bioInfo" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
           </Form.Text>
           <Form.Control
@@ -185,7 +186,7 @@ const Settings = () => {
             onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
           <Form.Label>Siviilisääty:</Form.Label>
-          <Form.Control id="status" as="select" onChange={({ target }) => setStatus(target.value)}>
+          <Form.Control id="status" as="select" value={status} onChange={({ target }) => setStatus(target.value)}>
             <option value="SINGLE">Sinkku</option>
             <option value="DIVORCED">Eronnut</option>
             <option value="WIDOWED">Leski</option>
@@ -232,9 +233,6 @@ const Settings = () => {
       <Form onSubmit={submitBasic}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
-          <Form.Text id="username" muted>
-            Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
-          </Form.Text>
           <Form.Control
             id="username"
             required

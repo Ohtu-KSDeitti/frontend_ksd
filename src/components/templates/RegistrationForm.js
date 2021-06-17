@@ -73,6 +73,19 @@ const RegistrationForm = () => {
       </ReactIsCapsLockActive>
       <Form onSubmit={submit}>
         <Form.Group>
+          <Form.Text id="emailinfo" muted>
+            Sähköpostin tulee sisältää @ merkki ja toimiva pääte. Sähköpostin tulee olla uniikki.
+          </Form.Text>
+          <Form.Label>Sähköposti:</Form.Label>
+          <Form.Control
+            id="email"
+            required
+            type="email"
+            maxLength="56"
+            value={email}
+            onChange={({ target }) => setEmail(target.value)}
+            name="email"
+          />
           <Form.Label>Käyttäjätunnus:</Form.Label>
           <Form.Text id="info" muted>
             Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
@@ -132,19 +145,6 @@ const RegistrationForm = () => {
             maxLength="32"
             value={passwordconf}
             onChange={({ target }) => setPasswordConf(target.value)}
-          />
-          <Form.Text id="emailinfo" muted>
-            Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
-          </Form.Text>
-          <Form.Label>Sähköposti:</Form.Label>
-          <Form.Control
-            id="email"
-            required
-            type="email"
-            maxLength="56"
-            value={email}
-            onChange={({ target }) => setEmail(target.value)}
-            name="email"
           />
           <Form.Check
             id="accept"

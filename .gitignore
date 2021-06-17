@@ -7,15 +7,14 @@ test-coverage/
 
 
 #OS generated files#
-.yarn
 .DS_Store
 .DS_Store?
 
 #Yarn related stuff
-.yarn
-!.yarn/cache
+.yarn/*
 !.yarn/patches
-!.yarn/plugins
 !.yarn/releases
+!.yarn/plugins
 !.yarn/sdks
 !.yarn/versions
+.pnp.*
