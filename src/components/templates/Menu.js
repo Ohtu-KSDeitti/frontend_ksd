@@ -3,13 +3,13 @@ import { Nav, Navbar } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import '../../index.css'
 
-const Menu = ({ loggedUser }) => {
+const Menu = ({ loggedUser, logout }) => {
   const padding = {
     paddingRight: 5,
   }
   if (!loggedUser) {
     return (
-      <Navbar collapseOnSelect expand="lg" bg="success" variant="dark">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="palkki">
@@ -35,14 +35,14 @@ const Menu = ({ loggedUser }) => {
           <Nav.Link href="#" as="span">
             <Link style={padding} to="/">Pääsivu</Link>
           </Nav.Link>
-          <Nav.Link href="#" as="span">
+          <Nav.Link href="#" as="span" id="userpage">
             <Link style={padding} to={`/${loggedUser}`}>Oma sivu</Link>
           </Nav.Link>
-          <Nav.Link href="#" as="span">
-            <Link style={padding} to="/login">Asetukset</Link>
+          <Nav.Link href="#" as="span" id="settings">
+            <Link style={padding} to={`/s/${loggedUser}`}>Asetukset</Link>
           </Nav.Link>
-          <Nav.Link href="#" as="span">
-            <Link style={padding} to="/login">Kirjaudu ulos</Link>
+          <Nav.Link href="#" as="span" id="loginform">
+            <Link style={padding} to="/" onClick={logout}>Kirjaudu ulos</Link>
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
