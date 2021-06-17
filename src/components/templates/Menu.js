@@ -7,6 +7,7 @@ const Menu = ({ loggedUser, logout }) => {
   const padding = {
     paddingRight: 5,
   }
+
   if (!loggedUser) {
     return (
       <Navbar collapseOnSelect expand="lg" bg="light" variant="dark">
