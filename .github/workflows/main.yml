@@ -11,16 +11,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm ci
+        run: yarn
       - name: Run ESLint
-        run: npm run lint
+        run: yarn run lint
       - name:  Run jest tests and create coverage report
-        run: npm run coverage
+        run: yarn run coverage
         working-directory: src
       - name: Cypress-run
         uses: cypress-io/github-action@v2
         with:
-          start: npm run start:test
+          start: yarn run start:test
           wait-on: 'http://localhost:3000'
           browser: chrome
           wait-on-timeout: 20
@@ -49,7 +49,7 @@ jobs:
       - name: Deployment status
         id: status
         run: |
-          sleep 210
+          sleep 60
           status=`aws deploy get-deployment \
             --deployment-id "$( aws deploy list-deployments \
               --application-name user-api-deployer \

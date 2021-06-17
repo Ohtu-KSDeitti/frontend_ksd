@@ -163,7 +163,7 @@ const Settings = () => {
             <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
           </Form.Control><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
-          <Form.Text id="bio" muted>
+          <Form.Text id="bioInfo" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
           </Form.Text>
           <Form.Control
@@ -273,9 +273,6 @@ const Settings = () => {
       <Form onSubmit={submitBasic}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
-          <Form.Text id="username" muted>
-            Käyttäjätunnuksen pituus tulee olla 3–16 merkkiä.
-          </Form.Text>
           <Form.Control
             id="username"
             required
