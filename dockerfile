@@ -17,7 +17,7 @@ RUN yarn build
 
 FROM nginx:1.20-alpine
 COPY --from=dep /usr/src/app/build /usr/share/nginx/html
-
+ENV PORT=8080
 #Open port 8080
 EXPOSE 8080
 
