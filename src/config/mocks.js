@@ -1,4 +1,6 @@
-import { CURRENT_USER, LOGIN, ADD_NEW_USER } from '../queries'
+import {
+  CURRENT_USER, LOGIN, ADD_NEW_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE,
+} from '../queries'
 
 const mocks = [
   {
@@ -31,21 +33,69 @@ const mocks = [
     request: {
       query: ADD_NEW_USER,
       variables: {
-        username: 'testailija',
-        password: 'testailijakoira',
-        passwordconf: 'testailijakora',
-        firstname: 'testailija',
-        lastname: 'koira',
-        email: 'testailija@koira.fi',
+        username: 'Tenuteppo',
+        password: 'bigsikret',
+        passwordconf: 'bigsikret',
+        firstname: 'Teppo',
+        lastname: 'Tenuttaja',
+        email: 'hehe@hehe.fi',
       },
     },
     result: {
       data: {
         addNewUser: {
+          username: 'Tenuteppo',
+          firstname: 'Teppo',
+          lastname: 'Tenuttaja',
+          email: 'hehe@hehe.fi',
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: UPDATE_USER_ACCOUNT,
+      variables: {
+        id: '7561c5a6-7566-4097-8453-c9254414e397',
+        username: 'testailija',
+        firstname: 'testailija',
+        lastname: 'koira',
+        email: 'test@gmail.com',
+      },
+    },
+    result: {
+      data: {
+        updateUserAccount: {
           username: 'testailija',
-          firstname: 'testailija',
+          firstname: 'Teppo',
           lastname: 'koira',
-          email: 'testailija@koira.fi',
+          email: 'test@gmail.com',
+        },
+      },
+    },
+  },
+  {
+    request: {
+      query: UPDATE_USER_DATE,
+      variables: {
+        id: '7561c5a6-7566-4097-8453-c9254414e397',
+        location: 'Espoo',
+        gender: 'MALE',
+        dateOfBirth: '1917-12-06',
+        status: 'SINGLE',
+        bio: 'Jee jee jee',
+        tags: [],
+      },
+    },
+    result: {
+      data: {
+        updateUserInfo: {
+          location: 'Espoo',
+          gender: 'MALE',
+          dateOfBirth: '1917-12-06',
+          status: 'SINGLE',
+          bio: 'Jee jee jee',
+          tags: [],
         },
       },
     },
