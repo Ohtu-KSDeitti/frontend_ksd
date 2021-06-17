@@ -36,17 +36,13 @@ This repository contains front end source code for the _Kristittyjen sinkkujen d
 * [Product backlog](https://docs.google.com/spreadsheets/d/17pHSsWrSfmB6ZCPkbFlNHP7rXrApZz649BNCZ2rUao4/edit?usp=sharing)
 * [Sprint backlog](https://docs.google.com/spreadsheets/d/1qfrm3tt-EGaUIGf8-LNKPHwXWFQBNaiZ_fus_j46mK4/edit?usp=sharing)
 * Diagrams, WIP
-* [Definition of done](https://github.com/Ohtu-KSDeitti/frontend_ksd/tree/main/documentation/definition_of_done.md)
-* [Security](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/security.md)
-* [Testing](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/testing.md)
-
-
+* [KSD_WIKI](https://github.com/Ohtu-KSDeitti/frontend_ksd/wiki)
 
 ## Developer links
 
 ### Workflow
 
-* [Workflow practices](https://github.com/Ohtu-KSDeitti/frontend_ksd/blob/main/documentation/workflow.md)
+* [Workflow practices](https://github.com/Ohtu-KSDeitti/frontend_ksd/wiki/Workflow)
 
 ### Course info
 
