@@ -13,6 +13,10 @@ Tämä repositorio sisältää _Kristittyjen sinkkujen deitti_ -sovelluksen sela
 
 This repository contains front end source code for the _Kristittyjen sinkkujen deitti_ app. Back end side will be built with small micro services. These will have their own repositories, which can be found from the links below. The purpose of the app is to unite people within the Christian community and find love  :cupid:
 
+## Application
+
+[Kristittyjen sinkkujen deitti](http://13.53.46.78:8080/)
+
 ## Project links
 
 ### Application links

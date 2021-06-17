@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import {
   Switch, Route,
 } from 'react-router-dom'
@@ -16,6 +16,10 @@ const App = () => {
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user'))
   const [token, setToken] = useState(localStorage.getItem('user-token'))
   const client = useApolloClient()
+
+  useEffect(() => {
+    document.title = 'Kristittyjen sinkkujen deitti'
+  }, [])
 
   const logout = () => {
     setLoggedUser(null)
