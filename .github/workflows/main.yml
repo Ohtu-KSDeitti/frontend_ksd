@@ -11,11 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install dependencies
-        run: npm ci
+        run: yarn
       - name: Run ESLint
-        run: npm run lint
+        run: yarn run lint
       - name:  Run jest tests and create coverage report
-        run: npm run coverage
+        run: yarn run coverage
         working-directory: src
       - name: Cypress-run
         uses: cypress-io/github-action@v2
