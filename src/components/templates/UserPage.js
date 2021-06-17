@@ -15,25 +15,70 @@ const UserPage = ({ loggedUser }) => {
   }
 
   if (!currUserData.data || currUserData.data.currentUser.id !== userData.data.findUserById.id) {
+    const user = userData.data.findUserById
+
+    let sex = 'Nainen'
+    if ((user.userInfo.gender) === 'MALE') {
+      sex = 'Mies'
+    }
+    console.log(sex)
+
     return (
       <div>
-        <h1>Tämä on käyttäjän {userData.data.findUserById.username} oma sivu</h1>
+        <h1>{user.username}:n deittiprofiili</h1>
+        <h2>Perustiedot</h2>
+        <ul>
+          <li><b>Sukupuoli:</b> {sex}</li>
+          <li><b>Sijanti:</b> {user.userInfo.location}</li>
+          <li><b>Siviilisääty:</b> {user.userInfo.status}</li>
+          <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
+        </ul>
       </div>
     )
   }
   const user = currUserData.data.currentUser
+  let sex = 'Nainen'
+  if ((user.userInfo.gender) === 'MALE') {
+    sex = 'Mies'
+  }
+  console.log(sex)
+  console.log(user.userInfo.status)
+
+  if (user.userInfo.dateOfBirth === '') {
+    return (
+      <div>
+        <h1>{user.username}</h1>
+        <h2>Omat tiedot</h2>
+        <ul>
+          <li><b>Etunimi:</b> {user.firstname} </li>
+          <li><b>Sukunimi:</b> {user.lastname} </li>
+          <li><b>Nimimerkki:</b> {user.username} </li>
+          <li><b>Sähköposti:</b> {user.email} </li>
+        </ul>
+        <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
+      </div>
+    )
+  }
 
   return (
     <div>
-      <h1>Tämä on oma sivusi</h1>
-      <h2>Tallentamasi tiedot</h2>
+      <h1>{user.username}</h1>
+      <h2>Omat tiedot</h2>
       <ul>
-        <li>Etunimi: {user.firstname} </li>
-        <li>Sukunimi: {user.lastname} </li>
-        <li>Nimimerkki: {user.username} </li>
-        <li>Sähköposti: {user.email} </li>
+        <li><b>Etunimi:</b> {user.firstname} </li>
+        <li><b>Sukunimi:</b> {user.lastname} </li>
+        <li><b>Syntymäaika:</b> {user.userInfo.dateOfBirth} </li>
+        <li><b>Nimimerkki:</b> {user.username} </li>
+        <li><b>Sähköposti:</b> {user.email} </li>
       </ul>
-      <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
+      <h2>Deittiprofiilin tiedot</h2>
+      <ul>
+        <li><b>Sukupuoli:</b> {sex}</li>
+        <li><b>Sijanti:</b> {user.userInfo.location}</li>
+        <li><b>Siviilisääty:</b> {user.userInfo.status}</li>
+        <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
+      </ul>
+      <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>
   )
 }

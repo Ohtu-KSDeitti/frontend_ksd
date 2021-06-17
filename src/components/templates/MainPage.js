@@ -12,6 +12,7 @@ const MainPage = ({ token, loggedUser }) => {
 
   return (
     <div>
+      <h2>Pääsivu</h2>
       <p>Tervetuloa!</p>
     </div>
   )

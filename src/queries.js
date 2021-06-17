@@ -29,14 +29,11 @@ export const ADD_NEW_USER = gql`
 `
 
 export const LOGIN = gql`
-  mutation login($username: String!, $password: String!) {
-    login(
-      username: $username,
-      password: $password,
-    ) {
-      value
-    }
+mutation($email: String!, $password: String!) {
+  login(email: $email, password: $password) {
+    value
   }
+}
 `
 
 export const CURRENT_USER = gql`
@@ -50,6 +47,7 @@ export const CURRENT_USER = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,
@@ -66,6 +64,7 @@ export const FIND_USER_BY_ID = gql`
       userInfo {
         location,
         gender,
+        status,
         dateOfBirth,
         profileLikes,
         bio,

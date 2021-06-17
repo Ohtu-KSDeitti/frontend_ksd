@@ -2,9 +2,9 @@ name: Test Automation
 
 on:
   push:
-    branches-ignore: [ main ]
+    branches-ignore: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -18,3 +18,11 @@ jobs:
         run: yarn run test
       - name: Run ESLint
         run: yarn run lint
+      - name: Cypress-run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn run start:test
+          wait-on: 'http://localhost:3000'
+          browser: chrome
+          wait-on-timeout: 20
+          record: false

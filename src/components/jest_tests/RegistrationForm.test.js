@@ -8,15 +8,6 @@ import { ADD_NEW_USER } from '../../queries'
 
 const { act } = TestRenderer
 
-const values = {
-  username: 'kalle',
-  password: 'kallekalle',
-  passwordconf: 'kallekalle',
-  firstname: 'kalle',
-  lastname: 'kalle',
-  email: 'kalle@kal.fi',
-}
-
 test('Create user', async () => {
   // const mockCallBack = jest.fn()
   const mockReg = [
@@ -24,7 +15,12 @@ test('Create user', async () => {
       request: {
         query: ADD_NEW_USER,
         variables: {
-          values,
+          username: 'kalle',
+          password: 'kallekalle',
+          passwordconf: 'kallekalle',
+          firstname: 'kalle',
+          lastname: 'kalle',
+          email: 'kalle@kal.fi',
         },
       },
       result: {
@@ -57,7 +53,6 @@ test('Create user', async () => {
   // expect(mockReg).toBeCalledWith(expect.anything())
   // expect(tree).toEqual(expect.arrayContaining('Virhe!'))
 
-  // console.log(tree[1].children)
   expect(tree[1].children).toContain('Virhe!')
   // expect(wrapper).toBeTruthy()
 })

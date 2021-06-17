@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,6 +7,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('./logos/pinkkiJaSini.png');
 }
 
 code {
@@ -20,7 +22,16 @@ code {
 .caps {
   color:red
 }
-.header h1 {
+.header h1, h2 {
   font-family: 'Dancing Script';
   font-size: 55px;
+  color: goldenrod;
+}
+.container {
+  background-image: url('./logos/Uusin.png');
+  background-size: center;
+  background-repeat: no-repeat;
+}
+.circular--square {
+  border-radius: 50%;  
 }
