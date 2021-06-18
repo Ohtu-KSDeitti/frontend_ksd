@@ -26,7 +26,6 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       const token = loginResult.data.login.value
       localStorage.setItem('user-token', token)
       localStorage.setItem('username', email)
-      setLoggedUser(localStorage.getItem('username'))
       setToken(localStorage.getItem('user-token'))
       setEmail('')
       setPassword('')

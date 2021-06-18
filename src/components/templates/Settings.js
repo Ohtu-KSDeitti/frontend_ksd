@@ -143,21 +143,21 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           >
             <option value="AHVENANMAA">Ahvenanmaa</option>
-            <option value="ETELÄ-KARJALA">Etelä-Karjala</option>
-            <option value="ETELÄ-POHJANMAA">Etelä-Pohjanmaa</option>
-            <option value="ETELÄ-SAVO">Etelä-Savo</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
             <option value="KAINUU">Kainuu</option>
-            <option value="KANTA-HÄME">Kanta-Häme</option>
-            <option value="KESKI-POHJANMAA">Keski-Pohjanmaa</option>
-            <option value="KESKI-SUOMI">Keski-Suomi</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
             <option value="KYMENLAAKSO">Kymenlaakso</option>
             <option value="LAPPI">Lappi</option>
             <option value="PIRKANMAA">Pirkanmaa</option>
             <option value="POHJANMAA">Pohjanmaa</option>
-            <option value="POHJOIS-KARJALA">Pohjois-Karjala</option>
-            <option value="POHJOIS-POHJANMAA">Pohjois-Pohjanmaa</option>
-            <option value="POHJOIS-SAVO">Pohjois-Savo</option>
-            <option value="PÄIJÄT-HÄME">Päijät-Häme</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
             <option value="SATAKUNTA">Satakunta</option>
             <option value="UUSIMAA">Uusimaa</option>
             <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
@@ -224,24 +224,24 @@ const Settings = () => {
             onChange={({ target }) => setLocation(target.value)}
           >
             <option value="AHVENANMAA">Ahvenanmaa</option>
-            <option value="ETELÄ-KARJALA">Etelä-Karjala</option>
-            <option value="ETELÄ-POHJANMAA">Etelä-Pohjanmaa</option>
-            <option value="ETELÄ-SAVO">Etelä-Savo</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
             <option value="KAINUU">Kainuu</option>
-            <option value="KANTA-HÄME">Kanta-Häme</option>
-            <option value="KESKI-POHJANMAA">Keski-Pohjanmaa</option>
-            <option value="KESKI-SUOMI">Keski-Suomi</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
             <option value="KYMENLAAKSO">Kymenlaakso</option>
             <option value="LAPPI">Lappi</option>
             <option value="PIRKANMAA">Pirkanmaa</option>
             <option value="POHJANMAA">Pohjanmaa</option>
-            <option value="POHJOIS-KARJALA">Pohjois-Karjala</option>
-            <option value="POHJOIS-POHJANMAA">Pohjois-Pohjanmaa</option>
-            <option value="POHJOIS-SAVO">Pohjois-Savo</option>
-            <option value="PÄIJÄT-HÄME">Päijät-Häme</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
             <option value="SATAKUNTA">Satakunta</option>
             <option value="UUSIMAA">Uusimaa</option>
-            <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
+            <option value="VARSINAISSUOMI">Varsinais-Suomi</option>
           </Form.Control><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bio">
