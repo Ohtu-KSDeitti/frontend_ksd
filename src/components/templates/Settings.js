@@ -12,6 +12,7 @@ const Settings = () => {
   const [lastname, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [notification, setNotification] = useState('')
+  const [regionList, setRegionList] = useState([])
   const history = useHistory()
 
   const [gender, setGender] = useState('FEMALE')
@@ -106,6 +107,12 @@ const Settings = () => {
     }
   }
 
+  const addRegionToList = (region) => {
+    setRegionList(...regionList, region)
+    console.log(regionList)
+    return true
+  }
+
   const createDate = () => (
     <>
       <h1>Luo deittiprofiili</h1>
@@ -141,6 +148,32 @@ const Settings = () => {
             required
             value={location}
             onChange={({ target }) => setLocation(target.value)}
+          >
+            <option value="AHVENANMAA">Ahvenanmaa</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
+            <option value="KAINUU">Kainuu</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
+            <option value="KYMENLAAKSO">Kymenlaakso</option>
+            <option value="LAPPI">Lappi</option>
+            <option value="PIRKANMAA">Pirkanmaa</option>
+            <option value="POHJANMAA">Pohjanmaa</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
+            <option value="SATAKUNTA">Satakunta</option>
+            <option value="UUSIMAA">Uusimaa</option>
+            <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
+          </Form.Control><br />
+          <Form.Label>Etsin seuraa paikkakunnilta:</Form.Label>
+          <Form.Control
+            as="select"
+            multiple
+            onChange={({ target }) => addRegionToList(target.value)}
           >
             <option value="AHVENANMAA">Ahvenanmaa</option>
             <option value="ETELAKARJALA">Etelä-Karjala</option>
@@ -242,6 +275,32 @@ const Settings = () => {
             <option value="SATAKUNTA">Satakunta</option>
             <option value="UUSIMAA">Uusimaa</option>
             <option value="VARSINAISSUOMI">Varsinais-Suomi</option>
+          </Form.Control><br />
+          <Form.Label>Etsin seuraa paikkakunnilta:</Form.Label>
+          <Form.Control
+            as="select"
+            multiple
+            onChange={({ target }) => addRegionToList(target.value)}
+          >
+            <option value="AHVENANMAA">Ahvenanmaa</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
+            <option value="KAINUU">Kainuu</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
+            <option value="KYMENLAAKSO">Kymenlaakso</option>
+            <option value="LAPPI">Lappi</option>
+            <option value="PIRKANMAA">Pirkanmaa</option>
+            <option value="POHJANMAA">Pohjanmaa</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
+            <option value="SATAKUNTA">Satakunta</option>
+            <option value="UUSIMAA">Uusimaa</option>
+            <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
           </Form.Control><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bio">
