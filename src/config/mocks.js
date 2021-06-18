@@ -79,7 +79,7 @@ const mocks = [
       query: UPDATE_USER_DATE,
       variables: {
         id: '7561c5a6-7566-4097-8453-c9254414e397',
-        location: 'Espoo',
+        location: 'UUSIMAA',
         gender: 'MALE',
         dateOfBirth: '1917-12-06',
         status: 'SINGLE',
@@ -90,7 +90,7 @@ const mocks = [
     result: {
       data: {
         updateUserInfo: {
-          location: 'Espoo',
+          location: 'UUSIMAA',
           gender: 'MALE',
           dateOfBirth: '1917-12-06',
           status: 'SINGLE',
