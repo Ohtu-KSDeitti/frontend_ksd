@@ -3,8 +3,11 @@ import { Form, Button } from 'react-bootstrap'
 import { useMutation, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-import { CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE } from '../../queries'
+import {
+  CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE,
+} from '../../queries'
 import Notification from '../utils/Notification'
+import ProfilePic from './ProfilePic'
 
 const Settings = () => {
   const [username, setUsername] = useState('')
@@ -317,6 +320,7 @@ const Settings = () => {
           <Button id="update-button" type="submit">Tallenna muutokset</Button>
         </Form.Group>
       </Form>
+      <ProfilePic id={userData.data.currentUser.id} />
       {user.userInfo.dateOfBirth === '' ? createDate() : editDate()}
     </>
   )

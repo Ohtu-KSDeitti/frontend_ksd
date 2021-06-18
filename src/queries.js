@@ -111,3 +111,11 @@ export const UPDATE_USER_DATE = gql`
     }
   }
 `
+
+export const GET_USER_IMAGES = gql`
+query($id: ID!) {
+  getUserImages(id: $id) {
+    profilePic
+  }
+}
+`
