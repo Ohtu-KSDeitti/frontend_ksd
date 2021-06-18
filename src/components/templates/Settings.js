@@ -17,7 +17,7 @@ const Settings = () => {
   const [gender, setGender] = useState('FEMALE')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [status, setStatus] = useState('SINGLE')
-  const [location, setLocation] = useState('')
+  const [location, setLocation] = useState('Ahvenanmaa')
   const [bio, setBio] = useState('')
 
   const userData = useQuery(CURRENT_USER)
@@ -136,12 +136,32 @@ const Settings = () => {
           <Form.Label>Paikkakunta:</Form.Label>
           <Form.Control
             id="location"
+            as="select"
+            defaultValue="AHVENANMAA"
             required
-            type="text"
-            maxLength="100"
             value={location}
             onChange={({ target }) => setLocation(target.value)}
-          /><br />
+          >
+            <option value="AHVENANMAA">Ahvenanmaa</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
+            <option value="KAINUU">Kainuu</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
+            <option value="KYMENLAAKSO">Kymenlaakso</option>
+            <option value="LAPPI">Lappi</option>
+            <option value="PIRKANMAA">Pirkanmaa</option>
+            <option value="POHJANMAA">Pohjanmaa</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
+            <option value="SATAKUNTA">Satakunta</option>
+            <option value="UUSIMAA">Uusimaa</option>
+            <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
+          </Form.Control><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bioInfo" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
@@ -197,12 +217,32 @@ const Settings = () => {
           <Form.Label>Paikkakunta:</Form.Label>
           <Form.Control
             id="location"
+            as="select"
             required
-            type="text"
-            maxLength="100"
+            defaultValue="AHVENANMAA"
             value={location}
             onChange={({ target }) => setLocation(target.value)}
-          /><br />
+          >
+            <option value="AHVENANMAA">Ahvenanmaa</option>
+            <option value="ETELAKARJALA">Etelä-Karjala</option>
+            <option value="ETELAPOHJANMAA">Etelä-Pohjanmaa</option>
+            <option value="ETELASAVO">Etelä-Savo</option>
+            <option value="KAINUU">Kainuu</option>
+            <option value="KANTAHAME">Kanta-Häme</option>
+            <option value="KESKIPOHJANMAA">Keski-Pohjanmaa</option>
+            <option value="KESKISUOMI">Keski-Suomi</option>
+            <option value="KYMENLAAKSO">Kymenlaakso</option>
+            <option value="LAPPI">Lappi</option>
+            <option value="PIRKANMAA">Pirkanmaa</option>
+            <option value="POHJANMAA">Pohjanmaa</option>
+            <option value="POHJOISKARJALA">Pohjois-Karjala</option>
+            <option value="POHJOISPOHJANMAA">Pohjois-Pohjanmaa</option>
+            <option value="POHJOISSAVO">Pohjois-Savo</option>
+            <option value="PAIJATHAME">Päijät-Häme</option>
+            <option value="SATAKUNTA">Satakunta</option>
+            <option value="UUSIMAA">Uusimaa</option>
+            <option value="VARSINAISSUOMI">Varsinais-Suomi</option>
+          </Form.Control><br />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bio">
             Kuvauksen maksimipituus on 500 merkkiä.

@@ -92,7 +92,7 @@ export const UPDATE_USER_ACCOUNT = gql`
 `
 
 export const UPDATE_USER_DATE = gql`
-  mutation ($id: ID!, $location: String, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
+  mutation ($id: ID!, $location: Region, $gender: Gender, $dateOfBirth: String, $status: Status,  $bio: String, $tags: [String]) {
     updateUserInfo(
       id: $id,
       location: $location,
