@@ -14,35 +14,60 @@ const UserPage = ({ loggedUser }) => {
     return <div>loading...</div>
   }
 
+  const getStatus = (s) => {
+    let status = s
+    if (status === 'SINGLE') {
+      status = 'Sinkku'
+    } else if (status === 'TAKEN') {
+      status = 'Parisuhteessa'
+    } else if (status === 'MARRIED') {
+      status = 'Naimisissa'
+    } else if (status === 'DIVORCED') {
+      status = 'Eronnut'
+    } else if (status === 'WIDOWED') {
+      status = 'Leski'
+    }
+    return status
+  }
+
+  const getGender = (g) => {
+    let gender = g
+    if (gender === 'FEMALE') {
+      gender = 'Nainen'
+    } else {
+      gender = 'Mies'
+    }
+    return gender
+  }
+
+  const getAge = (d) => {
+    const today = new Date()
+    const birthday = new Date(d)
+    let age = today.getFullYear() - birthday.getFullYear()
+    const month = today.getMonth() - birthday.getMonth()
+    if (month < 0 || (month === 0 && today.getDate() < birthday.getDate())) {
+      age -= 1
+    }
+    return age
+  }
+
   if (!currUserData.data || currUserData.data.currentUser.id !== userData.data.findUserById.id) {
     const user = userData.data.findUserById
-
-    let sex = 'Nainen'
-    if ((user.userInfo.gender) === 'MALE') {
-      sex = 'Mies'
-    }
-    console.log(sex)
 
     return (
       <div>
         <h1>{user.username}:n deittiprofiili</h1>
         <h2>Perustiedot</h2>
         <ul>
-          <li><b>Sukupuoli:</b> {sex}</li>
+          <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
           <li><b>Sijanti:</b> {user.userInfo.location}</li>
-          <li><b>Siviilisääty:</b> {user.userInfo.status}</li>
+          <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
           <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
         </ul>
       </div>
     )
   }
   const user = currUserData.data.currentUser
-  let sex = 'Nainen'
-  if ((user.userInfo.gender) === 'MALE') {
-    sex = 'Mies'
-  }
-  console.log(sex)
-  console.log(user.userInfo.status)
 
   if (user.userInfo.dateOfBirth === '') {
     return (
@@ -63,20 +88,21 @@ const UserPage = ({ loggedUser }) => {
   return (
     <div>
       <h1>{user.username}</h1>
-      <h2>Omat tiedot</h2>
+      <h2>Deittiprofiilin tiedot</h2>
+      <ul>
+        <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
+        <li><b>Sijanti:</b> {user.userInfo.location}</li>
+        <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
+        <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
+      </ul>
+      <h2>Omat tiedot (näkyvät vain sinulle)</h2>
       <ul>
         <li><b>Etunimi:</b> {user.firstname} </li>
         <li><b>Sukunimi:</b> {user.lastname} </li>
         <li><b>Syntymäaika:</b> {user.userInfo.dateOfBirth} </li>
+        <li><b>Ikä:</b> {getAge(user.userInfo.dateOfBirth)} </li>
         <li><b>Nimimerkki:</b> {user.username} </li>
         <li><b>Sähköposti:</b> {user.email} </li>
-      </ul>
-      <h2>Deittiprofiilin tiedot</h2>
-      <ul>
-        <li><b>Sukupuoli:</b> {sex}</li>
-        <li><b>Sijanti:</b> {user.userInfo.location}</li>
-        <li><b>Siviilisääty:</b> {user.userInfo.status}</li>
-        <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
       </ul>
       <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>

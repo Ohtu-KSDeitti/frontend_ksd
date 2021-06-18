@@ -22,7 +22,7 @@ This repository contains front end source code for the _Kristittyjen sinkkujen d
 ### Application links
 * Frontend: 
   * Production:
-    * Heroku link, WIP
+    * [Kristittyjen sinkkujen deitti](http://13.53.46.78:8080/)
     * [Code on GitHub](https://github.com/Ohtu-KSDeitti/frontend_ksd)
 
 * Backend: 
