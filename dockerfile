@@ -12,7 +12,7 @@ COPY . ./
 #Set env port to 8080
 ENV PORT=8080
 EXPOSE 8080
-CMD ["yarn" "run" "start"]
+CMD ["yarn", "start"]
 #RUN yarn build
 
 
