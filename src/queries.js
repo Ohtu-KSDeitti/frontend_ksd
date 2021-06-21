@@ -74,6 +74,14 @@ export const FIND_USER_BY_ID = gql`
   }
 `
 
+export const UPDATE_PROFILE_PIC = gql`
+mutation($id:ID!, $profilePic: String!) {
+  updateProfilePic(
+    id: $id,
+    profilePic: $profilePic)
+}
+`
+
 export const UPDATE_USER_ACCOUNT = gql`
   mutation ($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
     updateUserAccount(

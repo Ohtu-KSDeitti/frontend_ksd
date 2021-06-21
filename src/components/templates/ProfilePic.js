@@ -1,7 +1,7 @@
-import { useQuery } from '@apollo/client'
+import { useQuery, useMutation } from '@apollo/client'
 import React, { useState } from 'react'
 import { Form, Button } from 'react-bootstrap'
-import { GET_USER_IMAGES } from '../../queries'
+import { GET_USER_IMAGES, UPDATE_PROFILE_PIC } from '../../queries'
 
 const ShowImg = ({ img, id }) => {
   if (img === 'none') {
@@ -21,6 +21,7 @@ const ShowImg = ({ img, id }) => {
 
 const ProfilePic = ({ id }) => {
   const [selectedFile, setSelectedFile] = useState(null)
+  const [updatePicture] = useMutation(UPDATE_PROFILE_PIC)
   const { loading, error, data } = useQuery(GET_USER_IMAGES,
     {
       variables:
@@ -43,13 +44,22 @@ const ProfilePic = ({ id }) => {
     setSelectedFile(event.target.files[0])
   }
 
-  const submitPicture = (event) => {
+  const submitPicture = async (event) => {
     event.preventDefault()
-    /* Tähän logiikka kuvan lähettämiseen
-      presigned urlit vai backendin kautta?
-    */
+    if (!selectedFile) {
+      return
+    }
 
-    console.log(selectedFile)
+    const { data: { updateProfilePic } } = await updatePicture({
+      variables: {
+        id,
+        profilePic: selectedFile.name,
+      },
+    })
+
+    // Kuvan lähettäminen S3, axios?
+
+    console.log(updateProfilePic)
   }
 
   return (
