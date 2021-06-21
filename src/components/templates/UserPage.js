@@ -105,7 +105,7 @@ const UserPage = ({ loggedUser }) => {
         <h2>Perustiedot</h2>
         <ul>
           <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
-          <li><b>Sijanti:</b> {getRegion(user.userInfo.location)}</li>
+          <li><b>Sijainti:</b> {getRegion(user.userInfo.location)}</li>
           <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
           <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
         </ul>
