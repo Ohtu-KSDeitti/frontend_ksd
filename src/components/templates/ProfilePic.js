@@ -11,6 +11,7 @@ const ShowImg = ({ img, id }) => {
       </>
     )
   }
+  // Suora URL vai signed getObject?
   return (
     <>
       <img src={`https://kdsimagebucket.s3.eu-central-1.amazonaws.com/${id}/${img}`} alt="user pic" />
