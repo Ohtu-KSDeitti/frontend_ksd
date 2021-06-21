@@ -53,7 +53,7 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
       <Notification message={notification} />
       <Form onSubmit={submit}>
         <Form.Group>
-          <Form.Label><b>Sähköposti</b></Form.Label>
+          <Form.Label>Sähköposti</Form.Label>
           <Form.Control
             id="email"
             required
@@ -61,7 +61,7 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
             value={email}
             onChange={({ target }) => setEmail(target.value)}
           />
-          <Form.Label><b>Salasana</b></Form.Label>
+          <Form.Label>Salasana</Form.Label>
           <Form.Control
             id="password"
             required

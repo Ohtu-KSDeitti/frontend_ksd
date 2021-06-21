@@ -23,6 +23,12 @@ code {
   color: red;
 }
 
+.menuLink {
+  color: black;
+  padding-right: 25px;
+  font-size: 15px;
+}
+
 .caps {
   color:red
 }
@@ -42,9 +48,6 @@ code {
 .navbar-custom {
   background-color: lightgreen;
 }
-/* Modify brand and text color */
-
-.navbar-custom .navbar-brand,
-.navbar-custom .navbar-text {
-  color: green;
+.palkki {
+  padding: 25;
 }
