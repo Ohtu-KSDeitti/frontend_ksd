@@ -30,7 +30,8 @@ This repository contains front end source code for the _Kristittyjen sinkkujen d
     * [Code on GitHub](https://github.com/Ohtu-KSDeitti/user-api)
   * Gateway: 
     * [Code on GitHub](https://github.com/Ohtu-KSDeitti/gateway)
-
+  * Image-api:
+    * [Code on GitHub](https://github.com/Ohtu-KSDeitti/image-api)
 
 ### Documentation
 * [Product backlog](https://docs.google.com/spreadsheets/d/17pHSsWrSfmB6ZCPkbFlNHP7rXrApZz649BNCZ2rUao4/edit?usp=sharing)
