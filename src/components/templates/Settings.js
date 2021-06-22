@@ -303,7 +303,7 @@ const Settings = () => {
             onChange={({ target }) => setLastName(target.value)}
           /><br />
           <Form.Text id="username" muted>
-            Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
+            Sähköpostin tulee sisältää @-merkki ja toimiva pääte.
           </Form.Text>
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
