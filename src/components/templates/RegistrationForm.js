@@ -74,7 +74,7 @@ const RegistrationForm = () => {
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Text id="emailinfo" muted>
-            Sähköpostin tulee sisältää @ merkki ja toimiva pääte. Sähköpostin tulee olla uniikki.
+            Sähköpostin tulee sisältää @-merkki ja toimiva pääte. Sähköpostin tulee olla uniikki.
           </Form.Text>
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
