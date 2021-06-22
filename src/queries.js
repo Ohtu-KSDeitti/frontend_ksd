@@ -82,6 +82,16 @@ mutation($id:ID!, $profilePic: String!) {
 }
 `
 
+export const REMOVE_PROFILE_PIC = gql`
+mutation($id:ID!) {
+  removeProfilePic(
+    id: $id
+  ) {
+    profilePic
+  }
+}
+`
+
 export const UPDATE_USER_ACCOUNT = gql`
   mutation ($id: ID!, $username: String, $firstname: String, $lastname: String, $email: String) {    
     updateUserAccount(

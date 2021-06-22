@@ -7,7 +7,7 @@ import {
   CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE,
 } from '../../queries'
 import Notification from '../utils/Notification'
-import ProfilePic from './ProfilePic'
+import UpdateUserImage from './UpdateUserImage'
 
 const Settings = () => {
   const [username, setUsername] = useState('')
@@ -320,7 +320,7 @@ const Settings = () => {
           <Button id="update-button" type="submit">Tallenna muutokset</Button>
         </Form.Group>
       </Form>
-      <ProfilePic id={userData.data.currentUser.id} />
+      <UpdateUserImage id={userData.data.currentUser.id} />
       {user.userInfo.dateOfBirth === '' ? createDate() : editDate()}
     </>
   )

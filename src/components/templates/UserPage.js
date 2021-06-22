@@ -3,6 +3,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
+import UserImage from './UserImage'
 
 const UserPage = ({ loggedUser }) => {
   const idParam = useParams().id
@@ -73,6 +74,7 @@ const UserPage = ({ loggedUser }) => {
     return (
       <div>
         <h1>{user.username}</h1>
+        <UserImage id={idParam} />
         <h2>Omat tiedot</h2>
         <ul>
           <li><b>Etunimi:</b> {user.firstname} </li>
