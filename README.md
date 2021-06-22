@@ -6,6 +6,8 @@
 
 ### Gateway status: ![Gateway](https://github.com/Ohtu-KSDeitti/gateway/actions/workflows/main.yml/badge.svg)
 
+### Image-api status : ![Image-api](https://github.com/Ohtu-KSDeitti/image-api/actions/workflows/main.yml/badge.svg)
+
 
 Tämä repositorio sisältää _Kristittyjen sinkkujen deitti_ -sovelluksen selaimella tapahtuvan (Front end) lähdekoodin osan. Sovellus tulee rakentumaan pienistä mikropalveluista, sitä mukaa kun niitä valmistuu. Näille tulee omat repositorionsa, jotka löytyvät alta linkeistä. Kristittyjen sinkkujen deittisovelluksen tarkoituksena on saattaa saman arvomaailman omaavia ihmisiä yhteen ja löytää rakkaus   :cupid:
 
