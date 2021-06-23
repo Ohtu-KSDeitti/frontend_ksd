@@ -8,10 +8,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./logos/pinkkiJaSini.png');
+  background-image: url('./logos/Uusin.png');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: rgb(221, 235, 212);
   font-family: 'Cantarell';
-  font-size: 25px;
-  color: rgb(162, 116, 0);
+  font-size: 20px;
+  color: rgb(61, 57, 57);
 }
 
 code {
@@ -35,10 +38,9 @@ code {
 .header h1, h2 {
   font-family: 'Dancing Script';
   font-size: 35px;
-  color: goldenrod;
+  color: black;
 }
 .container {
-  background-image: url('./logos/Uusin.png');
   background-size: center;
   background-repeat: no-repeat;
 }
