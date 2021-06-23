@@ -11,14 +11,15 @@ RUN yarn
 COPY . ./
 #Set env port to 8080
 ENV PORT=8080
-
-RUN yarn build
-
-
-FROM nginx:1.20-alpine
-COPY --from=dep /usr/src/app/build /usr/share/nginx/html
-ENV PORT=8080
-#Open port 8080
 EXPOSE 8080
+CMD ["yarn", "start"]
+#RUN yarn build
 
-CMD ["nginx", "-g", "daemon off;"]
+
+#FROM nginx:1.20-alpine
+#COPY --from=dep /usr/src/app/build /usr/share/nginx/html
+#ENV PORT=8080
+#Open port 8080
+#EXPOSE 8080
+
+#CMD ["nginx", "-g", "daemon off;"]

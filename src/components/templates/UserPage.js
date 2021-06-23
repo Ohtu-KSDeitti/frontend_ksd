@@ -1,8 +1,8 @@
-/* eslint-disable no-tabs */
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
+import UserImage from './UserImage'
 
 const UserPage = ({ loggedUser }) => {
   const idParam = useParams().id
@@ -40,6 +40,51 @@ const UserPage = ({ loggedUser }) => {
     return gender
   }
 
+  const getRegion = (r) => {
+    let region = r
+    if (region === 'AHVENANMAA') {
+      region = 'Ahvenanmaa'
+    } else if (region === 'ETELAKARJALA') {
+      region = 'Etelä-Karjala'
+    } else if (region === 'ETELAPOHJANMAA') {
+      region = 'Etelä-Pohjanmaa'
+    } else if (region === 'ETELASAVO') {
+      region = 'Etelä-Savo'
+    } else if (region === 'KAINUU') {
+      region = 'Kainuu'
+    } else if (region === 'KANTAHAME') {
+      region = 'Kanta-Häme'
+    } else if (region === 'KESKIPOHJANMAA') {
+      region = 'Keski-Pohjanmaa'
+    } else if (region === 'KESKISUOMI') {
+      region = 'Keski-Suomi'
+    } else if (region === 'KYMENLAAKSO') {
+      region = 'Kymenlaakso'
+    } else if (region === 'LAPPI') {
+      region = 'Lappi'
+    } else if (region === 'PIRKANMAA') {
+      region = 'Pirkanmaa'
+    } else if (region === 'POHJANMAA') {
+      region = 'Pohjanmaa'
+    } else if (region === 'POHJOISKARJALA') {
+      region = 'Pohjois-Karjala'
+    } else if (region === 'POHJOISPOHJANMAA') {
+      region = 'Pohjois-Pohjanmaa'
+    } else if (region === 'POHJOISSAVO') {
+      region = 'Pohjois-Savo'
+    } else if (region === 'PAIJATHAME') {
+      region = 'Päijät-Häme'
+    } else if (region === 'SATAKUNTA') {
+      region = 'Satakunta'
+    } else if (region === 'UUSIMAA') {
+      region = 'Uusimaa'
+    } else if (region === 'VARSINAISSUOMI') {
+      region = 'Varsinais-Suomi'
+    }
+
+    return region
+  }
+
   const getAge = (d) => {
     const today = new Date()
     const birthday = new Date(d)
@@ -60,7 +105,7 @@ const UserPage = ({ loggedUser }) => {
         <h2>Perustiedot</h2>
         <ul>
           <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
-          <li><b>Sijanti:</b> {user.userInfo.location}</li>
+          <li><b>Sijainti:</b> {getRegion(user.userInfo.location)}</li>
           <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
           <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
         </ul>
@@ -72,7 +117,10 @@ const UserPage = ({ loggedUser }) => {
   if (user.userInfo.dateOfBirth === '') {
     return (
       <div>
-        <h1>{user.username}</h1>
+        <h2>Käyttäjän kuva</h2>
+        <div>
+          <UserImage id={idParam} />
+        </div>
         <h2>Omat tiedot</h2>
         <ul>
           <li><b>Etunimi:</b> {user.firstname} </li>
@@ -80,18 +128,22 @@ const UserPage = ({ loggedUser }) => {
           <li><b>Nimimerkki:</b> {user.username} </li>
           <li><b>Sähköposti:</b> {user.email} </li>
         </ul>
-        <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
+        <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
       </div>
     )
   }
 
   return (
     <div>
-      <h1>{user.username}</h1>
-      <h2>Deittiprofiilin tiedot</h2>
+      <h2>Käyttäjän kuva</h2>
+      <div>
+        <UserImage id={idParam} />
+      </div>
+      <h2>Deittiprofiilisi tiedot</h2>
       <ul>
+        <li><b>Nimimerkki:</b> {user.username} </li>
         <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
-        <li><b>Sijanti:</b> {user.userInfo.location}</li>
+        <li><b>Sijanti:</b> {getRegion(user.userInfo.location)}</li>
         <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
         <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
       </ul>
@@ -101,10 +153,9 @@ const UserPage = ({ loggedUser }) => {
         <li><b>Sukunimi:</b> {user.lastname} </li>
         <li><b>Syntymäaika:</b> {user.userInfo.dateOfBirth} </li>
         <li><b>Ikä:</b> {getAge(user.userInfo.dateOfBirth)} </li>
-        <li><b>Nimimerkki:</b> {user.username} </li>
         <li><b>Sähköposti:</b> {user.email} </li>
       </ul>
-      <p>Muokkaa tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
+      <p>Muokkaa deittiprofiiliasi tai tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>
   )
 }

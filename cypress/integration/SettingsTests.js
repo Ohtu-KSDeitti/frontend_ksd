@@ -36,4 +36,27 @@ describe('Settings ', () => {
     cy.get('#dateprofile-button').click()
     cy.contains('Tervetuloa')
   })
+
+  it('User can see other users date profile', () => {
+    cy.visit('http://localhost:3000/b8342c78-7313-4c5e-a45f-3f931c1366b0')
+    cy.contains('deittiprofiili')
+    cy.contains('Sukupuoli')
+    cy.contains('Sijainti')
+    cy.contains('Siviilisääty')
+    cy.contains('Kuvaus')
+  })
+
+  it('User can see own settings but not others', () => {
+    cy.visit('http://localhost:3000/7561c5a6-7566-4097-8453-c9254414e397')
+    cy.contains('Etunimi')
+    cy.contains('Sukunimi')
+
+    cy.visit('http://localhost:3000/b8342c78-7313-4c5e-a45f-3f931c1366b0')
+    cy.contains('Sukupuoli')
+    cy.contains('Sijainti')
+    cy.contains('Etunimi').should('not.exist')
+    cy.contains('Sukunimi').should('not.exist')
+    cy.contains('Nimimerkki').should('not.exist')
+    cy.contains('Sähköposti').should('not.exist')
+  })
 })
