@@ -1,8 +1,8 @@
-/* eslint-disable no-tabs */
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
+import UserImage from './UserImage'
 
 const UserPage = ({ loggedUser }) => {
   const idParam = useParams().id
@@ -117,6 +117,10 @@ const UserPage = ({ loggedUser }) => {
   if (user.userInfo.dateOfBirth === '') {
     return (
       <div>
+        <h2>Käyttäjän kuva</h2>
+        <div>
+          <UserImage id={idParam} />
+        </div>
         <h2>Omat tiedot</h2>
         <ul>
           <li><b>Etunimi:</b> {user.firstname} </li>
@@ -131,6 +135,10 @@ const UserPage = ({ loggedUser }) => {
 
   return (
     <div>
+      <h2>Käyttäjän kuva</h2>
+      <div>
+        <UserImage id={idParam} />
+      </div>
       <h2>Deittiprofiilisi tiedot</h2>
       <ul>
         <li><b>Nimimerkki:</b> {user.username} </li>
