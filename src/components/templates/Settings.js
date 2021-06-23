@@ -3,8 +3,11 @@ import { Form, Button } from 'react-bootstrap'
 import { useMutation, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-import { CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE } from '../../queries'
+import {
+  CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE,
+} from '../../queries'
 import Notification from '../utils/Notification'
+import UpdateUserImage from './UpdateUserImage'
 
 const Settings = () => {
   const [username, setUsername] = useState('')
@@ -362,7 +365,7 @@ const Settings = () => {
             onChange={({ target }) => setLastName(target.value)}
           /><br />
           <Form.Text id="username" muted>
-            Sähköpostin tulee sisältää @ merkki ja toimiva pääte.
+            Sähköpostin tulee sisältää @-merkki ja toimiva pääte.
           </Form.Text>
           <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
@@ -376,6 +379,7 @@ const Settings = () => {
           <Button id="update-button" type="submit">Tallenna muutokset</Button>
         </Form.Group>
       </Form>
+      <UpdateUserImage id={userData.data.currentUser.id} />
       {user.userInfo.dateOfBirth === '' ? createDate() : editDate()}
     </>
   )
