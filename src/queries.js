@@ -52,6 +52,7 @@ export const CURRENT_USER = gql`
         profileLikes,
         bio,
         tags,
+        prefRegions,
       }
     }
   }
@@ -69,6 +70,7 @@ export const FIND_USER_BY_ID = gql`
         profileLikes,
         bio,
         tags,
+        prefRegions,
       }
     }
   }

@@ -41,6 +41,7 @@ const Settings = () => {
       setStatus(user.userInfo.status)
       setLocation(user.userInfo.location)
       setBio(user.userInfo.bio)
+      setPrefRegions(user.userInfo.prefRegions)
     }
   }, [userData.data])
 
@@ -272,6 +273,7 @@ const Settings = () => {
             isMulti
             options={regions}
             defaultValue={regions[0]}
+            classNamePrefix="react-select"
             // eslint-disable-next-line react/no-this-in-sfc
             onChange={handleChange}
           />
