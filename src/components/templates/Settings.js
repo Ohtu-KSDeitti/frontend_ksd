@@ -173,6 +173,8 @@ const Settings = () => {
           </Form.Control><br />
           <Form.Label>Etsin seuraa maakunnista:</Form.Label>
           <Select
+            id="regions"
+            as="select"
             isMulti
             options={regions}
             defaultValue={regions[0]}
@@ -262,6 +264,8 @@ const Settings = () => {
           </Form.Control><br />
           <Form.Label>Etsin seuraa maakunnista:</Form.Label>
           <Select
+            id="regions"
+            as="select"
             isMulti
             options={regions}
             defaultValue={regions[0]}

@@ -26,6 +26,7 @@ describe('Settings ', () => {
     cy.contains('Mies')
     cy.get('#dateOfBirth').type('1917-12-06')
     cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').select('SATAKUNTA')
     cy.get('#status').select('DIVORCED')
     cy.contains('Eronnut')
     cy.get('#status').select('SINGLE')
