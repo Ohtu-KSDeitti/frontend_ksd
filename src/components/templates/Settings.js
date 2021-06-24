@@ -11,7 +11,7 @@ import Notification from '../utils/Notification'
 import regions from '../utils/regions'
 import UpdateUserImage from './UpdateUserImage'
 
-const Settings = () => {
+const Settings = ({ logout }) => {
   const [username, setUsername] = useState('')
   const [firstname, setFirstName] = useState('')
   const [lastname, setLastName] = useState('')
@@ -26,6 +26,7 @@ const Settings = () => {
   const [bio, setBio] = useState('')
 
   const userData = useQuery(CURRENT_USER)
+
   const [updateUserAccount, updatedUserData] = useMutation(UPDATE_USER_ACCOUNT)
   const [updateUserDate, userDate] = useMutation(UPDATE_USER_DATE)
 
@@ -73,8 +74,14 @@ const Settings = () => {
   }
 
   if (!userData.data) {
+    setTimeout(() => {
+      logout(false)
+      history.push('/')
+    }, 2000)
     return (
-      <div>Et ole kirjautunut!</div>
+      <>
+        <div>Kirjautuminen on vanhentunut! Ohjataan pääsivulle.</div>
+      </>
     )
   }
   const tags = []

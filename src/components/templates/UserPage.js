@@ -1,17 +1,32 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 import UserImage from './UserImage'
 
-const UserPage = ({ loggedUser }) => {
+const UserPage = ({ loggedUser, logout }) => {
   const idParam = useParams().id
+  const history = useHistory()
+
   const currUserData = useQuery(CURRENT_USER)
+
   const userData = useQuery(FIND_USER_BY_ID,
     { variables: { id: idParam } })
 
   if (currUserData.loading || userData.loading) {
     return <div>loading...</div>
+  }
+
+  if (!userData.data) {
+    setTimeout(() => {
+      logout(false)
+      history.push('/')
+    }, 2000)
+    return (
+      <>
+        <div>Kirjautuminen on vanhentunut! Ohjataan pääsivulle.</div>
+      </>
+    )
   }
 
   const getStatus = (s) => {
