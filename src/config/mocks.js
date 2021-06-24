@@ -23,6 +23,7 @@ const mocks = [
             profileLikes: 0,
             bio: '',
             tags: [],
+            prefRegions: [],
           },
           friendList: [],
         },
@@ -111,6 +112,7 @@ const mocks = [
         status: 'SINGLE',
         bio: 'Jee jee jee',
         tags: [],
+        prefRegions: ['AHVENANMAA', 'SATAKUNTA'],
       },
     },
     result: {
@@ -122,6 +124,7 @@ const mocks = [
           status: 'SINGLE',
           bio: 'Jee jee jee',
           tags: [],
+          prefRegions: ['AHVENANMAA', 'SATAKUNTA'],
         },
       },
     },

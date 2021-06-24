@@ -102,6 +102,10 @@ const UserPage = ({ loggedUser }) => {
     return (
       <div>
         <h1>Käyttäjän {user.username} deittiprofiili</h1>
+        <h2>Käyttäjän kuva</h2>
+        <div>
+          <UserImage id={idParam} />
+        </div>
         <h2>Perustiedot</h2>
         <ul>
           <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>

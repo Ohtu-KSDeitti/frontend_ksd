@@ -26,6 +26,7 @@ describe('Settings ', () => {
     cy.contains('Mies')
     cy.get('#dateOfBirth').type('1917-12-06')
     cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').type('SATAKUNTA{enter}{enter}')
     cy.get('#status').select('DIVORCED')
     cy.contains('Eronnut')
     cy.get('#status').select('SINGLE')
@@ -35,7 +36,6 @@ describe('Settings ', () => {
     cy.get('#dateprofile-button').click()
     cy.contains('Tervetuloa')
   })
-
   it('User can see other users date profile', () => {
     cy.visit('http://localhost:3000/b8342c78-7313-4c5e-a45f-3f931c1366b0')
     cy.contains('deittiprofiili')
