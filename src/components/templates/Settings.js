@@ -27,8 +27,23 @@ const Settings = ({ logout }) => {
 
   const userData = useQuery(CURRENT_USER)
 
-  const [updateUserAccount, updatedUserData] = useMutation(UPDATE_USER_ACCOUNT)
-  const [updateUserDate, userDate] = useMutation(UPDATE_USER_DATE)
+  const [updateUserAccount, updatedUserData] = useMutation(UPDATE_USER_ACCOUNT, {
+    onError: () => {
+      setNotification('Tietojen päivittäminen ei onnistunut')
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+    },
+  })
+
+  const [updateUserDate, userDate] = useMutation(UPDATE_USER_DATE, {
+    onError: () => {
+      setNotification('Deittiprofiilin päivittäminen ei onnistunut')
+      setTimeout(() => {
+        setNotification('')
+      }, 10000)
+    },
+  })
 
   useEffect(() => {
     if (userData.data) {
@@ -96,9 +111,10 @@ const Settings = ({ logout }) => {
           id, username, firstname, lastname, email,
         },
       })
-      history.push('/')
+
+      // history.push('/')
     } catch (e) {
-      setNotification('Virhe!')
+      setNotification('Virhe!', e)
     }
   }
 
@@ -116,7 +132,7 @@ const Settings = ({ logout }) => {
       })
       history.push('/')
     } catch (e) {
-      setNotification('Virhe!')
+      setNotification('Virhe!', e)
     }
   }
 
@@ -314,6 +330,9 @@ const Settings = ({ logout }) => {
       <Form onSubmit={submitBasic}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
+          <Form.Text id="usernameinfo" muted>
+            Käyttäjätunnuksessa sallittuja merkkejä ovat Aa-Öö sekä -
+          </Form.Text>
           <Form.Control
             id="username"
             required
@@ -324,6 +343,9 @@ const Settings = ({ logout }) => {
             onChange={({ target }) => setUsername(target.value)}
           /><br />
           <Form.Label>Etunimi:</Form.Label>
+          <Form.Text id="firstnameinfo" muted>
+            Etunimessä sallittuja merkkejä ovat Aa-Öö sekä -
+          </Form.Text>
           <Form.Control
             id="firstname"
             required
@@ -334,6 +356,9 @@ const Settings = ({ logout }) => {
             onChange={({ target }) => setFirstName(target.value)}
           /><br />
           <Form.Label>Sukunimi:</Form.Label>
+          <Form.Text id="lastnameinfo" muted>
+            Sukunimessä sallittuja merkkejä ovat Aa-Öö sekä -
+          </Form.Text>
           <Form.Control
             id="lastname"
             required
@@ -343,10 +368,10 @@ const Settings = ({ logout }) => {
             value={lastname}
             onChange={({ target }) => setLastName(target.value)}
           /><br />
-          <Form.Text id="username" muted>
+          <Form.Label>Sähköposti:</Form.Label>
+          <Form.Text id="emailinfo" muted>
             Sähköpostin tulee sisältää @-merkki ja toimiva pääte.
           </Form.Text>
-          <Form.Label>Sähköposti:</Form.Label>
           <Form.Control
             id="email"
             required
