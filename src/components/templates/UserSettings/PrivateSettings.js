@@ -19,7 +19,7 @@ const PrivateSettings = ({ logout }) => {
   const [email, setEmail] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
-  const [prefRegions, setPrefRegions] = useState([])
+  const [prefRegions, setPrefRegions] = useState('')
   const [gender, setGender] = useState('FEMALE')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [status, setStatus] = useState('SINGLE')
@@ -63,7 +63,6 @@ const PrivateSettings = ({ logout }) => {
   }, [userData.data])
 
   useEffect(() => {
-    console.log('ALUEET ', prefRegions)
     if (updatedUserData.data) {
       setUsername('')
       setFirstName('')
@@ -140,7 +139,6 @@ const PrivateSettings = ({ logout }) => {
   const handleChange = (options) => {
     const optionValues = options.map((option) => option.value)
     setPrefRegions(optionValues)
-    console.log('ALUEET ', prefRegions)
   }
 
   const user = userData.data.currentUser
