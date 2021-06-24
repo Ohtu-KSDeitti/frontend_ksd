@@ -101,7 +101,7 @@ const UserPage = ({ loggedUser }) => {
 
     return (
       <div>
-        <h1>{user.username}:n deittiprofiili</h1>
+        <h1>Käyttäjän {user.username} deittiprofiili</h1>
         <h2>Perustiedot</h2>
         <ul>
           <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
