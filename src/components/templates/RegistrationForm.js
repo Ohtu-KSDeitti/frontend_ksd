@@ -100,7 +100,7 @@ const RegistrationForm = () => {
             onChange={({ target }) => setUsername(target.value)}
           /><br />
           <Form.Label>Etunimi:</Form.Label>
-          <Form.Text id="firstname" muted>
+          <Form.Text id="firstnameinfo" muted>
             Etunimessä sallittuja merkkejä ovat Aa-Öö sekä -
           </Form.Text>
           <Form.Control
@@ -114,7 +114,7 @@ const RegistrationForm = () => {
             name="name"
           /><br />
           <Form.Label>Sukunimi:</Form.Label>
-          <Form.Text id="lastname" muted>
+          <Form.Text id="lastnameinfo" muted>
             Sukunimessä sallittuja merkkejä ovat Aa-Öö sekä -
           </Form.Text>
           <Form.Control

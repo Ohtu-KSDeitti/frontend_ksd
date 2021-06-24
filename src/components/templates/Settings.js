@@ -124,7 +124,7 @@ const Settings = () => {
       })
       history.push('/')
     } catch (e) {
-      setNotification('Virhe!')
+      setNotification('Virhe!', e)
     }
   }
 
@@ -295,7 +295,7 @@ const Settings = () => {
       <Form onSubmit={submitBasic}>
         <Form.Group>
           <Form.Label>Käyttäjätunnus:</Form.Label>
-          <Form.Text id="username" muted>
+          <Form.Text id="usernameinfo" muted>
             Käyttäjätunnuksessa sallittuja merkkejä ovat Aa-Öö sekä -
           </Form.Text>
           <Form.Control
@@ -308,7 +308,7 @@ const Settings = () => {
             onChange={({ target }) => setUsername(target.value)}
           /><br />
           <Form.Label>Etunimi:</Form.Label>
-          <Form.Text id="firstname" muted>
+          <Form.Text id="firstnameinfo" muted>
             Etunimessä sallittuja merkkejä ovat Aa-Öö sekä -
           </Form.Text>
           <Form.Control
@@ -321,7 +321,7 @@ const Settings = () => {
             onChange={({ target }) => setFirstName(target.value)}
           /><br />
           <Form.Label>Sukunimi:</Form.Label>
-          <Form.Text id="lastname" muted>
+          <Form.Text id="lastnameinfo" muted>
             Sukunimessä sallittuja merkkejä ovat Aa-Öö sekä -
           </Form.Text>
           <Form.Control
@@ -334,7 +334,7 @@ const Settings = () => {
             onChange={({ target }) => setLastName(target.value)}
           /><br />
           <Form.Label>Sähköposti:</Form.Label>
-          <Form.Text id="email" muted>
+          <Form.Text id="emailinfo" muted>
             Sähköpostin tulee sisältää @-merkki ja toimiva pääte.
           </Form.Text>
           <Form.Control
