@@ -1,7 +1,6 @@
 import React from 'react'
 
 const ShowImg = ({ img, id }) => {
-  console.log(img)
   if (img === 'none') {
     return (
       <>
