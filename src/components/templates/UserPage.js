@@ -116,7 +116,7 @@ const UserPage = ({ loggedUser, logout }) => {
 
     return (
       <div>
-        <h1>{user.username}:n deittiprofiili</h1>
+        <h1>Käyttäjän {user.username} deittiprofiili</h1>
         <h2>Käyttäjän kuva</h2>
         <div>
           <UserImage id={idParam} />
