@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation, useQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
+import Select from 'react-select'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
 import {
   CURRENT_USER, UPDATE_USER_ACCOUNT, UPDATE_USER_DATE,
 } from '../../queries'
 import Notification from '../utils/Notification'
+import regions from '../utils/regions'
 import UpdateUserImage from './UpdateUserImage'
 
 const Settings = () => {
@@ -16,7 +18,7 @@ const Settings = () => {
   const [email, setEmail] = useState('')
   const [notification, setNotification] = useState('')
   const history = useHistory()
-
+  const [prefRegions, setPrefRegions] = useState([])
   const [gender, setGender] = useState('FEMALE')
   const [dateOfBirth, setDateOfBirth] = useState('')
   const [status, setStatus] = useState('SINGLE')
@@ -39,10 +41,12 @@ const Settings = () => {
       setStatus(user.userInfo.status)
       setLocation(user.userInfo.location)
       setBio(user.userInfo.bio)
+      setPrefRegions(user.userInfo.prefRegions)
     }
   }, [userData.data])
 
   useEffect(() => {
+    console.log('ALUEET ', prefRegions)
     if (updatedUserData.data) {
       setUsername('')
       setFirstName('')
@@ -100,13 +104,19 @@ const Settings = () => {
       event.preventDefault()
       updateUserDate({
         variables: {
-          id, gender, dateOfBirth, status, location, bio, tags,
+          id, gender, dateOfBirth, status, location, bio, tags, prefRegions,
         },
       })
       history.push('/')
     } catch (e) {
       setNotification('Virhe!')
     }
+  }
+
+  const handleChange = (options) => {
+    const optionValues = options.map((option) => option.value)
+    setPrefRegions(optionValues)
+    console.log('ALUEET ', prefRegions)
   }
 
   const createDate = () => (
@@ -165,6 +175,16 @@ const Settings = () => {
             <option value="UUSIMAA">Uusimaa</option>
             <option value="VARSINAIS-SUOMI">Varsinais-Suomi</option>
           </Form.Control><br />
+          <Form.Label>Etsin seuraa maakunnista:</Form.Label>
+          <Select
+            id="regions"
+            as="select"
+            isMulti
+            options={regions}
+            defaultValue={regions[0]}
+            // eslint-disable-next-line react/no-this-in-sfc
+            onChange={handleChange}
+          />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bioInfo" muted>
             Kuvauksen maksimipituus on 500 merkkiä.
@@ -246,6 +266,17 @@ const Settings = () => {
             <option value="UUSIMAA">Uusimaa</option>
             <option value="VARSINAISSUOMI">Varsinais-Suomi</option>
           </Form.Control><br />
+          <Form.Label>Etsin seuraa maakunnista:</Form.Label>
+          <Select
+            id="regions"
+            as="select"
+            isMulti
+            options={regions}
+            defaultValue={regions[0]}
+            classNamePrefix="react-select"
+            // eslint-disable-next-line react/no-this-in-sfc
+            onChange={handleChange}
+          />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
           <Form.Text id="bio">
             Kuvauksen maksimipituus on 500 merkkiä.
