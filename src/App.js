@@ -34,7 +34,7 @@ const App = () => {
     <div className="container">
       <div className="header">
         <h1>Kristittyjen sinkkujen deitti</h1>
-        <Image width="90" height="90" src="KDLOGO.png" roundedCircle />
+        <Image width="90" height="90" src="/KDLOGO.png" roundedCircle />
       </div>
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
