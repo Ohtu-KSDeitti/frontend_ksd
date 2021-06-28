@@ -9,8 +9,8 @@ import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
 import MainPage from './components/templates/MainPage'
 import UserPage from './components/templates/UserPage'
-import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
+import PrivateSettings from './components/templates/UserSettings/PrivateSettings'
 
 const App = () => {
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user'))
@@ -45,7 +45,7 @@ const App = () => {
           <RegistrationForm />
         </Route>
         <Route path="/s/:id">
-          <Settings logout={logout} />
+          <PrivateSettings logout={logout} />
         </Route>
         <Route path="/:id">
           <UserPage logout={logout} loggedUser={loggedUser} />
