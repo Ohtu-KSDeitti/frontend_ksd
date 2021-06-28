@@ -122,7 +122,6 @@ const PrivateSettings = ({ logout }) => {
     const dateData = userData.data.currentUser
     const id = dateData.id
 
-    console.log(dateData)
     try {
       event.preventDefault()
       updateUserDate({

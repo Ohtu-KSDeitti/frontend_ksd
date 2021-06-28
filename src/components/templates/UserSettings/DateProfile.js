@@ -3,7 +3,7 @@ import { Form, Button } from 'react-bootstrap'
 import Select from 'react-select'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
 import regions from '../../utils/regions'
-// user.userInfo.prefRegions.map((reg) => label: user.userInfo.prefRegions)
+
 const DateProfile = ({
   user,
   submitDateProfile,
@@ -18,7 +18,7 @@ const DateProfile = ({
   setBio,
 }) => {
   const userRegions = user.userInfo.prefRegions
-    .map((userReg) => regions.filter((option) => option.value === userReg)).map((a) => a.pop())
+    .map((userReg) => regions.filter((option) => option.value === userReg)).map((obj) => obj.pop())
 
   return (
     <>
