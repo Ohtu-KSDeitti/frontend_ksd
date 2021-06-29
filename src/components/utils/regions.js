@@ -5,7 +5,7 @@ const regions = [
   { value: 'KAINUU', label: 'Kainuu' },
   { value: 'KANTAHAME', label: 'Kanta-Häme' },
   { value: 'KESKIPOHJANMAA', label: 'Keski-Pohjanmaa' },
-  { value: 'KESKISUOMI', label: 'KeskiSuomi' },
+  { value: 'KESKISUOMI', label: 'Keski-Suomi' },
   { value: 'KYMENLAAKSO', label: 'Kymenlaakso' },
   { value: 'LAPPI', label: 'Lappi' },
   { value: 'PIRKANMAA', label: 'Pirkanmaa' },

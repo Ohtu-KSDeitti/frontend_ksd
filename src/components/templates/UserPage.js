@@ -3,6 +3,7 @@ import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 import UserImage from './UserImage'
+import regions from '../utils/regions'
 
 const UserPage = ({ loggedUser, logout }) => {
   const idParam = useParams().id
@@ -55,50 +56,7 @@ const UserPage = ({ loggedUser, logout }) => {
     return gender
   }
 
-  const getRegion = (r) => {
-    let region = r
-    if (region === 'AHVENANMAA') {
-      region = 'Ahvenanmaa'
-    } else if (region === 'ETELAKARJALA') {
-      region = 'Etelä-Karjala'
-    } else if (region === 'ETELAPOHJANMAA') {
-      region = 'Etelä-Pohjanmaa'
-    } else if (region === 'ETELASAVO') {
-      region = 'Etelä-Savo'
-    } else if (region === 'KAINUU') {
-      region = 'Kainuu'
-    } else if (region === 'KANTAHAME') {
-      region = 'Kanta-Häme'
-    } else if (region === 'KESKIPOHJANMAA') {
-      region = 'Keski-Pohjanmaa'
-    } else if (region === 'KESKISUOMI') {
-      region = 'Keski-Suomi'
-    } else if (region === 'KYMENLAAKSO') {
-      region = 'Kymenlaakso'
-    } else if (region === 'LAPPI') {
-      region = 'Lappi'
-    } else if (region === 'PIRKANMAA') {
-      region = 'Pirkanmaa'
-    } else if (region === 'POHJANMAA') {
-      region = 'Pohjanmaa'
-    } else if (region === 'POHJOISKARJALA') {
-      region = 'Pohjois-Karjala'
-    } else if (region === 'POHJOISPOHJANMAA') {
-      region = 'Pohjois-Pohjanmaa'
-    } else if (region === 'POHJOISSAVO') {
-      region = 'Pohjois-Savo'
-    } else if (region === 'PAIJATHAME') {
-      region = 'Päijät-Häme'
-    } else if (region === 'SATAKUNTA') {
-      region = 'Satakunta'
-    } else if (region === 'UUSIMAA') {
-      region = 'Uusimaa'
-    } else if (region === 'VARSINAISSUOMI') {
-      region = 'Varsinais-Suomi'
-    }
-
-    return region
-  }
+  const getRegion = (r) => regions.filter((reg) => reg.value === r)[0].label
 
   const getAge = (d) => {
     const today = new Date()
