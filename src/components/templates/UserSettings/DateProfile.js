@@ -17,8 +17,7 @@ const DateProfile = ({
   setLocation,
   setBio,
 }) => {
-  const userRegions = user.userInfo.prefRegions
-    .map((userReg) => regions.filter((option) => option.value === userReg)).map((obj) => obj.pop())
+  const userRegions = regions.filter((option) => user.userInfo.prefRegions.includes(option.value))
 
   return (
     <>
