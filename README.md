@@ -38,7 +38,6 @@ This repository contains front end source code for the _Kristittyjen sinkkujen d
 ### Documentation
 * [Product backlog](https://docs.google.com/spreadsheets/d/17pHSsWrSfmB6ZCPkbFlNHP7rXrApZz649BNCZ2rUao4/edit?usp=sharing)
 * [Sprint backlog](https://docs.google.com/spreadsheets/d/1qfrm3tt-EGaUIGf8-LNKPHwXWFQBNaiZ_fus_j46mK4/edit?usp=sharing)
-* Diagrams, WIP
 * [KSD_WIKI](https://github.com/Ohtu-KSDeitti/frontend_ksd/wiki)
 
 ## Developer links

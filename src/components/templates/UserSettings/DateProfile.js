@@ -28,7 +28,7 @@ const DateProfile = ({
         </ReactIsCapsLockActive>
         <Form.Group>
           <Form.Label>Sukupuoli:</Form.Label>
-          <Form.Control id="gender" as="select" defaultValue="FEMALE" onChange={({ target }) => setGender(target.value)}>
+          <Form.Control id="gender" as="select" defaultValue={user.userInfo.gender} onChange={({ target }) => setGender(target.value)}>
             <option value="FEMALE">Nainen</option>
             <option value="MALE">Mies</option>
           </Form.Control><br />
@@ -41,7 +41,7 @@ const DateProfile = ({
             onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
           <Form.Label>Siviilisääty:</Form.Label>
-          <Form.Control id="status" as="select" defaultValue="SINGLE" onChange={({ target }) => setStatus(target.value)}>
+          <Form.Control id="status" as="select" defaultValue={user.userInfo.status} onChange={({ target }) => setStatus(target.value)}>
             <option value="SINGLE">Sinkku</option>
             <option value="DIVORCED">Eronnut</option>
             <option value="WIDOWED">Leski</option>
