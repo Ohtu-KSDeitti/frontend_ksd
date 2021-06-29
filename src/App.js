@@ -26,7 +26,7 @@ const App = () => {
     setToken(null)
     localStorage.clear()
     if (useClient) {
-      client.resetStore()
+      client.clearStore()
     }
   }
 
