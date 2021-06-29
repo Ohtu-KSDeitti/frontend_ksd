@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button } from 'react-bootstrap'
 import { useMutation, useLazyQuery } from '@apollo/client'
 import { useHistory } from 'react-router-dom'
+import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
 import Notification from '../utils/Notification'
 import { CURRENT_USER, LOGIN } from '../../queries'
 
@@ -51,6 +52,9 @@ const LoginForm = ({ setLoggedUser, setToken }) => {
     <div>
       <h2>Kirjaudu sisään</h2>
       <Notification message={notification} />
+      <ReactIsCapsLockActive>
+        {(active) => <p style={{ color: 'blue' }}>{active ? 'Caps lock on päällä' : ''}</p>}
+      </ReactIsCapsLockActive>
       <Form onSubmit={submit}>
         <Form.Group>
           <Form.Label>Sähköposti</Form.Label>

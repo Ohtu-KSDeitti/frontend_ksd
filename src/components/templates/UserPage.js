@@ -1,9 +1,10 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
+import { Badge } from 'react-bootstrap'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 import UserImage from './UserImage'
-import regions from '../utils/regions'
+import regions, { statuslist } from '../utils/gqldata'
 
 const UserPage = ({ loggedUser, logout }) => {
   const idParam = useParams().id
@@ -30,33 +31,15 @@ const UserPage = ({ loggedUser, logout }) => {
     )
   }
 
-  const getStatus = (s) => {
-    let status = s
-    if (status === 'SINGLE') {
-      status = 'Sinkku'
-    } else if (status === 'TAKEN') {
-      status = 'Parisuhteessa'
-    } else if (status === 'MARRIED') {
-      status = 'Naimisissa'
-    } else if (status === 'DIVORCED') {
-      status = 'Eronnut'
-    } else if (status === 'WIDOWED') {
-      status = 'Leski'
-    }
-    return status
-  }
+  const getStatus = (s) => statuslist.filter((status) => s === status.value)[0].label
+  const getRegion = (r) => regions.filter((reg) => reg.value === r)[0].label
 
   const getGender = (g) => {
-    let gender = g
-    if (gender === 'FEMALE') {
-      gender = 'Nainen'
-    } else {
-      gender = 'Mies'
+    if (g === 'FEMALE') {
+      return 'Nainen'
     }
-    return gender
+    return 'Mies'
   }
-
-  const getRegion = (r) => regions.filter((reg) => reg.value === r)[0].label
 
   const getAge = (d) => {
     const today = new Date()
@@ -74,8 +57,7 @@ const UserPage = ({ loggedUser, logout }) => {
 
     return (
       <div>
-        <h1>Käyttäjän {user.username} deittiprofiili</h1>
-        <h2>Käyttäjän kuva</h2>
+        <h1>Käyttäjän <Badge variant="secondary">{user.username}</Badge> deittiprofiili</h1>
         <div>
           <UserImage id={idParam} />
         </div>
@@ -94,7 +76,6 @@ const UserPage = ({ loggedUser, logout }) => {
   if (user.userInfo.dateOfBirth === '') {
     return (
       <div>
-        <h2>Käyttäjän kuva</h2>
         <div>
           <UserImage id={idParam} />
         </div>
@@ -112,7 +93,6 @@ const UserPage = ({ loggedUser, logout }) => {
 
   return (
     <div>
-      <h2>Käyttäjän kuva</h2>
       <div>
         <UserImage id={idParam} />
       </div>

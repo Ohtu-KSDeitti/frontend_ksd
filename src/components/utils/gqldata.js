@@ -18,4 +18,13 @@ const regions = [
   { value: 'UUSIMAA', label: 'Uusimaa' },
   { value: 'VARSINAISSUOMI', label: 'Varsinais-Suomi' },
 ]
+
+export const statuslist = [
+  { value: 'SINGLE', label: 'Sinkku' },
+  { value: 'TAKEN', label: 'Parisuhteessa' },
+  { value: 'MARRIED', label: 'Naimisissa' },
+  { value: 'DIVORCED', label: 'Eronnut' },
+  { value: 'WIDOWED', label: 'Leski' },
+]
+
 export default regions
