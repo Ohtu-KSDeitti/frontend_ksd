@@ -18,6 +18,7 @@ const PrivateSettings = ({ logout }) => {
   const [lastname, setLastName] = useState('')
   const [email, setEmail] = useState('')
   const [notification, setNotification] = useState('')
+  const [dateNotification, setDateNotification] = useState('')
   const history = useHistory()
   const [prefRegions, setPrefRegions] = useState('')
   const [gender, setGender] = useState('FEMALE')
@@ -118,12 +119,48 @@ const PrivateSettings = ({ logout }) => {
     }
   }
 
+  const minorNotification = () => {
+    setDateNotification('Deittiprofiilin luominen on sallittu ainoastaan 18 vuotta täyttäneille')
+    setTimeout(() => {
+      setDateNotification('')
+    }, 10000)
+  }
+
   const submitDateProfile = async (event) => {
+    event.preventDefault()
     const dateData = userData.data.currentUser
     const id = dateData.id
 
+    const birthday = new Date(dateOfBirth)
+    const today = new Date()
+
+    if (birthday.getFullYear() < 1900) {
+      setDateNotification('Syntymävuoden on oltava vähintään 1900')
+      setTimeout(() => {
+        setDateNotification('')
+      }, 10000)
+      return
+    }
+
+    if (today.getFullYear() - birthday.getFullYear() < 18) {
+      minorNotification()
+      return
+    }
+
+    if (today.getFullYear() - birthday.getFullYear() === 18) {
+      if (today.getMonth() < birthday.getMonth()) {
+        minorNotification()
+        return
+      }
+      if (today.getMonth() === birthday.getMonth()) {
+        if (today.getDate() < birthday.getDate()) {
+          minorNotification()
+          return
+        }
+      }
+    }
+
     try {
-      event.preventDefault()
       updateUserDate({
         variables: {
           id, gender, dateOfBirth, status, location, bio, tags, prefRegions,
@@ -207,6 +244,7 @@ const PrivateSettings = ({ logout }) => {
       </Form>
       <UpdateUserImage id={userData.data.currentUser.id} />
       <DateProfile
+        dateNotification={dateNotification}
         user={user}
         dateOfBirth={dateOfBirth}
         location={location}
