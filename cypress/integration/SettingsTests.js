@@ -36,6 +36,99 @@ describe('Settings ', () => {
     cy.get('#dateprofile-button').click()
     cy.contains('Tervetuloa')
   })
+  it('User can create date profile with valid birth date, case 1', () => {
+    cy.get('#gender').select('FEMALE')
+    cy.contains('Nainen')
+    cy.get('#gender').select('MALE')
+    cy.contains('Mies')
+    cy.get('#dateOfBirth').type('1900-01-01')
+    cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').type('SATAKUNTA{enter}{enter}')
+    cy.get('#status').select('DIVORCED')
+    cy.contains('Eronnut')
+    cy.get('#status').select('SINGLE')
+    cy.contains('Sinkku')
+    cy.get('#bio').type('Jee jee jee')
+    cy.get('#christianAndSingle').check()
+    cy.get('#dateprofile-button').click()
+    cy.contains('Tervetuloa')
+  })
+  it('User cannot create date profile with invalid birth day, case 1', () => {
+    cy.get('#gender').select('FEMALE')
+    cy.contains('Nainen')
+    cy.get('#gender').select('MALE')
+    cy.contains('Mies')
+    cy.get('#dateOfBirth').type('1899-12-31')
+    cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').type('SATAKUNTA{enter}{enter}')
+    cy.get('#status').select('DIVORCED')
+    cy.contains('Eronnut')
+    cy.get('#status').select('SINGLE')
+    cy.contains('Sinkku')
+    cy.get('#bio').type('Jee jee jee')
+    cy.get('#christianAndSingle').check()
+    cy.get('#dateprofile-button').click()
+    cy.contains('Muokkaa perusasetuksia')
+  })
+  it('User can create date profile with valid birth day, case 2', () => {
+    const date = new Date()
+    date.setFullYear(date.getFullYear() - 18)
+    let month = (date.getMonth() + 1).toString()
+    let day = date.getDate().toString()
+    if (month.length < 2) {
+      month = `0${month}`
+    }
+    if (day.lenght < 2) {
+      day = `0${day}`
+    }
+    const input = `${date.getFullYear().toString()}-${month}-${day}`
+
+    cy.get('#gender').select('FEMALE')
+    cy.contains('Nainen')
+    cy.get('#gender').select('MALE')
+    cy.contains('Mies')
+    cy.get('#dateOfBirth').type(input)
+    cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').type('SATAKUNTA{enter}{enter}')
+    cy.get('#status').select('DIVORCED')
+    cy.contains('Eronnut')
+    cy.get('#status').select('SINGLE')
+    cy.contains('Sinkku')
+    cy.get('#bio').type('Jee jee jee')
+    cy.get('#christianAndSingle').check()
+    cy.get('#dateprofile-button').click()
+    cy.contains('Tervetuloa')
+  })
+  it('User cannot create date profile with invalid birth day, case 2', () => {
+    const date = new Date()
+    date.setFullYear(date.getFullYear() - 18)
+    date.setDate(date.getDate() + 1)
+    let month = (date.getMonth() + 1).toString()
+    let day = date.getDate().toString()
+    if (month.length < 2) {
+      month = `0${month}`
+    }
+    if (day.length < 2) {
+      day = `0${day}`
+    }
+    const input = `${date.getFullYear().toString()}-${month}-${day}`
+
+    cy.get('#gender').select('FEMALE')
+    cy.contains('Nainen')
+    cy.get('#gender').select('MALE')
+    cy.contains('Mies')
+    cy.get('#dateOfBirth').type(input)
+    cy.get('#location').select('UUSIMAA')
+    cy.get('#regions').type('SATAKUNTA{enter}{enter}')
+    cy.get('#status').select('DIVORCED')
+    cy.contains('Eronnut')
+    cy.get('#status').select('SINGLE')
+    cy.contains('Sinkku')
+    cy.get('#bio').type('Jee jee jee')
+    cy.get('#christianAndSingle').check()
+    cy.get('#dateprofile-button').click()
+    cy.contains('Muokkaa perusasetuksia')
+  })
   it('User can see other users date profile', () => {
     cy.visit('http://localhost:3000/b8342c78-7313-4c5e-a45f-3f931c1366b0')
     cy.contains('deittiprofiili')
