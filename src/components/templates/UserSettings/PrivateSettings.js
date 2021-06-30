@@ -147,7 +147,7 @@ const PrivateSettings = ({ logout }) => {
       <h1>Muokkaa perusasetuksia</h1>
       <Notification message={notification} />
       <ReactIsCapsLockActive>
-        {(active) => <p style={{ color: 'red' }}>{active ? 'Caps lock on päällä' : ''}</p>}
+        {(active) => <p style={{ color: 'blue' }}>{active ? 'Caps lock on päällä' : ''}</p>}
       </ReactIsCapsLockActive>
       <Form onSubmit={submitBasic}>
         <Form.Group>

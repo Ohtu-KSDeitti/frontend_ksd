@@ -1,8 +1,10 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
+import { Badge } from 'react-bootstrap'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 import UserImage from './UserImage'
+import regions, { statuslist } from '../utils/gqldata'
 
 const UserPage = ({ loggedUser, logout }) => {
   const idParam = useParams().id
@@ -29,75 +31,14 @@ const UserPage = ({ loggedUser, logout }) => {
     )
   }
 
-  const getStatus = (s) => {
-    let status = s
-    if (status === 'SINGLE') {
-      status = 'Sinkku'
-    } else if (status === 'TAKEN') {
-      status = 'Parisuhteessa'
-    } else if (status === 'MARRIED') {
-      status = 'Naimisissa'
-    } else if (status === 'DIVORCED') {
-      status = 'Eronnut'
-    } else if (status === 'WIDOWED') {
-      status = 'Leski'
-    }
-    return status
-  }
+  const getStatus = (s) => statuslist.filter((status) => s === status.value)[0].label
+  const getRegion = (r) => regions.filter((reg) => reg.value === r)[0].label
 
   const getGender = (g) => {
-    let gender = g
-    if (gender === 'FEMALE') {
-      gender = 'Nainen'
-    } else {
-      gender = 'Mies'
+    if (g === 'FEMALE') {
+      return 'Nainen'
     }
-    return gender
-  }
-
-  const getRegion = (r) => {
-    let region = r
-    if (region === 'AHVENANMAA') {
-      region = 'Ahvenanmaa'
-    } else if (region === 'ETELAKARJALA') {
-      region = 'Etelä-Karjala'
-    } else if (region === 'ETELAPOHJANMAA') {
-      region = 'Etelä-Pohjanmaa'
-    } else if (region === 'ETELASAVO') {
-      region = 'Etelä-Savo'
-    } else if (region === 'KAINUU') {
-      region = 'Kainuu'
-    } else if (region === 'KANTAHAME') {
-      region = 'Kanta-Häme'
-    } else if (region === 'KESKIPOHJANMAA') {
-      region = 'Keski-Pohjanmaa'
-    } else if (region === 'KESKISUOMI') {
-      region = 'Keski-Suomi'
-    } else if (region === 'KYMENLAAKSO') {
-      region = 'Kymenlaakso'
-    } else if (region === 'LAPPI') {
-      region = 'Lappi'
-    } else if (region === 'PIRKANMAA') {
-      region = 'Pirkanmaa'
-    } else if (region === 'POHJANMAA') {
-      region = 'Pohjanmaa'
-    } else if (region === 'POHJOISKARJALA') {
-      region = 'Pohjois-Karjala'
-    } else if (region === 'POHJOISPOHJANMAA') {
-      region = 'Pohjois-Pohjanmaa'
-    } else if (region === 'POHJOISSAVO') {
-      region = 'Pohjois-Savo'
-    } else if (region === 'PAIJATHAME') {
-      region = 'Päijät-Häme'
-    } else if (region === 'SATAKUNTA') {
-      region = 'Satakunta'
-    } else if (region === 'UUSIMAA') {
-      region = 'Uusimaa'
-    } else if (region === 'VARSINAISSUOMI') {
-      region = 'Varsinais-Suomi'
-    }
-
-    return region
+    return 'Mies'
   }
 
   const getAge = (d) => {
@@ -116,8 +57,7 @@ const UserPage = ({ loggedUser, logout }) => {
 
     return (
       <div>
-        <h1>Käyttäjän {user.username} deittiprofiili</h1>
-        <h2>Käyttäjän kuva</h2>
+        <h1>Käyttäjän <Badge variant="secondary">{user.username}</Badge> deittiprofiili</h1>
         <div>
           <UserImage id={idParam} />
         </div>
@@ -136,7 +76,6 @@ const UserPage = ({ loggedUser, logout }) => {
   if (user.userInfo.dateOfBirth === '') {
     return (
       <div>
-        <h2>Käyttäjän kuva</h2>
         <div>
           <UserImage id={idParam} />
         </div>
@@ -154,7 +93,6 @@ const UserPage = ({ loggedUser, logout }) => {
 
   return (
     <div>
-      <h2>Käyttäjän kuva</h2>
       <div>
         <UserImage id={idParam} />
       </div>
