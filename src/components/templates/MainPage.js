@@ -1,5 +1,4 @@
 import React from 'react'
-/* eslint-disable eol-last */
 
 const MainPage = ({ token, loggedUser }) => {
   if (!token && !loggedUser) {

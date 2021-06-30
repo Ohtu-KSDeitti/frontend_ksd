@@ -3,14 +3,14 @@ import {
   Switch, Route,
 } from 'react-router-dom'
 import { useApolloClient } from '@apollo/client'
+import { Image } from 'react-bootstrap'
 import LoginForm from './components/templates/LoginForm'
 import RegistrationForm from './components/templates/RegistrationForm'
 import Menu from './components/templates/Menu'
 import MainPage from './components/templates/MainPage'
 import UserPage from './components/templates/UserPage'
-import Settings from './components/templates/Settings'
 import Footer from './components/utils/Footer'
-import KDLOGO from './logos/KDLOGO.png'
+import PrivateSettings from './components/templates/UserSettings/PrivateSettings'
 
 const App = () => {
   const [loggedUser, setLoggedUser] = useState(localStorage.getItem('user'))
@@ -21,20 +21,20 @@ const App = () => {
     document.title = 'Kristittyjen sinkkujen deitti'
   }, [])
 
-  const logout = () => {
+  const logout = (useClient = true) => {
     setLoggedUser(null)
     setToken(null)
     localStorage.clear()
-    client.resetStore()
+    if (useClient) {
+      client.clearStore()
+    }
   }
-
-  console.log('Je, ', loggedUser)
 
   return (
     <div className="container">
       <div className="header">
         <h1>Kristittyjen sinkkujen deitti</h1>
-        <img className="circular--square" img src={KDLOGO} alt="Logo" width="90" height="90" />
+        <Image width="90" height="90" src="/KDLOGO.png" roundedCircle />
       </div>
       <Menu loggedUser={loggedUser} logout={logout} />
       <Switch>
@@ -45,10 +45,10 @@ const App = () => {
           <RegistrationForm />
         </Route>
         <Route path="/s/:id">
-          <Settings />
+          <PrivateSettings logout={logout} />
         </Route>
         <Route path="/:id">
-          <UserPage loggedUser={loggedUser} />
+          <UserPage logout={logout} loggedUser={loggedUser} />
         </Route>
         <Route path="/">
           <MainPage loggedUser={loggedUser} token={token} />
