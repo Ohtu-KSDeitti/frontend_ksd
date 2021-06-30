@@ -18,7 +18,7 @@ const Menu = ({ loggedUser, logout }) => {
     )
   }
   return (
-    <Navbar bg="light" variant="dark">
+    <Navbar className="navbar-custom" variant="dark">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="palkki">
