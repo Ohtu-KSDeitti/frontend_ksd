@@ -2,9 +2,11 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import Select from 'react-select'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
+import Notification from '../../utils/Notification'
 import regions from '../../utils/regions'
 
 const DateProfile = ({
+  dateNotification,
   user,
   submitDateProfile,
   dateOfBirth,
@@ -27,6 +29,7 @@ const DateProfile = ({
         <ReactIsCapsLockActive>
           {(active) => <p style={{ color: 'red' }}>{active ? 'Caps lock on päällä' : ''}</p>}
         </ReactIsCapsLockActive>
+        <Notification message={dateNotification} />
         <Form.Group>
           <Form.Label>Sukupuoli:</Form.Label>
           <Form.Control id="gender" as="select" defaultValue="FEMALE" onChange={({ target }) => setGender(target.value)}>
@@ -38,6 +41,8 @@ const DateProfile = ({
             id="dateOfBirth"
             required
             type="date"
+            minDate="1900-01-01"
+            maxDate="2003-06-29"
             value={dateOfBirth}
             onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
