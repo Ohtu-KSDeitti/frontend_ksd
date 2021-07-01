@@ -40,8 +40,6 @@ const DateProfile = ({
             id="dateOfBirth"
             required
             type="date"
-            minDate="1900-01-01"
-            maxDate="2003-06-29"
             value={dateOfBirth}
             onChange={({ target }) => setDateOfBirth(target.value)}
           /><br />
