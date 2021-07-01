@@ -1,10 +1,17 @@
 import React from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import { Badge } from 'react-bootstrap'
+import {
+  Envelope,
+  Tree,
+  Geo,
+  Pencil,
+  AlignEnd,
+  AlignStart, GenderMale, GenderFemale, People, Person, Calendar2Event,
+} from 'react-bootstrap-icons'
 import { CURRENT_USER, FIND_USER_BY_ID } from '../../queries'
 import UserImage from './UserImage'
-import regions, { statuslist } from '../utils/gqldata'
+import regions, { statuslist } from '../utils/lists'
 
 const UserPage = ({ loggedUser, logout }) => {
   const idParam = useParams().id
@@ -57,16 +64,16 @@ const UserPage = ({ loggedUser, logout }) => {
 
     return (
       <div>
-        <h1>Käyttäjän <Badge variant="secondary">{user.username}</Badge> deittiprofiili</h1>
+        <h2>Käyttäjän {user.username} deittiprofiili</h2>
         <div>
           <UserImage id={idParam} />
         </div>
-        <h2>Perustiedot</h2>
+        <h3>Perustiedot</h3>
         <ul>
-          <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
-          <li><b>Sijainti:</b> {getRegion(user.userInfo.location)}</li>
-          <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
-          <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
+          <GenderFemale /><GenderMale /><b> Sukupuoli </b> {getGender(user.userInfo.gender)}<br />
+          <Geo /> <b> Sijainti: </b> {getRegion(user.userInfo.location)}<br />
+          <People /><b> Siviilisääty: </b> {getStatus(user.userInfo.status)}<br />
+          <Pencil /><b> Kuvaus:</b> {user.userInfo.bio}
         </ul>
       </div>
     )
@@ -81,10 +88,10 @@ const UserPage = ({ loggedUser, logout }) => {
         </div>
         <h2>Omat tiedot</h2>
         <ul>
-          <li><b>Etunimi:</b> {user.firstname} </li>
-          <li><b>Sukunimi:</b> {user.lastname} </li>
-          <li><b>Nimimerkki:</b> {user.username} </li>
-          <li><b>Sähköposti:</b> {user.email} </li>
+          <AlignStart /><b>Etunimi:</b> {user.firstname}<br />
+          <AlignEnd /><b>Sukunimi:</b> {user.lastname}<br />
+          <Person /><b>Nimimerkki </b> {user.username}<br />
+          <Envelope /><b>Sähköposti </b> {user.email}
         </ul>
         <p>Muokkaa tietojasi tai luo deittiprofiili <a href={`/s/${loggedUser}`}>täällä</a></p>
       </div>
@@ -98,19 +105,19 @@ const UserPage = ({ loggedUser, logout }) => {
       </div>
       <h2>Deittiprofiilisi tiedot</h2>
       <ul>
-        <li><b>Nimimerkki:</b> {user.username} </li>
-        <li><b>Sukupuoli:</b> {getGender(user.userInfo.gender)}</li>
-        <li><b>Sijanti:</b> {getRegion(user.userInfo.location)}</li>
-        <li><b>Siviilisääty:</b> {getStatus(user.userInfo.status)}</li>
-        <li><b>Kuvaus:</b> {user.userInfo.bio}</li>
+        <Person /> <b>Nimimerkki: </b> {user.username}<br />
+        <Tree /> <b>Ikä: </b> {getAge(user.userInfo.dateOfBirth)}<br />
+        <People /> <b>Siviilisääty: </b> {getStatus(user.userInfo.status)}<br />
+        <GenderFemale /><GenderMale /> <b>Sukupuoli: </b> {getGender(user.userInfo.gender)}<br />
+        <Geo /> <b>Sijanti: </b> {getRegion(user.userInfo.location)}<br />
+        <Pencil /> <b>Kuvaus: </b> {user.userInfo.bio}
       </ul>
       <h2>Omat tiedot (näkyvät vain sinulle)</h2>
       <ul>
-        <li><b>Etunimi:</b> {user.firstname} </li>
-        <li><b>Sukunimi:</b> {user.lastname} </li>
-        <li><b>Syntymäaika:</b> {user.userInfo.dateOfBirth} </li>
-        <li><b>Ikä:</b> {getAge(user.userInfo.dateOfBirth)} </li>
-        <li><b>Sähköposti:</b> {user.email} </li>
+        <AlignStart /> <b>Etunimi: </b> {user.firstname}<br />
+        <AlignEnd /> <b>Sukunimi: </b> {user.lastname}<br />
+        <Calendar2Event /> <b>Syntymäaika: </b> {user.userInfo.dateOfBirth}<br />
+        <Envelope /> <b>Sähköposti: </b> {user.email}
       </ul>
       <p>Muokkaa deittiprofiiliasi tai tietojasi <a href={`/s/${loggedUser}`}>täällä</a></p>
     </div>

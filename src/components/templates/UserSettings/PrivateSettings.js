@@ -180,7 +180,7 @@ const PrivateSettings = ({ logout }) => {
 
   return (
     <>
-      <h1>Muokkaa perusasetuksia</h1>
+      <h2>Muokkaa perusasetuksia</h2>
       <Notification message={notification} />
       <ReactIsCapsLockActive>
         {(active) => <p style={{ color: 'blue' }}>{active ? 'Caps lock on päällä' : ''}</p>}
