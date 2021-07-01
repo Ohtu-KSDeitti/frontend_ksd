@@ -78,7 +78,7 @@ describe('Settings ', () => {
     if (month.length < 2) {
       month = `0${month}`
     }
-    if (day.lenght < 2) {
+    if (day.length < 2) {
       day = `0${day}`
     }
     const input = `${date.getFullYear().toString()}-${month}-${day}`
