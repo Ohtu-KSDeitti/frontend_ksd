@@ -5,7 +5,7 @@ import '../../index.css'
 const Menu = ({ loggedUser, logout }) => {
   if (!loggedUser) {
     return (
-      <Navbar bg="light" variant="dark">
+      <Navbar className="navbar-custom">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="palkki">
@@ -18,7 +18,7 @@ const Menu = ({ loggedUser, logout }) => {
     )
   }
   return (
-    <Navbar bg="light" variant="dark">
+    <Navbar className="navbar-custom">
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="palkki">

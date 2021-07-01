@@ -1,7 +1,9 @@
 /* eslint-disable no-unused-vars */
 import { useQuery, useMutation } from '@apollo/client'
 import React, { useEffect, useState } from 'react'
-import { Form, Button, Modal } from 'react-bootstrap'
+import {
+  Form, Button, Modal,
+} from 'react-bootstrap'
 import { GET_USER_IMAGES, REMOVE_PROFILE_PIC, UPDATE_PROFILE_PIC } from '../../queries'
 import resizeImg from '../utils/ImageUtils'
 import ShowImg from './ShowImg'
@@ -89,12 +91,12 @@ const ProfilePic = ({ id }) => {
 
   return (
     <>
-      <h1>Muokkaa profiilikuvaasi</h1>
+      <h2>Muokkaa profiilikuvaasi</h2>
       <ShowImg img={image} id={id} />
       {(image !== 'none')
         ? <div><Button id="delete-picture" onClick={toggleModal} type="button">Poista profiilikuva</Button></div> : '' }
       <Form onSubmit={submitPicture}>
-        <Form.Label>Lataa uusi kuva</Form.Label>
+        <h3>Lataa uusi kuva</h3>
         <Form.Control
           type="file"
           onChange={onFileChange}

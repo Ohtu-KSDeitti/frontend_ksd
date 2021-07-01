@@ -37,7 +37,8 @@ code {
 }
 .header h1, h2 {
   font-family: 'Dancing Script';
-  font-size: 35px;
+  font-size: 30px;
+  text-shadow: 1px 1px white;
   color: black;
 }
 .container {
@@ -48,7 +49,9 @@ code {
   border-radius: 50%;  
 }
 .navbar-custom {
-  background-color: lightgreen;
+  background-color: transparent;
+  text-shadow: 1px 1px white;
+  font-size: 75px;
 }
 .palkki {
   padding: 25;

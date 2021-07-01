@@ -18,7 +18,6 @@ describe('Settings ', () => {
     cy.get('#update-button').click()
     cy.contains('Tervetuloa')
   })
-
   it('User cannot create date profile with invalid birth day, case 1', () => {
     cy.get('#gender').select('FEMALE')
     cy.contains('Nainen')
@@ -36,7 +35,6 @@ describe('Settings ', () => {
     cy.get('#dateprofile-button').click()
     cy.contains('Muokkaa perusasetuksia')
   })
-
   it('User cannot create date profile with invalid birth day, case 2', () => {
     const date = new Date()
     date.setFullYear(date.getFullYear() - 18)

@@ -2,7 +2,7 @@ import React from 'react'
 import { Form, Button } from 'react-bootstrap'
 import Select from 'react-select'
 import ReactIsCapsLockActive from '@matsun/reactiscapslockactive'
-import regions from '../../utils/gqldata'
+import regions from '../../utils/lists'
 import Notification from '../../utils/Notification'
 
 const DateProfile = ({
@@ -23,7 +23,7 @@ const DateProfile = ({
 
   return (
     <>
-      {user.userInfo.dateOfBirth === '' ? <h1>Luo deittiprofiili</h1> : <h1> Muokkaa deittiprofiiliasi </h1>}
+      {user.userInfo.dateOfBirth === '' ? <h2>Luo deittiprofiili</h2> : <h2>Muokkaa deittiprofiiliasi</h2>}
       <Form onSubmit={submitDateProfile}>
         <ReactIsCapsLockActive>
           {(active) => <p style={{ color: 'blue' }}>{active ? 'Caps lock on päällä' : ''}</p>}
@@ -87,7 +87,6 @@ const DateProfile = ({
             isMulti
             options={regions}
             defaultValue={userRegions}
-            // eslint-disable-next-line react/no-this-in-sfc
             onChange={handleChange}
           />
           <Form.Label>Vapaa kuvaus itsestäsi:</Form.Label>
