@@ -166,6 +166,7 @@ const PrivateSettings = ({ logout }) => {
           id, gender, dateOfBirth, status, location, bio, tags, prefRegions,
         },
       })
+      history.push('/')
     } catch (e) {
       setNotification('Virhe!', e)
     }
